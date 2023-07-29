@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::get('/user-data', function () {
-    return view('Dashboard.admin.user_data');
+    
 });
 
 Route::get('/user-profile', function () {
@@ -37,6 +37,8 @@ Route::get('/user-faq', function () {
 Route::controller(AdminController::class)->group(function () {
     Route::get('/dashboard', 'index')->middleware('auth');
     Route::get('/home', 'index')->middleware('auth');
+    Route::get('/user-data','userData')->middleware('auth');
+    Route::get('/pekerjaan-data','pekerjaanData')->middleware('auth');
 });
 
 // auth

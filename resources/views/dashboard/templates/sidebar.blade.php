@@ -4,7 +4,11 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
+            @if($title == 'Dashboard')
             <a class="nav-link " href="/">
+            @else
+            <a class="nav-link collapsed" href="/">
+            @endif
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -12,9 +16,31 @@
 
         @if(auth::user()->level == 1)
         <li class="nav-item">
+            @if($title == 'Data User')
             <a class="nav-link " href="/user-data">
+            @else
+            <a class="nav-link collapsed" href="/user-data">
+            @endif
                 <i class="bi bi-folder-check"></i>
                 <span>Data User</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            @if($title == 'Data Pekerjaan')
+            <a class="nav-link " href="/pekerjaan-data">
+            @else
+            <a class="nav-link collapsed" href="/pekerjaan-data">
+            @endif
+                <i class="bi bi-folder-check"></i>
+                <span>Data Pekerjaan</span>
+            </a>
+        </li>
+        @endif
+        @if(auth::user()->level == 3)
+        <li class="nav-item">
+            <a class="nav-link " href="/user-data">
+                <i class="bi bi-folder-check"></i>
+                <span>Rekomendasi</span>
             </a>
         </li><!-- End Dashboard Nav -->
         @endif

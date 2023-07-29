@@ -7,11 +7,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Data User</h1>
+        <h1>Data Informasi Pekerjaan</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Data User</li>
+                <li class="breadcrumb-item active">Data Pekerjaan</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -22,10 +22,10 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Data user terdaftar</h5>
+                        <h5 class="card-title">Data informasi Lowongan pekerjaan</h5>
                         <div class="row">
                             <div class="col-lg-11">
-                                <p>Berikut merupakan data user yang terdaftar di dalam sistem.</p>
+                                <p>Data informasi pasar kerja atau lowongan pekerjaan terdaftar sistem.</p>
                             </div>
                             <div class="col-lg-1 float-left">
                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#test">
@@ -39,30 +39,24 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No.</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">E-mail</th>
-                                    <th scope="col">Level</th>
+                                    <th scope="col">Lowongan</th>
+                                    <th scope="col">Perusahaan</th>
+                                    <th scope="col">Kategori</th>
+                                    <th scope="col">Jenis</th>
+                                    <th scope="col">Pengalaman</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no=1;?>
-                                @foreach ($data as $user)
+                                {{$no=1;}}
+                                @foreach ($data as $info_p)
                                     <tr>
                                         <th scope="row">{{$no++}}</th>
-                                        <td>{{$user->username}}</td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>
-                                            @if($user->level == 1)
-                                            Admin
-                                            @elseif($user->level == 2)
-                                            Pencari Kerja
-                                            @elseif($user->level == 3)
-                                            Pemangku kepentingan
-                                            @endif
-                                        </td>
+                                        <td>{{$info_p->lowongan}}</td>
+                                        <td>{{$info_p->perusahaan}}</td>
+                                        <td>{{$info_p->kategori_lowongan}}</td>
+                                        <td>{{$info_p->jenis_lowongan}}</td>
+                                        <td>{{$info_p->pengalaman}}</td>
                                         <td>
                                             <a href="" class="badge badge-primary">Edit</a>
                                             <a href="" class="badge badge-info">Detail</a>
