@@ -887,6 +887,10 @@ h6 {
   margin-top: 15px;
 }
 
+.link-profile a {
+  margin-bottom: 20px;
+}
+
 .dashboard .news img {
   width: 80px;
   float: left;
@@ -1019,6 +1023,223 @@ h6 {
   line-height: 0;
   margin-right: 10px;
   transition: 0.3s;
+}
+
+.meta-bottom {
+  padding-top: 0px;
+  border-top: 1px solid rgba(var(--color-secondary-rgb), 0.15);
+}
+
+hr{
+  border-color: #666;
+  size: 10px;
+}
+
+.meta-bottom i {
+  color: #8d8d8d;
+  display: inline;
+}
+
+.meta-bottom a {
+  color: #8d8d8d;
+  transition: 0.3s;
+}
+
+/* .meta-bottom a:hover {
+  color: var(--color-primary);
+} */
+
+.meta-bottom .cats {
+  list-style: none;
+  display: inline;
+  padding: 0 20px 0 0;
+  font-size: 14px;
+}
+
+.meta-bottom .cats li {
+  display: inline-block;
+  color: #464646;
+}
+
+.meta-bottom .detail-perusahaan {
+  list-style: none;
+  display: inline;
+  padding: 0 20px 0 0;
+  font-size: 14px;
+}
+
+.meta-bottom .detail-perusahaan li {
+  display: inline-block;
+  color: #012970;
+}
+
+.meta-bottom .detail-perusahaan a:hover {
+  color: #012970;
+}
+
+.card-body .btn {
+  float: right;
+  color: white;
+  margin-top: 10px;
+}
+
+.meta-top {
+  margin-top: 20px;
+  color: #666;
+}
+
+.meta-top ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.meta-top ul li+li {
+  padding-left: 20px;
+}
+
+.meta-top i {
+  font-size: 16px;
+  margin-right: 8px;
+  line-height: 0;
+  color: rgba(var(--color-primary-rgb), 0.8);
+}
+
+.meta-top a {
+  color: var(--color-gray);
+  font-size: 14px;
+  display: inline-block;
+  line-height: 1;
+}
+
+.meta-top-center {
+  margin-top: 0px;
+  color: #666;
+}
+
+.meta-top-center ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.meta-top-center ul li+li {
+  padding-left: 20px;
+}
+
+.meta-top-center i {
+  font-size: 16px;
+  margin-right: 8px;
+  line-height: 0;
+  color: rgba(var(--color-primary-rgb), 0.8);
+}
+
+.meta-top-center a {
+  color: var(--color-gray);
+  font-size: 14px;
+  display: inline-block;
+  line-height: 1;
+}
+
+.post-item {
+  display: flex;
+}
+
+.post-item i {
+  color: var(--color-secondary);
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 10px;
+  margin-top: -1px;
+}
+
+.post-item h5 {
+  color: var(--color-secondary);
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 10px;
+  margin-top: -1px;
+}
+
+.post-item p {
+  color: var(--color-secondary);
+  font-weight: 100px;
+  font-size: 14px;
+}
+
+.post-item+.post-item {
+  margin-top: 15px;
+}
+
+.judul p {
+  color: var(--color-secondary);
+  font-weight: bold;
+  transition: 0.3s;
+  margin-bottom: 0px;
+}
+
+.judul a {
+  font-weight: 12px;
+  transition: 0.3s;
+}
+
+.judul a:hover {
+  font-weight: 14px;
+  color: var(--color-secondary);
+  transition: 0.3s;
+}
+
+.sub-judul p {
+  color: var(--color-secondary);
+  margin-top: 0px;
+  float: left;
+  font-weight: 100;
+  transition: 0.3s;
+}
+
+.dashboard-detail a {
+  font-size: 14px;
+  display: inline-block;
+  color: rgba(1, 41, 112, 0.5);
+  line-height: 0;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.dashboard-detail a:hover {
+  color: #012970;
+}
+
+.profile .profile-card .social-links .detail-pendaftar {
+  font-size: 14px;
+  display: inline-block;
+  color: rgba(1, 41, 112, 0.5);
+  line-height: 0;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+
+.profile .profile-card .verifikasi {
+  color: rgb(187, 187, 187);
+  font-size: 12px;
+  transition: 0.3s;
+  float: right;
+  margin-top: 10px;
+}
+
+.profile .profile-card .no-verifikasi {
+  color: rgb(255, 64, 64);
+  font-size: 12px;
+  transition: 0.3s;
+  margin-top: 10px;
+  float: right;
 }
 
 .profile .profile-card .social-links a:hover {

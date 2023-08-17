@@ -13,20 +13,37 @@
         <ul class="d-flex align-items-center">
             <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle" />
+                    <img src="
+                    @if(Auth::user()->foto == 'default.jpg')
+                    {{ Storage::url('public/user/default/').Auth::user()->foto}}
+                    @else
+                    {{ Storage::url('public/user/').Auth::user()->foto}}
+                    @endif
+                    
+                    " alt="Profile" class="rounded-circle" />
                     <span class="d-none d-md-block dropdown-toggle ps-2">{{Auth::user()->name}}</span> </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
-                        <span>Web Designer</span>
+                        <h6>{{Auth::user()->name}}</h6>
+                        <span>{{Auth::user()->username}}</span>
                     </li>
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="
+                        @if(Auth::user()->level == 4)
+                            {{route('sumber.show', Auth::user()->email) }}
+                        @elseif(Auth::user()->level == 3)
+                            {{route('pemerintah.show', Auth::user()->email) }}
+                        @elseif(Auth::user()->level == 2)
+                            /profil-tenaga-kerja/{{Auth::user()->email}}
+                        @elseif(Auth::user()->level == 1)
+                            /profil-admin/{{Auth::user()->email}}
+                        @endif
+                        ">
                             <i class="bi bi-person"></i>
                             <span>Profile</span>
                         </a>

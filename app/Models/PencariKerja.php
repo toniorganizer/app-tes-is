@@ -15,6 +15,8 @@ class PencariKerja extends Model
         'alamat',
         'pendidikan',
         'keterampilan',
+        'tentang',
+        'no_hp',
         'foto',
     ];
 }

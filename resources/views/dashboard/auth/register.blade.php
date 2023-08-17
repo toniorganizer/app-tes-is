@@ -10,7 +10,7 @@
                     <div class="col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
 
                         <div class="d-flex justify-content-center py-4">
-                            <a href="index.html" class="logo d-flex align-items-center w-auto">
+                            <a href="/" class="logo d-flex align-items-center w-auto">
                                 <span class="d-none d-lg-block">Sistem Informasi Pasar Kerja</span>
                             </a>
                         </div><!-- End Logo -->
@@ -24,39 +24,71 @@
                                     <p class="text-center small">Masukan data personal</p>
                                 </div>
 
-                                <form class="row g-3 needs-validation" novalidate>
+                                @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @endif
+
+                                <form action="register" method="post" class="row g-3 needs-validation" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="col-12">
                                         <label for="yourName" class="form-label">Nama</label>
-                                        <input autofocus type="text" name="name" class="form-control" id="yourName" required>
-                                        <div class="invalid-feedback">Masukan Nama Anda</div>
+                                        <input autofocus type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required value="{{old('name')}}">
+                                        @error('name')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div class="col-12">
                                         <label for="yourUsername" class="form-label">E-mail</label>
                                         <div class="input-group has-validation">
                                             <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                            <input type="text" name="username" class="form-control" id="yourUsername" required>
-                                            <div class="invalid-feedback">Masukan alamat email anda</div>
+                                            <input type="email" name="email" class="form-control" id="yourUsername" required value="{{old('email')}}">
                                         </div>
+                                        @error('email')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
                                     <div class="col-12">
                                         <label for="yourEmail" class="form-label">Username</label>
-                                        <input type="email" name="email" class="form-control" id="yourEmail" required>
-                                        <div class="invalid-feedback">Masukan username</div>
+                                        <input type="text" name="username" class="form-control" id="yourEmail" required value="{{old('username')}}">
+                                        @error('username')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
 
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <label for="yourPassword" class="form-label">Password</label>
                                         <input type="password" name="password" class="form-control" id="yourPassword" required>
-                                        <div class="invalid-feedback">Masukan password</div>
+                                        @error('password')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="yourPassword" class="form-label">Ulangi Password</label>
+                                        <input type="password" name="ulangi_password" class="form-control" id="yourPassword" required>
+                                        @error('ulangi_password')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Register</button>
+                                        <button  type="submit" class="btn btn-primary w-100">Daftar</button>
                                     </div>
                                     <div class="col-12">
-                                        <p class="small mb-0">Sudah punya akun? <a href="/">Log in</a></p>
+                                        <p class="small mb-0">Sudah punya akun? <a href="/login">Log in</a></p>
                                     </div>
                                 </form>
 

@@ -11,7 +11,7 @@ class InformasiLowongan extends Model
 
     protected $fillable = [
         'pemberi_informasi_id',
-        'lowongan',
+        'judul_lowongan',
         'perusahaan',
         'salary',
         'kategori_lowongan',
@@ -20,6 +20,8 @@ class InformasiLowongan extends Model
         'pengalaman',
         'keterampilan',
         'deskripsi',
-        'foto',
+        'verifikasi',
+        'lokasi',
+        'foto_lowongan',
     ];
 }

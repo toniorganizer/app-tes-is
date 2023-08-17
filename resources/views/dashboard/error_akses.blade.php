@@ -6,8 +6,8 @@
 
         <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
             <h1>404</h1>
-            <h2>Anda tidak boleh mengakses halaman admin.</h2>
-            <a class="btn" href="/">Kembali ke menu utama</a>
+            <h2>Anda tidak boleh mengakses halaman ini.</h2>
+            <a class="btn" href="/home">Kembali ke menu utama</a>
             <img src="assets/img/not-found.svg" class="img-fluid py-5" alt="Page Not Found">
         </section>
 

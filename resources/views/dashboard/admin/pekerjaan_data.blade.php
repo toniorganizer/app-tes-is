@@ -10,7 +10,7 @@
         <h1>Data Informasi Pekerjaan</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="/home">Home</a></li>
                 <li class="breadcrumb-item active">Data Pekerjaan</li>
             </ol>
         </nav>
@@ -28,45 +28,59 @@
                                 <p>Data informasi pasar kerja atau lowongan pekerjaan terdaftar sistem.</p>
                             </div>
                             <div class="col-lg-1 float-left">
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#test">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Lowongan">
                                     <i class="bi bi-person-plus"></i>
                                 </button>
                             </div>
                         </div>
 
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+
                         <!-- Table with stripped rows -->
-                        <table class="table datatable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Lowongan</th>
-                                    <th scope="col">Perusahaan</th>
-                                    <th scope="col">Kategori</th>
-                                    <th scope="col">Jenis</th>
-                                    <th scope="col">Pengalaman</th>
-                                    <th scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{$no=1;}}
-                                @foreach ($data as $info_p)
-                                    <tr>
-                                        <th scope="row">{{$no++}}</th>
-                                        <td>{{$info_p->lowongan}}</td>
-                                        <td>{{$info_p->perusahaan}}</td>
-                                        <td>{{$info_p->kategori_lowongan}}</td>
-                                        <td>{{$info_p->jenis_lowongan}}</td>
-                                        <td>{{$info_p->pengalaman}}</td>
-                                        <td>
-                                            <a href="" class="badge badge-primary">Edit</a>
-                                            <a href="" class="badge badge-info">Detail</a>
-                                            <a href="" class="badge badge-danger">Hapus</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        <div class="row">
+                            <div class="col-md-12 overflow-scroll">
+                                <table class="table datatable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No.</th>
+                                            <th scope="col">Lowongan</th>
+                                            <th scope="col">Perusahaan</th>
+                                            <th scope="col">Bidang</th>
+                                            <th scope="col">Jenis</th>
+                                            {{-- <th scope="col">Pengalaman</th> --}}
+                                            <th scope="col">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=1;?>
+                                        @foreach ($data as $info_p)
+                                            <tr>
+                                                <th scope="row">{{$no++}}</th>
+                                                <td>{{$info_p->judul_lowongan}}</td>
+                                                <td>{{$info_p->perusahaan}}</td>
+                                                <td>{{$info_p->bidang}}</td>
+                                                <td>{{$info_p->jenis_lowongan}}</td>
+                                                {{-- <td>{{$info_p->pengalaman}}</td> --}}
+                                                <td>
+                                                    {{-- <a href="" class="badge badge-primary">Edit</a> --}}
+                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lowongan.destroy', $info_p->id) }}" method="POST">
+                                                        <a href="{{ route('lowongan.show', $info_p->id) }}" class="badge badge-info">Detail</a>
+                                                        <button type="submit" class="badge badge-danger">Hapus</button>
+                                                        @method('delete')
+                                                        @csrf
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                         <!-- End Table with stripped rows -->
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -78,5 +92,5 @@
 </main><!-- End #main -->
 
 @include('dashboard/templates/footer')
-@include('dashboard/modal/modal-add-user')
+@include('dashboard/modal/modal-add-lowongan')
 @endsection

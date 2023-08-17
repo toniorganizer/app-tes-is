@@ -13,6 +13,11 @@
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
         </nav>
     </div><!-- End Page Title -->
 
@@ -22,7 +27,53 @@
             <!-- Left side columns -->
             <div class="col-lg-8">
                 <div class="row">
-                    <!-- Sales Card -->
+                    @if(auth::user()->level == 2)
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Jumlah Lowongan Kerja <span><br><?php echo date('d-m-Y'); ?></span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-shop-window"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{$jumlah_loker}}</h6>
+                                        <div class="dashboard-detail mt-2">
+                                            <a href="/data-lowongan-pekerja" class="detail-pendaftar">Lihat Detail Lowongan</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Jumlah Mendaftar <span> <br> <?php echo date('d-m-Y'); ?></span></h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-cloud-check"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{$jumlah_lamaran}}</h6>
+                                        <div class="dashboard-detail mt-2">
+                                            <a href="#" class="detail-pendaftar">Lihat Status Daftar</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    @else
+                       <!-- Sales Card -->
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
 
@@ -78,9 +129,9 @@
 
                         </div>
                     </div><!-- End Reports -->
-                </div>
+             @endif
             </div>
-
+        </div> 
             <!-- Right side columns -->
             <div class="col-lg-4">
                 <!-- Website Traffic -->

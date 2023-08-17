@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('pemberi_informasis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_perusahaan');
-            $table->string('jenis_pemberi');
-            $table->string('bidang_perusahaan');
+            $table->string('nama_instansi');
+            $table->string('bidang_instansi');
+            $table->string('email_instansi');
+            $table->string('website_instansi');
+            $table->string('telepon_instansi');
             $table->string('alamat');
             $table->text('deskripsi');
             $table->string('foto');

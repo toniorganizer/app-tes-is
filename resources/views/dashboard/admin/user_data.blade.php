@@ -35,44 +35,49 @@
                         </div>
 
                         <!-- Table with stripped rows -->
-                        <table class="table datatable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No.</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">E-mail</th>
-                                    <th scope="col">Level</th>
-                                    <th scope="col">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $no=1;?>
-                                @foreach ($data as $user)
-                                    <tr>
-                                        <th scope="row">{{$no++}}</th>
-                                        <td>{{$user->username}}</td>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-                                        <td>
-                                            @if($user->level == 1)
-                                            Admin
-                                            @elseif($user->level == 2)
-                                            Pencari Kerja
-                                            @elseif($user->level == 3)
-                                            Pemangku kepentingan
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a href="" class="badge badge-primary">Edit</a>
-                                            <a href="" class="badge badge-info">Detail</a>
-                                            <a href="" class="badge badge-danger">Hapus</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        
+                        <div class="row">
+                            <div class="col-md-12 overflow-scroll">
+                                <table class="table datatable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No.</th>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Nama</th>
+                                            <th scope="col">E-mail</th>
+                                            <th scope="col">Level</th>
+                                            <th scope="col">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=1;?>
+                                        @foreach ($data as $user)
+                                            <tr>
+                                                <th scope="row">{{$no++}}</th>
+                                                <td> {{$user->username}}</td>
+                                                <td>{{$user->name}}</td>
+                                                <td>{{$user->email}}</td>
+                                                <td>
+                                                    @if($user->level == 1)
+                                                    Admin
+                                                    @elseif($user->level == 2)
+                                                    Pencari Kerja
+                                                    @elseif($user->level == 3)
+                                                    Pemangku kepentingan
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <a href="" class="badge badge-primary">Edit</a>
+                                                    <a href="" class="badge badge-info">Detail</a>
+                                                    <a href="/deleteUser/{{$user->email}}" class="badge badge-danger" onclick="return confirm('Yakin ingin menghpus?')">Hapus</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                         <!-- End Table with stripped rows -->
+                            </div>
+                        </div>
 
                     </div>
                 </div>
