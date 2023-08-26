@@ -14,13 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pencari_kerjas', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_pencari_kerja');
+            $table->integer('bkk_id');
             $table->string('nama_lengkap');
             $table->string('email_pk')->unique();
             $table->string('alamat');
             $table->string('pendidikan');
             $table->text('keterampilan');
-            $table->string('foto');
+            $table->text('no_hp');
+            $table->text('tentang');
+            $table->string('foto_pencari_kerja');
             $table->timestamps();
         });
     }

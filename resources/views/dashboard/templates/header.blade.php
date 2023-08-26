@@ -2,8 +2,8 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
-            <img src="assets/img/logo uny.png" alt="" />
-            <span class="d-none d-lg-block">UNY</span>
+            <img src="{{ asset('assets/img/sumbar.png')}}" alt="" />
+            <span class="d-none d-lg-block">SUMBAR</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
@@ -14,10 +14,10 @@
             <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="
-                    @if(Auth::user()->foto == 'default.jpg')
-                    {{ Storage::url('public/user/default/').Auth::user()->foto}}
+                    @if(Auth::user()->foto_user == 'default.jpg')
+                    {{ Storage::url('public/user/default/').Auth::user()->foto_user}}
                     @else
-                    {{ Storage::url('public/user/').Auth::user()->foto}}
+                    {{ Storage::url('public/user/').Auth::user()->foto_user}}
                     @endif
                     
                     " alt="Profile" class="rounded-circle" />
@@ -42,6 +42,8 @@
                             /profil-tenaga-kerja/{{Auth::user()->email}}
                         @elseif(Auth::user()->level == 1)
                             /profil-admin/{{Auth::user()->email}}
+                        @elseif(Auth::user()->level == 5)
+                            {{route('bursa.show', Auth::user()->email) }}
                         @endif
                         ">
                             <i class="bi bi-person"></i>

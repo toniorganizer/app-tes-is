@@ -14,15 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pemberi_informasis', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_pemberi_informasi');
             $table->string('nama_instansi');
             $table->string('bidang_instansi');
-            $table->string('email_instansi');
+            $table->string('email_instansi')->unique();
             $table->string('website_instansi');
+            $table->string('instagram_instansi');
+            $table->string('facebook_instansi');
             $table->string('telepon_instansi');
             $table->string('alamat');
             $table->text('deskripsi');
-            $table->string('foto');
+            $table->string('foto_instansi');
             $table->timestamps();
         });
     }

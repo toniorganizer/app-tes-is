@@ -20,10 +20,22 @@
         <div class="row">
             <div class="col-xl-4">
 
+                @if (session('success'))
+                <div class="alert alert-primary">
+                    {{ session('success') }}
+                </div>
+                @endif
+
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="{{ Storage::url('public/informasi-lowongan/').$data->foto_lowongan}}" alt="Profile" class="rounded-circle">
+                        <img src="
+                        @if($data->foto_lowongan == 'default.jpg')
+                          {{ Storage::url('public/informasi-lowongan/default/').$data->foto_lowongan}}
+                          @else
+                          {{ Storage::url('public/informasi-lowongan/').$data->foto_lowongan}}
+                          @endif
+                        " alt="Profile" class="rounded-circle">
                         <h2>{{$data->judul_lowongan}}</h2>
                         <h3>{{$data->perusahaan}}</h3>
                         <div class="social-links mt-2">
@@ -127,9 +139,9 @@
                                 </div>
                                 
                                 <div class="text-right">
-                                    <a href="/edit-deskripsi/{{$data->id}}" class="btn btn-info">Edit deskripsi</a>
-                                    <a href="" class="btn btn-secondary" data-toggle="modal" data-target="#edit-verifikasi{{$data->id}}">Verifikasi</a>
-                                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#edit-il{{$data->id}}">Edit detail</a>
+                                    <a href="/edit-deskripsi/{{$data->id_informasi_lowongan}}" class="btn btn-info">Edit deskripsi</a>
+                                    <a href="" class="btn btn-secondary mr-1" data-toggle="modal" data-target="#edit-verifikasi{{$data->id_informasi_lowongan}}">Verifikasi</a>
+                                    <a href="" class="btn btn-primary mr-1" data-toggle="modal" data-target="#edit-il{{$data->id_informasi_lowongan}}">Edit detail</a>
                                     {{-- <a href="/pekerjaan-data" class="btn btn-secondary">Kembali</a> --}}
                                 </div>
                             </div>

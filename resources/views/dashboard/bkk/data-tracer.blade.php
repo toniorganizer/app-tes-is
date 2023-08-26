@@ -7,11 +7,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Data Tenaga Kerja</h1>
+        <h1>Data Tracer Alumni</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Data Tenaga Kerja</li>
+                <li class="breadcrumb-item"><a href="/home">Home</a></li>
+                <li class="breadcrumb-item active">Data Tracer Alumni</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -22,15 +22,10 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Data tenaga kerja terdaftar</h5>
+                        <h5 class="card-title">Data Tracer Alumni terdaftar</h5>
                         <div class="row">
                             <div class="col-lg-11">
-                                <p>Berikut merupakan data tenaga kerja yang terdaftar di dalam sistem.</p>
-                            </div>
-                            <div class="col-lg-1 float-left mb-3">
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#tk">
-                                    <i class="bi bi-person-plus"></i>
-                                </button>
+                                <p>Data Tracer Alumni yang terdaftar di dalam sistem.</p>
                             </div>
                         </div>
 
@@ -47,10 +42,10 @@
                                     <thead>
                                         <tr>
                                             <th scope="col">No.</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">E-mail</th>
-                                            <th scope="col">Alamat</th>
-                                            <th scope="col">Pendidikan</th>
+                                            <th scope="col">Nama Alumni</th>
+                                            <th scope="col">Nama Sekolah</th>
+                                            <th scope="col">Jurusan</th>
+                                            <th scope="col">Tahun Lulus</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
                                     </thead>
@@ -65,12 +60,11 @@
                                                     {{ Storage::url('public/user/').$user->foto_pencari_kerja}}
                                                     @endif
                                                     ">{{$user->nama_lengkap}}</td>
-                                                <td>{{$user->email_pk}}</td>
-                                                <td>{{$user->alamat}}</td>
-                                                <td>{{$user->pendidikan_terakhir}}</td>
+                                                <td>{{$user->nama_sekolah}}</td>
+                                                <td>{{$user->jurusan}}</td>
+                                                <td>{{$user->tahun_lulus}}</td>
                                                 <td>
                                                     <a href="/profil-tenaga-kerja/{{$user->email_pk}}" class="badge badge-info">Detail</a>
-                                                    <a href="/deleteTenagaKerja/{{$user->email_pk}}" class="badge badge-danger" onclick="return confirm('Yakin ingin menghpus?')">Hapus</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -93,5 +87,4 @@
 
 @include('dashboard/templates/footer')
 @include('dashboard/modal/modal-tenaga-kerja')
-
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BursaKerjaController;
 use App\Http\Controllers\KepentinganController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LowonganController;
@@ -23,10 +24,15 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    $data = InformasiLowongan::get();
+    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->get();
     return view('halaman-utama.index', [
         'data' => $data
     ]);
+});
+
+Route::get('/lowongan-home', function () {
+    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->get();
+    return view('halaman-utama.lowongan-home', ['data' => $data]);
 });
 
 Route::get('/user-faq', function () {
@@ -48,6 +54,7 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/detail-informasi-lowongan/{id}', 'detail_lowongan');
     Route::post('/register', 'register_pekerja');
     Route::post('/register_perusahaan', 'register_perusahaan');
+    Route::post('/register_bkk', 'register_bkk');
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -62,7 +69,6 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/pekerjaan-data', 'pekerjaanData');
                 Route::post('/addTenagaKerja', 'tambahTenagaKerja');
                 Route::get('/deleteTenagaKerja/{id}', 'hapusTenagaKerja');
-                Route::post('profil-tenaga-kerja/edit-tenaga-kerja', 'updateTenagaKerja');
             });
     });
 
@@ -70,17 +76,30 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('/pemerintah', KepentinganController::class);
     Route::resource('/lowongan', LowonganController::class);
     Route::resource('/sumber', PemberiInformasiController::class);
+    Route::resource('/bursa', BursaKerjaController::class);
 
-    Route::post('/lowongan/{id}/verifikasi', [LowonganController::class, 'verifikasiLowongan'])->name('lowongan.verifikasi');
+    Route::post('/lowongan/{id_informasi_lowongan?}/verifikasi', [LowonganController::class, 'verifikasiLowongan'])->name('lowongan.verifikasi');
     Route::controller(PekerjaController::class)->group(function () {
         Route::get('/data-lowongan-pekerja', 'index');
         Route::get('/detail-lowongan-pekerja/{id}', 'DetailLowongan');
         Route::get('/lamar-pekerjaan/{id}', 'lamarPekerjaan');
+        Route::get('/tracer-study', 'tracerStudy');
+        Route::post('/update-tracer-study', 'updateTracerStudy');
         Route::post('/lamar-lowongan-pekerjaan', 'lamarLowonganPekerjaan');
     });
 
     Route::controller(PemberiInformasiController::class)->group(function () {
         Route::get('/lowongan-data', 'data_lowongan');
+        Route::get('/detail-pendaftar/{id}', 'data_pelamar');
+        Route::get('/detail-data-pendaftar/{id}', 'detail_data_pelamar');
+        Route::get('/lengkapi-data-lowongan/{id}', 'lengkapi_data_lowongan');
+        Route::post('/sumber/{id_informasi_lowongan?}/update_informasi', 'updateInformasi')->name('sumber.update_informasi');
+        Route::post('/sumber/{id_lamar?}/verifikasi', 'verifikasiPelamar')->name('sumber.verifikasi');
+    });
+
+
+    Route::controller(BursaKerjaController::class)->group(function (){
+        Route::get('/tracer-data', 'dataTracer');
     });
 
     // Route::group(['middleware' => ['CekUser:2']], function () {
@@ -100,6 +119,10 @@ Route::get('/user-register', function () {
 
 Route::get('/perusahaan-register', function () {
     return view('dashboard.auth.register_perusahaan');
+});
+
+Route::get('/bkk-register', function () {
+    return view('dashboard.auth.register_bkk');
 });
 
 Route::get('/error-akses', function () {

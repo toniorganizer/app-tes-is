@@ -35,7 +35,7 @@
                         </div>
 
                         @if (session('success'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-primary">
                             {{ session('success') }}
                         </div>
                         @endif
@@ -67,8 +67,8 @@
                                                 {{-- <td>{{$info_p->pengalaman}}</td> --}}
                                                 <td>
                                                     {{-- <a href="" class="badge badge-primary">Edit</a> --}}
-                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lowongan.destroy', $info_p->id) }}" method="POST">
-                                                        <a href="{{ route('lowongan.show', $info_p->id) }}" class="badge badge-info">Detail</a>
+                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lowongan.destroy', $info_p->id_informasi_lowongan) }}" method="POST">
+                                                        <a href="{{ route('lowongan.show', $info_p->id_informasi_lowongan) }}" class="badge badge-info">Detail</a>
                                                         <button type="submit" class="badge badge-danger">Hapus</button>
                                                         @method('delete')
                                                         @csrf

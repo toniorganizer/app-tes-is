@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BursaKerja;
 use App\Models\User;
 use App\Models\PencariKerja;
 use Illuminate\Http\Request;
@@ -53,6 +54,8 @@ class LoginController extends Controller
                 return redirect()->intended('/home');
             }
             return redirect()->intended('/login');
+        }else{
+            return back()->with('not-registered', 'Akun belum terdaftar, Silahkan lakukan penaftaran');
         }
         return back()->with('error', 'Username atau password salah');
 
@@ -75,9 +78,9 @@ class LoginController extends Controller
 
     public function detail_lowongan($id){
 
-        $data = InformasiLowongan::findOrFail($id);
-        $item = InformasiLowongan::join('users','users.id','=','informasi_lowongans.pemberi_informasi_id')
-        ->join('pemberi_informasis', 'pemberi_informasis.email_instansi','=','users.email')->first();
+        $data = InformasiLowongan::where('id_informasi_lowongan', $id)->first();
+        $item = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')
+        ->join('pemberi_informasis', 'pemberi_informasis.email_instansi','=','users.email')->where('id_user',$data->pemberi_informasi_id)->first();
         return view('halaman-utama.detail-informasi', [
             'data' => $data,
             'item' => $item
@@ -98,11 +101,12 @@ class LoginController extends Controller
             'nama_lengkap' => $request->name,
             'email_pk' => $request->email,
             'alamat' => 0,
-            'pendidikan' => 0,
+            'pendidikan_terakhir' => 0,
             'keterampilan' => 0,
             'tentang' => 0,
             'no_hp' => 0,
-            'foto' => 'default.jpg',
+            'bkk_id' => 0,
+            'foto_pencari_kerja' => 'default.jpg',
         ]);
 
         User::create([
@@ -110,8 +114,9 @@ class LoginController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'level' => 2,
+            'status_tracer' => 0,
             'password' => Hash::make($request->password),
-            'foto' => 'default.jpg',
+            'foto_user' => 'default.jpg',
         ]);
 
         return redirect('/user-register')->with('success', 'Data Berhasil Disimpan, Silahkan lakukan login!');
@@ -151,7 +156,7 @@ class LoginController extends Controller
             'telepon_instansi' => '-',
             'alamat' => '-',
             'deskripsi' => '-',
-            'foto' => 'default.jpg',
+            'foto_instansi' => 'default.jpg',
         ]);
 
         User::create([
@@ -159,10 +164,59 @@ class LoginController extends Controller
             'name' => $request->nama_perusahaan,
             'email' => $request->email,
             'level' => 4,
+            'status_tracer' => 0,
             'password' => Hash::make($request->password),
-            'foto' => 'default.jpg',
+            'foto_user' => 'default.jpg',
         ]);
 
         return redirect('/perusahaan-register')->with('success', 'Data Berhasil Disimpan, Silahkan lakukan login!');
+    }
+
+    public function register_bkk(Request $request){
+        $this->validate($request, [
+            'username' => 'required|min:5|unique:users',
+            'nama_sekolah' => 'required|min:5',
+            'email' => 'required|min:5|unique:users|email',
+            'password' => 'required|same:ulangi_password|min:6',
+            'ulangi_password' => 'required|same:password'
+        ],
+            [
+                'username.required' => 'Username tidak boleh kosong',
+                'username.min' => 'Username minimal berisi 5 karakter',
+                'username.unique' => 'Username yang anda masukan sudah terdaftar',
+                'nama_sekolah.required' => 'Nama Sekolah tidak boleh kosong',
+                'nama_sekolah.min' => 'Nama Sekolah minimal berisi 5 karakter',
+                'email.required' => 'Email Sekolah tidak boleh kosong',
+                'email.unique' => 'Email Sekolah yang anda masukan sudah terdaftar',
+                'email.min' => 'Email Sekolah minimal berisi 5 karakter',
+                'password.required' => 'Password tidak boleh kosong',
+                'password.min' => 'Password minimal berisi 6 karakter',
+                'password.same' => 'Password harus sama dengan konfirmasi password',
+                'ulangi_password.same' => 'Konfirmasi password harus sama dengan password',
+            ]
+        );
+
+        BursaKerja::create([
+            'nama_sekolah' => $request->nama_sekolah,
+            'email_sekolah' =>  $request->email,
+            'website_sekolah' => '-',
+            'instagram_sekolah' => '-',
+            'facebook_sekolah' => '-',
+            'telepon_sekolah' => '-',
+            'alamat_sekolah' => '-',
+            'foto_sekolah' => 'default.jpg',
+        ]);
+
+        User::create([
+            'username' => $request->username,
+            'name' => $request->nama_sekolah,
+            'email' => $request->email,
+            'level' => 5,
+            'status_tracer' => 0,
+            'password' => Hash::make($request->password),
+            'foto_user' => 'default.jpg',
+        ]);
+
+        return redirect('/bkk-register')->with('success', 'Data Berhasil Disimpan, Silahkan lakukan login!');
     }
 }

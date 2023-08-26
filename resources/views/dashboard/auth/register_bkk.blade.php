@@ -20,8 +20,8 @@
                             <div class="card-body">
 
                                 <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Buat Akun Baru</h5>
-                                    <p class="text-center small">Masukan data personal</p>
+                                    <h5 class="card-title text-center pb-0 fs-4">Buat Akun Sekolah</h5>
+                                    <p class="text-center small">Masukan data Sekolah</p>
                                 </div>
 
                                 @if (session('success'))
@@ -30,58 +30,58 @@
                                 </div>
                                 @endif
 
-                                <form action="register" method="post" class="row g-3 needs-validation" enctype="multipart/form-data">
+                                <form action="register_bkk" method="post" class="row g-3" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-12">
-                                        <label for="yourName" class="form-label">Nama</label>
-                                        <input autofocus type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required value="{{old('name')}}">
-                                        @error('name')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
+                                        <label for="yourName" class="form-label">Nama Sekolah</label>
+                                        <input autofocus type="text" name="nama_sekolah" class="form-control @error('nama_sekolah') is-invalid @enderror" id="validationServer01" required value="{{old('nama_sekolah')}}">
+                                        @error('nama_sekolah')
+                                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                                {{$message}}
+                                              </small>
                                         @enderror
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourUsername" class="form-label">E-mail</label>
+                                        <label for="yourUsername" class="form-label">E-mail Sekolah</label>
                                         <div class="input-group has-validation">
                                             <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                            <input type="email" name="email" class="form-control" id="yourUsername" required value="{{old('email')}}">
+                                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="validationServer02" required value="{{old('email')}}">
                                         </div>
                                         @error('email')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
+                                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                                {{$message}}
+                                              </small>
                                         @enderror
                                     </div>
 
                                     <div class="col-12">
                                         <label for="yourEmail" class="form-label">Username</label>
-                                        <input type="text" name="username" class="form-control" id="yourEmail" required value="{{old('username')}}">
+                                        <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="validationServer03" required value="{{old('username')}}">
                                         @error('username')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
+                                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                                {{$message}}
+                                              </small>
                                         @enderror
                                     </div>
 
 
                                     <div class="col-6">
                                         <label for="yourPassword" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="yourPassword" required>
+                                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="validationServer04" required>
                                         @error('password')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
+                                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                                {{$message}}
+                                              </small>
                                         @enderror
                                     </div>
                                     <div class="col-6">
-                                        <label for="yourPassword" class="form-label">Ulangi Password</label>
-                                        <input type="password" name="ulangi_password" class="form-control" id="yourPassword" required>
+                                        <label for="yourPassword" class="form-label">Konfirmasi Password</label>
+                                        <input type="password" name="ulangi_password" class="form-control @error('ulangi_password') is-invalid @enderror" id="validationServer05Feedback" required>
                                         @error('ulangi_password')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
+                                            <small id="passwordHelpBlock" class="form-text text-muted">
+                                                {{$message}}
+                                              </small>
                                         @enderror
                                     </div>
                                     <div class="col-12">

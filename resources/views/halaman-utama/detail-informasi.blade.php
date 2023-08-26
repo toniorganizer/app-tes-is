@@ -30,11 +30,11 @@
                 <img src="{{ Storage::url('public/informasi-lowongan/').$data->foto}}" class="rounded-circle flex-shrink-0" alt="">
                 <div>
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-8">
                             <h4>{{$data->judul_lowongan}}</h4>
                             <h5>{{$data->perusahaan}}</h5>
                         </div>
-                        <div class="btn col-lg-6">
+                        <div class="btn col-lg-4">
                             <a href="/login" class="btn btn-primary">Lamar sekarang</a>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
               @else
               <i class="bi bi-arrow-counterclockwise"></i>
               <ul class="tags">
-                <li><a href="#">Belum iverifikasi</a></li>
+                <li><a href="#">Belum diverifikasi</a></li>
               </ul>
               @endif
             </div><!-- End meta bottom -->

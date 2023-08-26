@@ -1221,7 +1221,7 @@ hr{
   display: inline-block;
   color: rgba(1, 41, 112, 0.5);
   line-height: 0;
-  margin-right: 10px;
+  margin-right: 0px;
   transition: 0.3s;
 }
 

@@ -16,6 +16,12 @@
         </nav>
     </div><!-- End Page Title -->
 
+    @if (session('success'))
+    <div class="alert alert-primary">
+        {{ session('success') }}
+    </div>
+    @endif
+
     <section class="section profile">
         <div class="row">
             @foreach ($data as $item)
@@ -24,14 +30,23 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="{{ Storage::url('public/informasi-lowongan/').$item->foto_lowongan}}" alt="Profile" class="rounded-circle">
+                        <img src="
+                        @if($item->foto_lowongan == 'default.jpg')
+                          {{ Storage::url('public/informasi-lowongan/default/').$item->foto_lowongan}}
+                          @else
+                          {{ Storage::url('public/informasi-lowongan/').$item->foto_lowongan}}
+                          @endif
+                        " alt="Profile" class="rounded-circle">
                         <h2>{{$item->judul_lowongan}}</h2>
                         <h3>{{$item->bidang}}</h3>
                         <div class="social-links mt-2">
-                            <span class="text-success small pt-1 fw-bold">12</span> <span class="text-muted small pt-2 ps-1">Pendaftar</span>
+                            <span class="text-success small pt-1 fw-bold">{{$item->jumlah_pelamar}}</span> <span class="text-muted small pt-2 ps-1">Pendaftar</span>
                         </div>
                         <div class="social-links mt-2">
-                            <a href="#" class="detail-pendaftar">Lihat Detail Pendaftar</a>
+                            <center>
+                                <a href="/lengkapi-data-lowongan/{{$item->id_informasi_lowongan}}" class="detail-pendaftar">Lengkapi data lowongan</a>
+                                <a href="/detail-pendaftar/{{$item->id_informasi_lowongan}}" class="detail-pendaftar">Lihat Detail Pendaftar</a>
+                            </center>
                         </div>
                         @if($item->verifikasi == 1)
                         <div class="verifikasi">

@@ -22,7 +22,8 @@
 
                 <li><a class="nav-link scrollto" href="/">Home</a></li>
                 <li><a class="nav-link scrollto" href="/perusahaan-register">Registrasi Perusahaan</a></li>
-                <li><a class="nav-link scrollto" href="#">Lowongan</a></li>
+                <li><a class="nav-link scrollto" href="/bkk-register">Registrasi BKK</a></li>
+                <li><a class="nav-link scrollto" href="/lowongan-home">Lowongan</a></li>
                 <li><a class="nav-link scrollto" href="#">FAQ</a></li>
                 <li><a class="nav-link scrollto" href="#">Hubungi</a></li>
                 <a class="btn-getstarted scrollto" href="/user-register">Daftar</a>

@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col-lg-1"></div>
                                 <div class="col-lg-10">
-                                    <input type="hidden" name="id_informasi" value="{{$data->id}}">
+                                    <input type="hidden" name="id_informasi" value="{{$data->id_informasi_lowongan}}">
                                     <input type="hidden" name="id_pelamar" value="{{auth::user()->email}}">
                                     <label for="exampleInputEmail1">Jelaskan megenai diri anda</label>
                                     <div class="form-group mb-3">
@@ -47,8 +47,10 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-1"></div>
+                                <div class="col-lg-11">
+                                    <button type="submit" class="btn btn-primary mb-3 float-right">Kirim</button>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Kirim</button>
                         </form>
                         
                             </div>

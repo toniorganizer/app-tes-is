@@ -23,7 +23,8 @@ class User extends Authenticatable
         'username',
         'password',
         'level',
-        'foto',
+        'foto_user',
+        'status_tracer',
     ];
 
     /**
@@ -44,4 +45,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $primaryKey = 'id_user';
+
+    public function getAuthIdentifierName()
+    {
+        return 'id_user';
+    }
 }

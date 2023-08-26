@@ -24,10 +24,10 @@
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                         <img src="
-                        @if(Auth::user()->foto == 'default.jpg')
-                        {{ Storage::url('public/user/default/').Auth::user()->foto}}
+                        @if(Auth::user()->foto_user == 'default.jpg')
+                        {{ Storage::url('public/user/default/').Auth::user()->foto_user}}
                         @else
-                        {{ Storage::url('public/user/').Auth::user()->foto}}
+                        {{ Storage::url('public/user/').Auth::user()->foto_user}}
                         @endif
                         " alt="Profile" class="rounded-circle">
                         <h2>{{$data->nama_instansi}}</h2>
@@ -82,7 +82,7 @@
                                 </div>
 
                                 <div class="text-right">
-                                    <a href="{{ route('sumber.edit', $data->id) }}" class="btn btn-primary">Lengkapi Data</a>
+                                    <a href="{{ route('sumber.edit', $data->id_pemberi_informasi) }}" class="btn btn-primary">Lengkapi Data</a>
                                 </div>
                             </div>
 

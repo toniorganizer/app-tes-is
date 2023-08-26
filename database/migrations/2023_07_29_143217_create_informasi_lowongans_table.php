@@ -14,18 +14,21 @@ return new class extends Migration
     public function up()
     {
         Schema::create('informasi_lowongans', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_informasi_lowongan');
             $table->unsignedBigInteger('pemberi_informasi_id');
-            $table->string('lowongan');
-            $table->string('perusahaan');
+            $table->string('judul_lowongan');
             $table->string('salary');
-            $table->string('kategori_lowongan');
+            $table->string('bidang');
             $table->string('jenis_lowongan');
             $table->string('pendidikan');
             $table->string('pengalaman');
             $table->string('keterampilan');
             $table->text('deskripsi');
-            $table->string('foto');
+            $table->text('verifikasi');
+            $table->date('tgl_buka');
+            $table->date('tgl_tutup');
+            $table->text('lokasi');
+            $table->string('foto_lowongan');
             $table->timestamps();
         });
     }

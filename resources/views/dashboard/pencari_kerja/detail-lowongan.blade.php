@@ -32,14 +32,32 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="btn">
-                                            @if($data->id_informasi == null)
-                                              <a href="/lamar-pekerjaan/{{$data->id}}" class="btn btn-primary">
-                                              Lamar sekarang
+                                        {{-- @if(!$id_informasii == null && !$id_informasii == null)
+                                              @if($id_informasii->id_informasi && $id_informasii->id_pelamar == Auth::user()->email)
+                                              <a href="#" class="btn btn-info">
+                                                Lamaran Terkirim
+                                              </a>
+                                              @else
+                                              <a href="/lamar-pekerjaan/{{$data->id_informasi_lowongan}}" class="btn btn-primary">
+                                                Lamar sekarang
+                                              </a>
+                                              @endif
                                             @else
-                                            <a href="#" class="btn btn-info">
-                                              Lamaran Terkirim
-                                            @endif
+                                            <a href="/lamar-pekerjaan/{{$data->id_informasi_lowongan}}" class="btn btn-primary">
+                                              Lamar sekarang
                                             </a>
+                                          @endif --}}
+
+                                              @if($exists)
+                                              <a href="#" class="btn btn-info">
+                                                Lamaran Terkirim
+                                              </a>
+                                              @else
+                                              <a href="/lamar-pekerjaan/{{$data->id_informasi_lowongan}}" class="btn btn-primary">
+                                                Lamar sekarang
+                                              </a>
+                                              @endif
+                                          
                                         </div>
                                     </div>
                                 </div>

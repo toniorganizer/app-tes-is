@@ -14,14 +14,21 @@ class InformasiLowongan extends Model
         'judul_lowongan',
         'perusahaan',
         'salary',
-        'kategori_lowongan',
         'jenis_lowongan',
         'pendidikan',
         'pengalaman',
         'keterampilan',
+        'bidang',
         'deskripsi',
         'verifikasi',
+        'tgl_buka',
+        'tgl_tutup',
         'lokasi',
         'foto_lowongan',
     ];
+
+    public function lamars()
+    {
+        return $this->hasMany(Lamar::class);
+    }
 }

@@ -1195,6 +1195,59 @@ section {
   float: right;
 }
 
+.posts-list .icon {
+  margin-bottom: 5px;
+  font-size: 18px;
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.posts-list .icon i {
+  color: var(--color-primary);
+  font-size: 17px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.posts-list .gaji {
+  color: var(--color-primary);
+  font-size: 14px;
+  transition: 0.3s;
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+.posts-list .icon-lokasi {
+  color: var(--color-primary);
+  font-size: 14px;
+  transition: 0.3s;
+  margin-top: 5px;
+}
+
+.posts-list .icon-tanggal {
+  color: var(--color-primary);
+  font-size: 14px;
+  margin-top: 5px;
+  transition: 0.3s;
+}
+
+.posts-list .verifikasi {
+  color: rgb(187, 187, 187);
+  font-size: 12px;
+  transition: 0.3s;
+  float: right;
+  margin-top: 10px;
+}
+
+.posts-list .no-verifikasi {
+  color: rgb(255, 64, 64);
+  font-size: 12px;
+  transition: 0.3s;
+  margin-left: 60px;
+  margin-top: 10px;
+  float: right;
+}
+
 .featured-services .service-item h4 {
   font-weight: 600;
   margin-bottom: 15px;

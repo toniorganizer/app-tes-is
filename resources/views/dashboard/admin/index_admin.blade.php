@@ -14,7 +14,7 @@
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
             @if (session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-primary">
                 {{ session('success') }}
             </div>
             @endif
@@ -63,7 +63,7 @@
                                     <div class="ps-3">
                                         <h6>{{$jumlah_lamaran}}</h6>
                                         <div class="dashboard-detail mt-2">
-                                            <a href="#" class="detail-pendaftar">Lihat Status Daftar</a>
+                                            <a href="{{Route('pekerja.show', Auth::user()->email)}}" class="detail-pendaftar">Lihat Status Daftar</a>
                                         </div>
 
                                     </div>
@@ -145,6 +145,7 @@
     </section>
 
 </main>
+{{-- @include('dashboard/modal/modal-tracer-study') --}}
 <script src="{{ $chart->cdn() }}"></script>
 {{ $chart->script() }}
 <script src="{{ $jobcount->cdn() }}"></script>

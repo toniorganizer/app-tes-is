@@ -30,25 +30,26 @@
                             </div>
                         </div>
 
-                        @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                        @endif
-
                         <form action="/update-deskripsi-lowongan" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-1"></div>
                                 <div class="col-lg-10">
-                                    <input type="text" name="id" value="{{$data->id}}">
+                                    @if (session('success'))
+                                    <div class="alert alert-primary">
+                                        {{ session('success') }}
+                                    </div>
+                                    @endif
+                                    <input type="hidden" name="id" value="{{$data->id_informasi_lowongan}}">
                                     <div class="form-group mb-3">
                                         <textarea name="deskripsi" class="form-control ckeditor" id="ckeditor" rows="3">{{$data->deskripsi}}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-1"></div>
+                                <div class="col-lg-11">
+                                    <button type="submit" class="btn btn-primary mb-3 float-right">Update</button>
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                         
                             </div>

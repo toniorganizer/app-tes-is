@@ -18,12 +18,21 @@ class UserSeed extends Seeder
         $user = [
 
             [
-                'name' => 'Pemerintah',
-                'username' => 'pemangku_kebijakan',
+                'name' => 'Disdik',
+                'username' => 'disdik_sumbar',
                 'email' => 'pemangku@gmail.com',
-                'password' => bcrypt('12345'),
+                'password' => bcrypt('123456'),
                 'level' => 3,
-            ]
+                'foto_user' => 'default.jpg',
+            ],
+            [
+                'name' => 'Admin',
+                'username' => 'admin_sipk',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('admin_sipk'),
+                'level' => 1,
+                'foto_user' => 'default.jpg',
+            ],
         ];
 
         foreach ($user as $key => $value) {

@@ -21,7 +21,7 @@ class AdminController extends Controller
     {
 
         $data = InformasiLowongan::count();
-        $lamar = Lamar::where('id_pelamar', Auth::user()->id)->count();
+        $lamar = Lamar::where('id_pelamar', Auth::user()->email)->count();
         return view('Dashboard.admin.index_admin', [
             'chart' => $chart->build(), 
             'jobcount' => $jobcount->build(),
@@ -86,12 +86,13 @@ class AdminController extends Controller
         PencariKerja::create([
             'nama_lengkap' => $request->nama,
             'email_pk' => $request->email,
+            'bkk_id' => 0,
             'alamat' => $request->alamat,
             'pendidikan' => $request->pendidikan,
             'keterampilan' => $request->keterampilan,
             'tentang' => $request->tentang,
             'no_hp' => $request->no_hp,
-            'foto' => $foto->hashName(),
+            'foto_pencari_kerja' => $foto->hashName(),
         ]);
 
         User::create([
@@ -99,8 +100,9 @@ class AdminController extends Controller
             'name' => $request->nama,
             'email' => $request->email,
             'level' => 2,
+            'status_tracer' => 0,
             'password' => Hash::make($request->password),
-            'foto' => $foto->hashName(),
+            'foto_user' => $foto->hashName(),
         ]);
 
         return redirect('/tenaga-kerja-data')->with('success', 'Data Berhasil Disimpan!');
@@ -110,8 +112,8 @@ class AdminController extends Controller
     public function hapusTenagaKerja($id){
         
         $id_user = DB::table('pencari_kerjas')->where('email_pk',$id)->first();
-        $data = DB::table('pencari_kerjas')->find($id_user->id);
-        Storage::delete('public/user/' . $data->foto);
+        $data = DB::table('pencari_kerjas')->where('id_pencari_kerja', $id_user->id_pencari_kerja)->first();
+        Storage::delete('public/user/' . $data->foto_pencari_kerja);
         DB::table('users')->where('email',$id)->delete();
         DB::table('pencari_kerjas')->where('email_pk',$id)->delete();
 
@@ -122,14 +124,14 @@ class AdminController extends Controller
     public function profilTenagaKerja($id){
         $data = PencariKerja::join('users','users.email','=','pencari_kerjas.email_pk')->where('email_pk', $id)->first();
         return view('Dashboard.admin.profil_tenaga_kerja', [
-            'sub_title' => 'Data Tenaga Kerja',
-            'title' => 'Data',
+            'sub_title' => 'Profile',
+            'title' => 'Profile',
             'data' => $data
         ]);
     }
 
     public function editTenagaKerja($id){
-        $data = PencariKerja::find($id);
+        $data = PencariKerja::where('id_pencari_kerja', $id)->first();
         return view('Dashboard.admin.tenaga_kerja_data', [
             'sub_title' => 'Data Tenaga Kerja',
             'title' => 'Data',
@@ -137,61 +139,10 @@ class AdminController extends Controller
         ]);
     }
 
-    public function updateTenagaKerja(Request $request){
-
-        $this->validate($request, [
-            'nama_lengkap' => 'required|min:5',
-            'alamat' => 'required|min:5',
-            'pendidikan' => 'required|min:5',
-            'keterampilan' => 'required|min:5',
-            'tentang' => 'required|min:5',
-            'no_hp' => 'required|min:5',
-            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
-
-        $data = PencariKerja::where('email_pk', $request->email_pk)->first();
-        // dd($data->foto);
-        if($request->hasFile('foto')){
-            $foto = $request->file('foto');
-            $foto->storeAs('public/user', $foto->hashName());
-
-            Storage::delete('public/user/' . $data->foto);
-
-        PencariKerja::where('email_pk', $request->email_pk)->update([
-            'nama_lengkap' => $request->nama_lengkap,
-            'alamat' => $request->alamat,
-            'pendidikan' => $request->pendidikan,
-            'keterampilan' => $request->keterampilan,
-            'tentang' => $request->tentang,
-            'no_hp' => $request->no_hp,
-            'foto' => $foto->hashName(),
-        ]);
-
-        User::where('email', $request->email_pk)->update([
-            'name' => $request->nama_lengkap,
-        ]);
-        }else{
-            PencariKerja::where('email_pk', $request->email_pk)->update([
-                'nama_lengkap' => $request->nama_lengkap,
-                'alamat' => $request->alamat,
-                'pendidikan' => $request->pendidikan,
-                'keterampilan' => $request->keterampilan,
-                'tentang' => $request->tentang,
-                'no_hp' => $request->no_hp
-            ]);
     
-            User::where('email', $request->email_pk)->update([
-                'name' => $request->nama_lengkap,
-            ]);
-        }
-
-        return redirect('profil-tenaga-kerja/'. $request->email_pk)->with('success', 'Data Berhasil Disimpan!');
-    }
-
-
     public function edit_deskripsi_lowongan($id)
     {
-        $data = InformasiLowongan::findOrFail($id);
+        $data = InformasiLowongan::where('id_informasi_lowongan', $id)->first();
         return view('Dashboard.admin.edit-deskripsi-lowongan', [
             'sub_title' => 'Edit Deskripsi Lowongan',
             'title' => 'Data',
@@ -201,7 +152,7 @@ class AdminController extends Controller
 
     public function update_deskripsi_lowongan(Request $request){
 
-        InformasiLowongan::where('id', $request->id)->update([
+        InformasiLowongan::where('id_informasi_lowongan', $request->id)->update([
             'deskripsi' => $request->deskripsi
         ]);
 

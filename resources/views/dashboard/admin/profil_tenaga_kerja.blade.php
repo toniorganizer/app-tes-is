@@ -23,7 +23,13 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                        <img src="{{ Storage::url('public/user/').$data->foto}}" alt="Profile" class="rounded-circle">
+                        <img src="
+                        @if(Auth::user()->foto_user == 'default.jpg')
+                        {{ Storage::url('public/user/default/').Auth::user()->foto_user}}
+                        @else
+                        {{ Storage::url('public/user/').Auth::user()->foto_user}}
+                        @endif
+                        " alt="Profile" class="rounded-circle">
                         <h2>{{$data->nama_lengkap}}</h2>
                         <h3>{{$data->username}}</h3>
                         <div class="social-links mt-2">
@@ -81,7 +87,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Pendidikan</div>
-                                    <div class="col-lg-9 col-md-8">{{$data->pendidikan}}</div>
+                                    <div class="col-lg-9 col-md-8">{{$data->pendidikan_terakhir}}</div>
                                 </div>
 
                                 <div class="row">
@@ -111,7 +117,11 @@
                                 </div>
                                 
                                 <div class="text-right">
+                                    @if(Auth::user()->level == 1)
                                     <a href="" class="btn btn-primary" data-toggle="modal" data-target="#edit-tk{{$data->id}}">Edit</a>
+                                    @elseif(Auth::user()->level == 2)
+                                    <a href="" class="btn btn-primary" data-toggle="modal" data-target="#edit-tk{{$data->id}}">Edit</a>
+                                    @endif
                                     <a href="/home" class="btn btn-secondary mr-1">Kembali</a>
                                 </div>
                             </div>

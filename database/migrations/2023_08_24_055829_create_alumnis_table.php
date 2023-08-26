@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lamars', function (Blueprint $table) {
-            $table->id('id_lamar');
-            $table->string('id_informasi');
-            $table->string('id_pelamar');
-            $table->string('status');
-            $table->text('pesan');
+        Schema::create('alumnis', function (Blueprint $table) {
+            $table->id('id_alumni');
+            $table->string('pencari_kerja_id');
+            $table->string('bkk_id');
+            $table->string('jurusan');
+            $table->string('status_bekerja');
+            $table->string('tempat_kerja');
+            $table->string('tahun_lulus');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lamars');
+        Schema::dropIfExists('alumnis');
     }
 };

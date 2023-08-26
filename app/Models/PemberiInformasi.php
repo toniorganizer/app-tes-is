@@ -19,6 +19,6 @@ class PemberiInformasi extends Model
         'telepon_instansi',
         'alamat',
         'deskripsi',
-        'foto',
+        'foto_instansi',
     ];
 }

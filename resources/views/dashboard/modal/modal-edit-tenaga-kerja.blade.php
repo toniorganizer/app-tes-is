@@ -5,8 +5,9 @@
                 <h5 class="modal-title" id="exampleModalLabel">Edit data tenaga kerja </h5><p class="font-weight-bold"> {{$data->nama_lengkap}}</p>
             </div>
             <div class="modal-body">
-                <form class="row g-3" action="edit-tenaga-kerja" method="post" enctype="multipart/form-data">
+                <form class="row g-3" action="{{ route('pekerja.update', $data->id_pencari_kerja) }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="col-md-12">
                       <label for="inputName5" class="form-label">Username</label>
                       <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" id="inputName5" value="{{$data->username}}" readonly>
@@ -45,7 +46,7 @@
                     </div>
                     <div class="col-12">
                       <label for="inputAddress2" class="form-label">Pendidikan</label>
-                      <input type="text" name="pendidikan" id="pendidikan" class="form-control @error('pendidikan') is-invalid @enderror" id="inputAddress2" value="{{$data->pendidikan}}">
+                      <input type="text" name="pendidikan" id="pendidikan" class="form-control @error('pendidikan') is-invalid @enderror" id="inputAddress2" value="{{$data->pendidikan_terakhir}}">
                       @error('pendidikan')
                         <div class="alert alert-danger mt-2">
                             {{ $message }}
@@ -81,7 +82,13 @@
                       </div>
                     <div class="col-md-12">
                       <label for="inputCity" class="form-label">Foto</label><br>
-                      <img src="{{ Storage::url('public/tenaga-kerja/').$data->foto}}" width="100" height="40" class="img-thumbnail mb-2" alt="">
+                      <img src="
+                      @if($data->foto_pencari_kerja == 'default.jpg')
+                        {{ Storage::url('public/user/default/').$data->foto_pencari_kerja}}
+                        @else
+                        {{ Storage::url('public/user/').$data->foto_pencari_kerja}}
+                        @endif
+                      " width="100" height="40" class="img-thumbnail mb-2" alt="">
                       <input class="form-control @error('foto') is-invalid @enderror" name="foto" id="foto"type="file" id="formFile">
                       @error('foto')
                         <div class="alert alert-danger mt-2">

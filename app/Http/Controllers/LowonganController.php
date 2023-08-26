@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sumber;
 use Illuminate\Http\Request;
 use App\Models\InformasiLowongan;
-use Illuminate\Console\View\Components\Info;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Console\View\Components\Info;
 
 class LowonganController extends Controller
 {
@@ -43,12 +44,12 @@ class LowonganController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->informasi);
+        // dd($request);
         
         $this->validate($request, [
             'pemberi_id' => 'required',
             'informasi' => 'required|min:5',
-            'perusahaan' => 'required|min:5',
+            'perusahaan' => 'required',
             'salary' => 'required|min:5',
             'bidang' => 'required|min:5',
             'jenis_lowongan' => 'required|min:5',
@@ -56,7 +57,9 @@ class LowonganController extends Controller
             'pengalaman' => 'required|min:5',
             'keterampilan' => 'required|min:5',
             'deskripsi' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'tgl_buka' => 'required|date',
+            'tgl_tutup' => 'required|date',
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
 
@@ -75,11 +78,26 @@ class LowonganController extends Controller
             'pengalaman' => $request->pengalaman,
             'keterampilan' => $request->keterampilan,
             'deskripsi' => $request->deskripsi,
+            'tgl_buka' => $request->tgl_buka,
+            'tgl_tutup' => $request->tgl_tutup,
             'verifikasi' => 0,
+            'lokasi' => $request->lokasi,
             'foto_lowongan' => $foto->hashName(),
         ]);
 
-        return redirect('/lowongan')->with('success', 'Data Berhasil Disimpan!');
+        Sumber::create([
+            'pemberi_informasi_id' => $request->pemberi_id,
+            'pemangku_kepentingan_id' => $request->pemberi_id,
+            'tgl_buka' => $request->tgl_buka,
+            'tgl_tutup' => $request->tgl_tutup,
+        ]);
+
+        if($request->pemberi_id == 2){
+            return redirect('/lowongan')->with('success', 'Data Berhasil Disimpan!');
+        }else{
+            return redirect('/lowongan-data')->with('success', 'Data Berhasil Disimpan!');
+        }
+        
     }
 
     /**
@@ -90,7 +108,7 @@ class LowonganController extends Controller
      */
     public function show(String $id)
     {
-        $data = InformasiLowongan::findOrFail($id);
+        $data = InformasiLowongan::where('id_informasi_lowongan', $id)->first();
         return view('Dashboard.admin.detail_informasi_lowongan', [
             'sub_title' => 'Data Informasi Lowongan',
             'title' => 'Data',
@@ -122,8 +140,8 @@ class LowonganController extends Controller
             'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        $data = InformasiLowongan::findOrFail($id);
-        dd($data->verifikasi);
+        $data = InformasiLowongan::where('id_informasi_lowongan', $id)->first();
+        // dd($data->verifikasi);
 
         if($request->hasFile('foto')){
 
@@ -131,8 +149,7 @@ class LowonganController extends Controller
             $foto->storeAs('public/informasi-lowongan', $foto->hashName());
             Storage::delete('public/informasi-lowongan/'. $data->foto_lowongan);
 
-            $data->update([
-                'pemberi_informasi_id' => $request->pemberi_id,
+            InformasiLowongan::where('id_informasi_lowongan', $id)->update([
                 'judul_lowongan' => $request->informasi,
                 'perusahaan' => $request->perusahaan,
                 'salary' => $request->salary,
@@ -141,12 +158,13 @@ class LowonganController extends Controller
                 'pendidikan' => $request->pendidikan,
                 'pengalaman' => $request->pengalaman,
                 'keterampilan' => $request->keterampilan,
-                'deskripsi' => $request->deskripsi,
+                'tgl_buka' => $request->tgl_buka,
+                'tgl_tutup' => $request->tgl_tutup,
+                'lokasi' => $request->lokasi,
                 'foto_lowongan' => $foto->hashName(),
             ]);
         }else{
-            $data->update([
-                'pemberi_informasi_id' => $request->pemberi_id,
+            InformasiLowongan::where('id_informasi_lowongan', $id)->update([
                 'judul_lowongan' => $request->informasi,
                 'perusahaan' => $request->perusahaan,
                 'salary' => $request->salary,
@@ -154,8 +172,10 @@ class LowonganController extends Controller
                 'jenis_lowongan' => $request->jenis_lowongan,
                 'pendidikan' => $request->pendidikan,
                 'pengalaman' => $request->pengalaman,
-                'keterampilan' => $request->keterampilan,
-                'deskripsi' => $request->deskripsi
+                'lokasi' => $request->lokasi,
+                'tgl_buka' => $request->tgl_buka,
+                'tgl_tutup' => $request->tgl_tutup,
+                'keterampilan' => $request->keterampilan
             ]);
         }
         
@@ -164,13 +184,13 @@ class LowonganController extends Controller
 
     public function verifikasiLowongan(Request $request, $id){
 
-        $data = InformasiLowongan::findOrFail($id);
+        // $data = InformasiLowongan::where('id_informasi_lowongan', $id)->first();
 
-         $data->update([
+        InformasiLowongan::where('id_informasi_lowongan', $id)->update([
             'verifikasi' => $request->verifikasi,
          ]);
 
-        return redirect('/lowongan/' . $id)->with('success', 'Data Berhasil Disimpan!');
+        return redirect('/lowongan/' . $id)->with('success', 'Data Berhasil Diverifikasi!');
     }
 
     /**
@@ -181,7 +201,7 @@ class LowonganController extends Controller
      */
     public function destroy($id)
     {
-        $data = InformasiLowongan::findOrFail($id);
+        $data = InformasiLowongan::where('id_informasi_lowongan', $id)->first();
         Storage::delete('public/informasi-lowongan/'. $data->foto);
         $data->delete();
         return redirect('/lowongan')->with('success', 'Data Berhasil Dihapus!');

@@ -5,27 +5,27 @@
                 <h5 class="modal-title" id="exampleModalLabel">Tambah data Lowongan Kerja</h5>
             </div>
             <div class="modal-body">
-                <form class="row g-3" action="{{ route('lowongan.store')}}" method="POST" enctype="multipart/form-data">
+                <form class="row g-3" action="/tracer-study" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12">
                       <label for="inputName5" class="form-label">Lowongan</label>
                       <input type="text" name="informasi" class="form-control @error('informasi') is-invalid @enderror" id="inputName5" value="{{old('informasi')}}">
-                      <input type="hidden" name="pemberi_id" class="form-control" id="inputName5" value="{{auth()->user()->id}}">
+                      <input type="text" name="pemberi_id" class="form-control @error('pemberi_id') is-invalid @enderror" id="inputName5" value="{{Auth::user()->id_user}}">
                       @error('informasi')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
-                    <div class="col-md-12">
-                      <label for="inputName5" class="form-label">Perusahaan</label>
-                      <input type="text" name="perusahaan" class="form-control @error('perusahaan') is-invalid @enderror" id="inputName5" value="{{old('perusahaan')}}">
-                      @error('perusahaan')
-                        <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                    </div>
+                    <div class="col-12">
+                        <label for="inputAddress5" class="form-label">Nama Perusahaan</label>
+                        <input type="text" name="perusahaan" class="form-control @error('perusahaan') is-invalid @enderror" id="inputAddres5s" value="{{old('perusahaan')}}">
+                        @error('perusahaan')
+                          <div class="alert alert-danger mt-2">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                      </div>
                     <div class="col-12">
                       <label for="inputAddress5" class="form-label">Salary</label>
                       <input type="text" name="salary" class="form-control @error('salary') is-invalid @enderror" id="inputAddres5s" value="{{old('salary')}}">
@@ -37,8 +37,8 @@
                     </div>
                     <div class="col-12">
                         <label for="inputAddress5" class="form-label">Kategori Lowogan</label>
-                        <input type="text" name="kategori_lowongan" class="form-control @error('kategori_lowongan') is-invalid @enderror" id="inputAddres5s" value="{{old('kategori_lowongan')}}">
-                        @error('kategori_lowongan')
+                        <input type="text" name="bidang" class="form-control @error('bidang') is-invalid @enderror" id="inputAddres5s" value="{{old('bidang')}}">
+                        @error('bidang')
                           <div class="alert alert-danger mt-2">
                               {{ $message }}
                           </div>
@@ -79,10 +79,37 @@
                         </div>
                     @enderror
                     </div>
+                    <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Tanggal Dibuka</label>
+                        <input type="date" name="tgl_buka" class="form-control @error('tgl_buka') is-invalid @enderror" id="inputAddress2" value="{{old('tgl_buka')}}">
+                        @error('tgl_buka')
+                          <div class="alert alert-danger mt-2">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                      </div>
+                      <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Tanggal Tutup</label>
+                        <input type="date" name="tgl_tutup" class="form-control @error('tgl_tutup') is-invalid @enderror" id="inputAddress2" value="{{old('tgl_tutup')}}">
+                        @error('tgl_tutup')
+                          <div class="alert alert-danger mt-2">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                      </div>
                     <div class="col-md-12">
                         <label for="inputCity" class="form-label">Deskripsi</label>
-                        <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="inputCity">{{old('deskripsi')}}</textarea>
+                        <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="inputCity">Silahkan lengkapi pada menu data lowongan</textarea>
                         @error('deskripsi')
+                          <div class="alert alert-danger mt-2">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                      </div>
+                      <div class="col-md-12">
+                        <label for="inputCity" class="form-label">Lokasi</label>
+                        <input name="lokasi" class="form-control @error('lokasi') is-invalid @enderror" id="inputCity" value="{{old('lokasi')}}">
+                        @error('lokasi')
                           <div class="alert alert-danger mt-2">
                               {{ $message }}
                           </div>

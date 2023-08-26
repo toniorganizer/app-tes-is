@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lamar extends Model
+class Alumni extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
-        'id_pelamar',
-        'id_informasi',
-        'status',
-        'pesan'
+        'jurusan',
+        'tahun_lulus',
+        'tempat_kerja',
+        'status_bekerja',
+        'pencari_kerja_id',
+        'bkk_id',
     ];
 }

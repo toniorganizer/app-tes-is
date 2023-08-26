@@ -1,17 +1,16 @@
-<div class="modal fade" id="edit-il{{$data->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit-il{{$data->id_informasi_lowongan}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header" role="document">
                 <h5 class="modal-title" id="exampleModalLabel">Edit data informasi lowongan </h5><p class="font-weight-bold"> {{$data->perusahaan}}</p>
             </div>
             <div class="modal-body">
-                <form class="row g-3" action="{{ route('lowongan.update', $data->id)}}" method="POST" enctype="multipart/form-data">
+                <form class="row g-3" action="{{ route('lowongan.update', $data->id_informasi_lowongan)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="col-md-12">
                       <label for="inputName5" class="form-label">Lowongan</label>
                       <input type="text" name="informasi" class="form-control @error('informasi') is-invalid @enderror" id="inputName5" value="{{$data->judul_lowongan}}">
-                      <input type="hidden" name="pemberi_id" class="form-control" id="inputName5" value="{{auth()->user()->id}}">
                       @error('informasi')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
@@ -80,10 +79,38 @@
                         </div>
                     @enderror
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Alamat</label>
+                        <input type="text" name="lokasi" class="form-control @error('lokasi') is-invalid @enderror" id="inputAddress2" value="{{$data->lokasi}}">
+                        @error('lokasi')
+                          <div class="alert alert-danger mt-2">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                      </div>
+                    {{-- <div class="col-md-12">
                         <label for="inputCity" class="form-label">Deskripsi</label>
                         <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="inputCity">{{$data->deskripsi}}</textarea>
                         @error('deskripsi')
+                          <div class="alert alert-danger mt-2">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                      </div> --}}
+
+                      <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Tanggal Dibuka</label>
+                        <input type="date" name="tgl_buka" class="form-control @error('tgl_buka') is-invalid @enderror" id="inputAddress2" value="{{old('tgl_buka')}}">
+                        @error('tgl_buka')
+                          <div class="alert alert-danger mt-2">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                      </div>
+                      <div class="col-12">
+                        <label for="inputAddress2" class="form-label">Tanggal Tutup</label>
+                        <input type="date" name="tgl_tutup" class="form-control @error('tgl_tutup') is-invalid @enderror" id="inputAddress2" value="{{old('tgl_tutup')}}">
+                        @error('tgl_tutup')
                           <div class="alert alert-danger mt-2">
                               {{ $message }}
                           </div>

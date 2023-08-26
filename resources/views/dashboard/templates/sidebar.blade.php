@@ -62,10 +62,15 @@
                     </a>
                 </li>
                 <li>
+                    <a href="#" data-toggle="modal" data-target="#Lowongan">
+                      <i class="bi bi-circle"></i><span>Tambah Lowongan</span>
+                    </a>
+                </li>
+                {{-- <li>
                     <a href="/pelamar-data" @if($sub_title == 'Data Pelamar') class="active" @endif>
                       <i class="bi bi-circle"></i><span>Data Pelamar</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
           </li><!-- End Components Nav -->
           
@@ -78,6 +83,22 @@
             </a>
         </li><!-- End Dashboard Nav -->
         @endif
+
+        @if(auth::user()->level == 5)
+        <li class="nav-item">
+            @if($title == 'Data Tracer')
+            <a class="nav-link " href="/tracer-data">
+            @elseif($sub_title == 'Data Tracer')
+            <a class="nav-link " href="/tracer-data">
+            @else
+            <a class="nav-link collapsed" href="/tracer-data">
+            @endif
+                <i class="bi bi-envelope-paper-heart"></i>
+                <span>Data Tracer</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+        @endif
+
         @if(auth::user()->level == 2)
         <li class="nav-item">
             @if($title == 'Data Lowongan')
@@ -90,40 +111,65 @@
                 <i class="bi bi-database"></i>
                 <span>Data Lowongan</span>
             </a>
-        </li><!-- End Dashboard Nav -->
-        @endif
-        <!-- 
+        </li>
+
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+            @if($title == 'Status Daftar')
+            <a class="nav-link " href="{{ Route('pekerja.show', Auth::user()->email)}}">
+            @elseif($sub_title == 'Status Daftar')
+            <a class="nav-link " href="{{ Route('pekerja.show', Auth::user()->email)}}">
+            @else
+            <a class="nav-link collapsed" href="{{ Route('pekerja.show', Auth::user()->email)}}">
+            @endif
+                <i class="bi bi-envelope-exclamation"></i>
+                <span>Status Daftar</span>
             </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="forms-elements.html">
-                        <i class="bi bi-circle"></i><span>Form Elements</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-layouts.html">
-                        <i class="bi bi-circle"></i><span>Form Layouts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-editors.html">
-                        <i class="bi bi-circle"></i><span>Form Editors</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-validation.html">
-                        <i class="bi bi-circle"></i><span>Form Validation</span>
-                    </a>
-                </li>
-            </ul>
-        </li>End Forms Nav -->
+        </li>
+
+        <li class="nav-item">
+            @if($title == 'Tracer Study')
+            <a class="nav-link " href="/tracer-study">
+            @elseif($sub_title == 'Tracer Study')
+            <a class="nav-link " href="/tracer-study">
+            @else
+            <a class="nav-link collapsed" href="/tracer-study">
+            @endif
+                <i class="bi bi-envelope-paper-heart"></i>
+                <span>Tracer Study @if(Auth::user()->status_tracer == 0)<span class="badge badge-danger">New</span>@else <span class="badge badge-primary">Oke</span> @endif</span>
+            </a>
+        </li>
+        
+        <!-- End Dashboard Nav -->
+        @endif
 
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
+            @if($title == 'Profile')
+            <a class="nav-link" href="
+                @if(Auth::user()->level == 4)
+                    {{route('sumber.show', Auth::user()->email) }}
+                @elseif(Auth::user()->level == 3)
+                    {{route('pemerintah.show', Auth::user()->email) }}
+                @elseif(Auth::user()->level == 2)
+                    /profil-tenaga-kerja/{{Auth::user()->email}}
+                @elseif(Auth::user()->level == 1)
+                    /profil-admin/{{Auth::user()->email}}
+                @endif
+            ">
+            @elseif($sub_title == 'Profile')
+            <a class="nav-link" href="
+                @if(Auth::user()->level == 4)
+                    {{route('sumber.show', Auth::user()->email) }}
+                @elseif(Auth::user()->level == 3)
+                    {{route('pemerintah.show', Auth::user()->email) }}
+                @elseif(Auth::user()->level == 2)
+                    /profil-tenaga-kerja/{{Auth::user()->email}}
+                @elseif(Auth::user()->level == 1)
+                    /profil-admin/{{Auth::user()->email}}
+                @endif
+            ">
+            @else
             <a class="nav-link collapsed" href="
                 @if(Auth::user()->level == 4)
                     {{route('sumber.show', Auth::user()->email) }}
@@ -135,6 +181,7 @@
                     /profil-admin/{{Auth::user()->email}}
                 @endif
             ">
+            @endif
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
@@ -157,3 +204,4 @@
     </ul>
 
 </aside><!-- End Sidebar-->
+@include('dashboard/modal/modal-add-lowongan')

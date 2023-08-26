@@ -25,7 +25,11 @@
                                     <p class="text-center small">Masukan Username & Password</p>
                                 </div>
                                 @if(session('error'))
-                                <p class="alert alert-danger">{{session('error')}}</p>
+                                    <p class="alert alert-danger">{{session('error')}}</p>
+                                @endif
+
+                                @if(session('not-registered'))
+                                    <p class="alert alert-danger">{{session('not-registered')}}</p>
                                 @endif
 
                                 <form class="row g-3 needs-validation" method="post" action="login_action">

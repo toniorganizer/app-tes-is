@@ -27,7 +27,7 @@
                             <div class="col-lg-11">
                                 <p>Edit Data profil Instansi selengkap mungkin untuk memudahkan pencari kerja</p>
                                 @if (session('success'))
-                                <div class="alert alert-success">
+                                <div class="alert alert-primary">
                                     {{ session('success') }}
                                 </div>
                                 @endif
@@ -37,7 +37,7 @@
 
                         <div class="card-body">
                             <div class="row">
-                            <form action="{{ route('sumber.update', $data->id)}}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('sumber.update', $data->id_pemberi_informasi)}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="col-lg-11">
@@ -125,7 +125,7 @@
                                 <div class="col-lg-11 mt-3">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Deskripsi Instansi</label>
-                                        <input type="hidden" name="id" value="{{$data->id}}">
+                                        <input type="hidden" name="id" value="{{$data->id_pemberi_informasi}}">
                                         <textarea name="deskripsi" class="form-control @error('foto_instansi') is-invalid @enderror ckeditor" id="ckeditor" rows="3">{{$data->deskripsi}}</textarea>
                                     </div>
                                     @error('deskripsi')

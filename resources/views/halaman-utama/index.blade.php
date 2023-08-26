@@ -63,12 +63,18 @@
                 <div class="col-xl-4 col-md-6 d-flex" data-aos="zoom-out">
                     <div class="service-item position-relative">
                         <div class="icon">
-                          <img class="rounded" width="50px" src="{{ Storage::url('public/informasi-lowongan/').$item->foto_lowongan}}" alt="">
+                          <img class="rounded" width="50px" src="
+                          @if($item->foto_lowongan == 'default.jpg')
+                          {{ Storage::url('public/informasi-lowongan/default/').$item->foto_lowongan}}
+                          @else
+                          {{ Storage::url('public/informasi-lowongan/').$item->foto_lowongan}}
+                          @endif
+                          " alt="">
                         </div>
-                        <h4><a href="/detail-informasi-lowongan/{{$item->id}}" class="stretched-link">{{$item->judul_lowongan}}</a></h4>
+                        <h4><a href="/detail-informasi-lowongan/{{$item->id_informasi_lowongan}}" class="stretched-link">{{$item->judul_lowongan}}</a></h4>
                           <div class="icon">
                             {{-- <i class="bi bi-briefcase"></i> --}}
-                            {{$item->perusahaan}}
+                            {{$item->name}}
                           </div>
                           <div class="icon-lokasi">
                             <i class="bi bi-geo-alt"></i>
