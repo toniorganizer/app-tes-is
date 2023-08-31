@@ -24,7 +24,7 @@ class PekerjaController extends Controller
      */
     public function index()
     {
-        $data = InformasiLowongan::leftJoin('lamars','lamars.id_informasi','=','informasi_lowongans.id_informasi_lowongan')->select('id_informasi', 'judul_lowongan','perusahaan','foto_lowongan', 'verifikasi', DB::raw('count(id_informasi) as jumlah_pelamar'))->groupBy('id_informasi', 'judul_lowongan','perusahaan','foto_lowongan', 'verifikasi')->get();
+        $data = InformasiLowongan::leftJoin('lamars','lamars.id_informasi','=','informasi_lowongans.id_informasi_lowongan')->select('id_informasi', 'judul_lowongan','id_informasi_lowongan','perusahaan','foto_lowongan', 'verifikasi', DB::raw('count(id_informasi) as jumlah_pelamar'))->groupBy('id_informasi', 'judul_lowongan','id_informasi_lowongan','perusahaan','foto_lowongan', 'verifikasi')->get();
 
         return view('Dashboard.pencari_kerja.data-lowongan', [
             'sub_title' => 'Data Lowongan',
@@ -221,6 +221,38 @@ class PekerjaController extends Controller
         ]);
 
         return redirect('/tracer-study')->with('success', 'Terima kasih, telah ikut serta dalam pendataan alumni.');
+
+    }
+
+    public function editDataTracer($id){
+        $data = Alumni::where('pencari_kerja_id', $id)->first();
+        $bkk = BursaKerja::get();
+
+        return view('dashboard.pencari_kerja.edit-data-tracer',[
+            'data' => $data,
+            'bkk' => $bkk,
+            'sub_title' => 'Edit Data Tracer Study',
+            'title' => 'Data',
+        ]);
+    }
+
+    public function updateDataTracer(Request $request){
+        Alumni::where('pencari_kerja_id', $request->email_pk)->update([
+            'jurusan' => $request->jurusan,
+            'status_bekerja' => $request->status_bekerja,
+            'tempat_kerja' => $request->tempat_kerja,
+            'tahun_lulus' => $request->tahun_lulus,
+        ]);
+
+        User::where('id_user', $request->id_user)->update([
+            'status_tracer' => $request->status
+        ]);
+
+        PencariKerja::where('email_pk', $request->email_pk)->update([
+            'bkk_id' => $request->id_bkk
+        ]);
+
+        return redirect('/tracer-study')->with('success', 'Data berhasil diupdate.');
 
     }
 }

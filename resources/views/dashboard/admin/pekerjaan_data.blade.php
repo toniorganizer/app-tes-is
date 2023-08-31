@@ -27,11 +27,19 @@
                             <div class="col-lg-11">
                                 <p>Data informasi pasar kerja atau lowongan pekerjaan terdaftar sistem.</p>
                             </div>
+                            @if(Auth::user()->level == 1)
                             <div class="col-lg-1 float-left">
                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Lowongan">
                                     <i class="bi bi-person-plus"></i>
                                 </button>
                             </div>
+                            @elseif(Auth::user()->email == 'disnaker@gmail.com')
+                            <div class="col-lg-1 float-left">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Lowongan">
+                                    <i class="bi bi-person-plus"></i>
+                                </button>
+                            </div>
+                            @endif
                         </div>
 
                         @if (session('success'))
@@ -69,7 +77,11 @@
                                                     {{-- <a href="" class="badge badge-primary">Edit</a> --}}
                                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lowongan.destroy', $info_p->id_informasi_lowongan) }}" method="POST">
                                                         <a href="{{ route('lowongan.show', $info_p->id_informasi_lowongan) }}" class="badge badge-info">Detail</a>
+                                                        @if(Auth::user()->level == 1)
                                                         <button type="submit" class="badge badge-danger">Hapus</button>
+                                                        @elseif(Auth::user()->email == 'disnaker@gmail.com')
+                                                        <button type="submit" class="badge badge-danger">Hapus</button>
+                                                        @endif
                                                         @method('delete')
                                                         @csrf
                                                     </form>

@@ -19,6 +19,7 @@ class InformasiLowongan extends Model
         'pengalaman',
         'keterampilan',
         'bidang',
+        'jurusan',
         'deskripsi',
         'verifikasi',
         'tgl_buka',

@@ -28,9 +28,22 @@
             <div class="sidebar">
 
               <div class="sidebar-item search-form">
-                <h3 class="sidebar-title">Search</h3>
-                <form action="" class="mt-3">
-                  <input type="text">
+                <h3 class="sidebar-title">Cari dengan kata kunci</h3>
+                <form action="/searching-lowongan" class="mt-3" method="post"><i class="bi bi-briefcase"></i>
+                  @csrf
+                  <input type="text" placeholder="Cari lowongan" name="lowongan">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+
+                <h3 class="sidebar-title mt-4">Berdasarkan Lokasi</h3>
+                <form action="" class="mt-3"><i class="bi bi-geo-alt"></i>
+                  <input type="text" placeholder="Kota atau daerah">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+
+                <h4 class="sidebar-title mt-4">Berdasarkan Kategori/jurusan</h3>
+                <form action="" class="mt-3"><i class="bi bi-check2-circle"></i>
+                  <input class="input" type="text" placeholder="Jurusan">
                   <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
               </div><!-- End sidebar search formn-->

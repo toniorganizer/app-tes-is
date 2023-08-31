@@ -139,10 +139,17 @@
                                 </div>
                                 
                                 <div class="text-right">
+                                    @if(Auth::user()->level == 1)
                                     <a href="/edit-deskripsi/{{$data->id_informasi_lowongan}}" class="btn btn-info">Edit deskripsi</a>
                                     <a href="" class="btn btn-secondary mr-1" data-toggle="modal" data-target="#edit-verifikasi{{$data->id_informasi_lowongan}}">Verifikasi</a>
                                     <a href="" class="btn btn-primary mr-1" data-toggle="modal" data-target="#edit-il{{$data->id_informasi_lowongan}}">Edit detail</a>
-                                    {{-- <a href="/pekerjaan-data" class="btn btn-secondary">Kembali</a> --}}
+                                    @elseif(Auth::user()->email == 'disnaker@gmail.com')
+                                    {{-- <a href="/edit-deskripsi/{{$data->id_informasi_lowongan}}" class="btn btn-info">Edit deskripsi</a> --}}
+                                    <a href="" class="btn btn-secondary mr-1" data-toggle="modal" data-target="#edit-verifikasi{{$data->id_informasi_lowongan}}">Verifikasi</a>
+                                    {{-- <a href="" class="btn btn-primary mr-1" data-toggle="modal" data-target="#edit-il{{$data->id_informasi_lowongan}}">Edit detail</a> --}}
+                                    @else
+                                    <a href="/pekerjaan-data" class="btn btn-secondary">Kembali</a>
+                                    @endif
                                 </div>
                             </div>
                             @include('dashboard/modal/modal-edit-informasi-lowongan')

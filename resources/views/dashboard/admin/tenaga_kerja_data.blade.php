@@ -27,11 +27,13 @@
                             <div class="col-lg-11">
                                 <p>Berikut merupakan data tenaga kerja yang terdaftar di dalam sistem.</p>
                             </div>
+                            @if(Auth::user()->level == 1)
                             <div class="col-lg-1 float-left mb-3">
                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#tk">
                                     <i class="bi bi-person-plus"></i>
                                 </button>
                             </div>
+                            @endif
                         </div>
 
                         @if (session('success'))
@@ -70,7 +72,9 @@
                                                 <td>{{$user->pendidikan_terakhir}}</td>
                                                 <td>
                                                     <a href="/profil-tenaga-kerja/{{$user->email_pk}}" class="badge badge-info">Detail</a>
+                                                    @if(Auth::user()->level == 1)
                                                     <a href="/deleteTenagaKerja/{{$user->email_pk}}" class="badge badge-danger" onclick="return confirm('Yakin ingin menghpus?')">Hapus</a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

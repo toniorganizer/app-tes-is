@@ -44,6 +44,8 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/profil-tenaga-kerja/{id}', 'profilTenagaKerja');
     Route::get('/edit-deskripsi/{id}', 'edit_deskripsi_lowongan');
     Route::post('/update-deskripsi-lowongan', 'update_deskripsi_lowongan');
+    Route::get('/pekerjaan-data', 'pekerjaanData');
+    Route::get('/tenaga-kerja-data', 'tenagaKerjaData');
 });
 
 // auth
@@ -55,6 +57,7 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('/register', 'register_pekerja');
     Route::post('/register_perusahaan', 'register_perusahaan');
     Route::post('/register_bkk', 'register_bkk');
+    Route::post('/searching-lowongan', 'searching');
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -65,9 +68,8 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/dashboard', 'index');
                 Route::get('/user', 'index');
                 Route::get('/user-data', 'userData');
-                Route::get('/tenaga-kerja-data', 'tenagaKerjaData');
-                Route::get('/pekerjaan-data', 'pekerjaanData');
                 Route::post('/addTenagaKerja', 'tambahTenagaKerja');
+                Route::post('/register_user', 'registerUser');
                 Route::get('/deleteTenagaKerja/{id}', 'hapusTenagaKerja');
             });
     });
@@ -85,6 +87,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/lamar-pekerjaan/{id}', 'lamarPekerjaan');
         Route::get('/tracer-study', 'tracerStudy');
         Route::post('/update-tracer-study', 'updateTracerStudy');
+        Route::get('/edit-data-tracer/{id}', 'editDataTracer');
+        Route::post('/update-data-tracer', 'updateDataTracer');
         Route::post('/lamar-lowongan-pekerjaan', 'lamarLowonganPekerjaan');
     });
 

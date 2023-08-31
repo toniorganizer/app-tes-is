@@ -3,6 +3,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah data Lowongan Kerja</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
             </div>
             <div class="modal-body">
                 <form class="row g-3" action="/tracer-study" method="POST" enctype="multipart/form-data">
@@ -10,7 +13,8 @@
                     <div class="col-md-12">
                       <label for="inputName5" class="form-label">Lowongan</label>
                       <input type="text" name="informasi" class="form-control @error('informasi') is-invalid @enderror" id="inputName5" value="{{old('informasi')}}">
-                      <input type="text" name="pemberi_id" class="form-control @error('pemberi_id') is-invalid @enderror" id="inputName5" value="{{Auth::user()->id_user}}">
+                      <input type="hidden" name="pemberi_id" class="form-control @error('pemberi_id') is-invalid @enderror" id="inputName5" value="{{Auth::user()->id_user}}">
+                      <input type="hidden" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="inputName5" value="-">
                       @error('informasi')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
@@ -36,9 +40,18 @@
                     @enderror
                     </div>
                     <div class="col-12">
-                        <label for="inputAddress5" class="form-label">Kategori Lowogan</label>
+                        <label for="inputAddress5" class="form-label">Bidang Lowogan</label>
                         <input type="text" name="bidang" class="form-control @error('bidang') is-invalid @enderror" id="inputAddres5s" value="{{old('bidang')}}">
                         @error('bidang')
+                          <div class="alert alert-danger mt-2">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                      </div>
+                      <div class="col-12">
+                        <label for="inputAddress5" class="form-label">Jurusan yang dibutuhkan</label>
+                        <input type="text" name="jurusan" class="form-control @error('jurusan') is-invalid @enderror" id="inputAddres5s" value="{{old('jurusan')}}">
+                        @error('jurusan')
                           <div class="alert alert-danger mt-2">
                               {{ $message }}
                           </div>
@@ -97,15 +110,6 @@
                           </div>
                       @enderror
                       </div>
-                    <div class="col-md-12">
-                        <label for="inputCity" class="form-label">Deskripsi</label>
-                        <textarea name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="inputCity">Silahkan lengkapi pada menu data lowongan</textarea>
-                        @error('deskripsi')
-                          <div class="alert alert-danger mt-2">
-                              {{ $message }}
-                          </div>
-                      @enderror
-                      </div>
                       <div class="col-md-12">
                         <label for="inputCity" class="form-label">Lokasi</label>
                         <input name="lokasi" class="form-control @error('lokasi') is-invalid @enderror" id="inputCity" value="{{old('lokasi')}}">
@@ -127,9 +131,11 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
+              <div class="col-12">
+                <small id="emailHelp" class="form-text text-muted mb-2">Silahkan lengkapi deskripsi pada halaman data lowongan</small>
+                  <button  type="submit" class="btn btn-primary w-100">Simpan</button>
+              </div>
+          </div>
         </form>
         </div>
     </div>

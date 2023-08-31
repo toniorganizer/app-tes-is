@@ -2,7 +2,10 @@
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header" role="document">
-                <h5 class="modal-title" id="exampleModalLabel">Edit data informasi lowongan </h5><p class="font-weight-bold"> {{$data->perusahaan}}</p>
+                <h5 class="modal-title" id="exampleModalLabel">Edit data informasi lowongan </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
             </div>
             <div class="modal-body">
                 <form class="row g-3" action="{{ route('lowongan.update', $data->id_informasi_lowongan)}}" method="POST" enctype="multipart/form-data">
@@ -39,6 +42,15 @@
                         <label for="inputAddress5" class="form-label">Bidang Pekerjaan</label>
                         <input type="text" name="bidang" class="form-control @error('bidang') is-invalid @enderror" id="inputAddres5s" value="{{$data->bidang}}">
                         @error('bidang')
+                          <div class="alert alert-danger mt-2">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                      </div>
+                      <div class="col-12">
+                        <label for="inputAddress5" class="form-label">Jurusan yang dibutuhkan</label>
+                        <input type="text" name="jurusan" class="form-control @error('jurusan') is-invalid @enderror" id="inputAddres5s" value="{{$data->jurusan}}">
+                        @error('jurusan')
                           <div class="alert alert-danger mt-2">
                               {{ $message }}
                           </div>
@@ -128,8 +140,9 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <div class="col-12">
+                    <button  type="submit" class="btn btn-primary w-100">Simpan</button>
+                </div>
             </div>
         </form>
         </div>

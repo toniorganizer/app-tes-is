@@ -48,6 +48,7 @@
                                             </a>
                                           @endif --}}
 
+                                            @if(Auth::user()->level == 2)
                                               @if($exists)
                                               <a href="#" class="btn btn-info">
                                                 Lamaran Terkirim
@@ -57,6 +58,7 @@
                                                 Lamar sekarang
                                               </a>
                                               @endif
+                                            @endif
                                           
                                         </div>
                                     </div>

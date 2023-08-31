@@ -77,7 +77,37 @@
         @endif
         @if(auth::user()->level == 3)
         <li class="nav-item">
-            <a class="nav-link " href="/user-data">
+            @if($title == 'Data Pekerjaan')
+            <a class="nav-link " href="/pekerjaan-data">
+            @elseif($sub_title == 'Data Pekerjaan')
+            <a class="nav-link " href="/pekerjaan-data">
+            @else
+            <a class="nav-link collapsed" href="/pekerjaan-data">
+            @endif
+                <i class="bi bi-database"></i>
+                <span>Data Pekerjaan</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            @if($title == 'Data Tenaga Kerja')
+            <a class="nav-link " href="/tenaga-kerja-data">
+            @elseif($sub_title == 'Data Tenaga Kerja')
+            <a class="nav-link " href="/tenaga-kerja-data">
+            @else
+            <a class="nav-link collapsed" href="/tenaga-kerja-data">
+            @endif
+            <i class="bi bi-person-check"></i>
+                <span>Data Tenaga Kerja</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            @if($title == 'Data Rekomendasi')
+            <a class="nav-link " href="/data-rekomendasi">
+            @elseif($sub_title == 'Data Rekomendasi')
+            <a class="nav-link " href="/data-rekomendasi">
+            @else
+            <a class="nav-link collapsed" href="/data-rekomendasi">
+            @endif
                 <i class="bi bi-folder-check"></i>
                 <span>Rekomendasi</span>
             </a>
@@ -85,6 +115,18 @@
         @endif
 
         @if(auth::user()->level == 5)
+        <li class="nav-item">
+            @if($title == 'Data Lowongan')
+            <a class="nav-link " href="/data-lowongan-pekerja">
+            @elseif($sub_title == 'Data Lowongan')
+            <a class="nav-link " href="/data-lowongan-pekerja">
+            @else
+            <a class="nav-link collapsed" href="/data-lowongan-pekerja">
+            @endif
+                <i class="bi bi-database"></i>
+                <span>Data Lowongan</span>
+            </a>
+        </li>
         <li class="nav-item">
             @if($title == 'Data Tracer')
             <a class="nav-link " href="/tracer-data">

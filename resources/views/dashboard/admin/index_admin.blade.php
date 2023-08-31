@@ -72,21 +72,28 @@
 
                         </div>
                     </div>
-                    @else
+                    @elseif(Auth::user()->level == 5)
+
                        <!-- Sales Card -->
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
 
                             <div class="card-body">
-                                <h5 class="card-title">User Terdaftar <span>| s.d <?php echo date('d-m-Y'); ?></span></h5>
+                                <h5 class="card-title">Jumlah Alumni Terdata</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-person"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
-                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">Meningkat</span>
+                                        <h6>{{$jumlah_alumni}}</h6>
+                                        <span class="text-success small pt-1 fw-bold">
+                                        @if($alumni_bekerja > 0)
+                                        {{$alumni_bekerja}}
+                                        @else
+                                        0
+                                        @endif    
+                                        </span> <span class="text-muted small pt-2 ps-1">Alumni Diterima Bekerja</span>
 
                                     </div>
                                 </div>
@@ -100,15 +107,110 @@
                         <div class="card info-card sales-card">
 
                             <div class="card-body">
-                                <h5 class="card-title">Pasar Kerja <span>| s.d <?php echo date('d-m-Y'); ?></span></h5>
+                                <h5 class="card-title">Jumlah Lowongan Kerja</h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-shop-window"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>1123</h6>
-                                        <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">Meningkat</span>
+                                        <h6>{{$jumlah_loker}}</h6>
+                                        <div class="dashboard-detail mt-2">
+                                            <a href="/data-lowongan-pekerja" class="detail-pendaftar">Lihat Detail Lowongan</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- End Revenue Card -->
+
+                    <!-- Reports -->
+                    <div class="col-12">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Statistik Pasar Kerja</h5>
+                                {!! $chart->container() !!}
+
+                            </div>
+
+                        </div>
+                    </div><!-- End Reports -->
+                    @else
+                    <!-- Sales Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+
+                            <div class="card-body">
+                                @if(Auth::user()->level == 1)
+                                <h5 class="card-title">User Terdaftar Pada Sistem 
+                                    {{-- <span>| s.d <?php echo date('d-m-Y'); ?></span> --}}
+                                </h5>
+                                @endif
+                                @if(Auth::user()->level == 3)
+                                <h5 class="card-title">Tenaga Kerja Terdaftar
+                                    {{-- <span>| s.d <?php echo date('d-m-Y'); ?></span> --}}
+                                </h5>
+                                @endif
+                                @if(Auth::user()->level == 4)
+                                <h5 class="card-title">Tenaga Kerja Terdaftar
+                                    {{-- <span>| s.d <?php echo date('d-m-Y'); ?></span> --}}
+                                </h5>
+                                @endif
+                                
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-person"></i>
+                                    </div>
+                                    @if(Auth::user()->level == 1)
+                                    <div class="ps-3">
+                                        <h6>{{$user}}</h6>
+                                        <div class="dashboard-detail mt-2">
+                                            <a href="/user-data" class="detail-pendaftar">Lihat Detail User</a>
+                                        </div>
+                                    @endif
+                                    @if(Auth::user()->level == 3)
+                                    <div class="ps-3">
+                                        <h6>{{$pencari_kerja}}</h6>
+                                        <div class="dashboard-detail mt-2">
+                                            <a href="/tenaga-kerja-data" class="detail-pendaftar">Lihat Detail Tenaga Kerja</a>
+                                        </div>
+                                    @endif
+                                    @if(Auth::user()->level == 4)
+                                    <div class="ps-3">
+                                        <h6>{{$pencari_kerja}}</h6>
+                                        <div class="dashboard-detail mt-2">
+                                            <a href="/tenaga-kerja-data" class="detail-pendaftar">Lihat Detail Tenaga Kerja</a>
+                                        </div>
+                                    @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- End Sales Card -->
+
+                    <!-- Revenue Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Informasi Pasar Kerja Terdata 
+                                    {{-- <span>| s.d <?php echo date('d-m-Y'); ?></span> --}}
+                                </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-shop-window"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{$jumlah_loker}}</h6>
+                                        <div class="dashboard-detail mt-2">
+                                            <a href="/pekerjaan-data" class="detail-pendaftar">Lihat Detail Informasi</a>
+                                        </div>
 
                                     </div>
                                 </div>

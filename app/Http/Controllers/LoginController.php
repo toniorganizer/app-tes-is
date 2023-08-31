@@ -219,4 +219,10 @@ class LoginController extends Controller
 
         return redirect('/bkk-register')->with('success', 'Data Berhasil Disimpan, Silahkan lakukan login!');
     }
+
+    public function searching(Request $request){
+        $data = InformasiLowongan::search($request->lowongan)->get();
+
+        return view('halaman-utama.lowongan-home', ['data' => $data]);
+    }
 }

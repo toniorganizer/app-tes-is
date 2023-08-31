@@ -115,6 +115,16 @@
                                     <div class="col-lg-3 col-md-4 label">No. Handphone</div>
                                     <div class="col-lg-9 col-md-8">{{$data->no_hp}}</div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Status Bekerja</div>
+                                    <div class="col-lg-9 col-md-8">{{$data->status_bekerja}}</div>
+                                </div>
+                                @if($data->status_bekerja == 'Sudah Bekerja')
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Tempat Bekerja</div>
+                                    <div class="col-lg-9 col-md-8">{{$data->tempat_kerja}}</div>
+                                </div>
+                                @endif
                                 
                                 <div class="text-right">
                                     @if(Auth::user()->level == 1)

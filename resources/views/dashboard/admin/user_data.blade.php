@@ -16,6 +16,12 @@
         </nav>
     </div><!-- End Page Title -->
 
+    @if (session('success'))
+    <div class="alert alert-primary">
+        {{ session('success') }}
+    </div>
+    @endif
+
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
@@ -44,7 +50,7 @@
                                             <th scope="col">No.</th>
                                             <th scope="col">Username</th>
                                             <th scope="col">Nama</th>
-                                            <th scope="col">E-mail</th>
+                                            {{-- <th scope="col">E-mail</th> --}}
                                             <th scope="col">Level</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
@@ -56,7 +62,7 @@
                                                 <th scope="row">{{$no++}}</th>
                                                 <td> {{$user->username}}</td>
                                                 <td>{{$user->name}}</td>
-                                                <td>{{$user->email}}</td>
+                                                {{-- <td>{{$user->email}}</td> --}}
                                                 <td>
                                                     @if($user->level == 1)
                                                     Admin

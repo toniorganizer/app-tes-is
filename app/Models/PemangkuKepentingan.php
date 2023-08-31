@@ -19,5 +19,5 @@ class PemangkuKepentingan extends Model
         'telepon_lembaga',
         'alamat_lembaga',
         'foto_lembaga',
-    ]
+    ];
 }
