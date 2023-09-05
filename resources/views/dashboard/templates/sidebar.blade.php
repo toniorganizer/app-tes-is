@@ -44,6 +44,30 @@
                 </li>
             </ul>
           </li><!-- End Components Nav -->
+          <li class="nav-item">
+            @if($title == 'Pasar Kerja')
+            <a class="nav-link " href="/pasar-kerja">
+            @elseif($sub_title == 'Pasar Kerja')
+            <a class="nav-link " href="/pasar-kerja">
+            @else
+            <a class="nav-link collapsed" href="/pasar-kerja">
+            @endif
+            <i class="bi bi-shop-window"></i>
+                <span>Pasar Kerja</span>
+            </a>
+        </li>
+          <li class="nav-item">
+            @if($title == 'Cetak Laporan')
+            <a class="nav-link " href="/uji-laporan">
+            @elseif($sub_title == 'Cetak Laporan')
+            <a class="nav-link " href="/uji-laporan">
+            @else
+            <a class="nav-link collapsed" href="/uji-laporan">
+            @endif
+            <i class="bi bi-file-earmark"></i>
+                <span>Cetak Laporan</span>
+            </a>
+        </li>
         @endif
         @if(auth::user()->level == 4)
 
@@ -110,6 +134,19 @@
             @endif
                 <i class="bi bi-folder-check"></i>
                 <span>Rekomendasi</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-item">
+            @if($title == 'Laporan')
+            <a class="nav-link " href="/laporan">
+            @elseif($sub_title == 'Laporan')
+            <a class="nav-link " href="/laporan">
+            @else
+            <a class="nav-link collapsed" href="/laporan">
+            @endif
+            <i class="bi bi-file-earmark"></i>
+                <span>Laporan</span>
             </a>
         </li><!-- End Dashboard Nav -->
         @endif

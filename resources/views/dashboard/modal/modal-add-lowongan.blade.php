@@ -8,7 +8,7 @@
                   </button>
             </div>
             <div class="modal-body">
-                <form class="row g-3" action="/tracer-study" method="POST" enctype="multipart/form-data">
+                <form class="row g-3" action="{{ Route('lowongan.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-12">
                       <label for="inputName5" class="form-label">Lowongan</label>
@@ -41,12 +41,20 @@
                     </div>
                     <div class="col-12">
                         <label for="inputAddress5" class="form-label">Bidang Lowogan</label>
-                        <input type="text" name="bidang" class="form-control @error('bidang') is-invalid @enderror" id="inputAddres5s" value="{{old('bidang')}}">
-                        @error('bidang')
-                          <div class="alert alert-danger mt-2">
-                              {{ $message }}
-                          </div>
-                      @enderror
+                        <select name="bidang" class="form-control">
+                          <option>Pilih Jenis Lowongan</option>
+                          <option value="Programmer">Programmer</option>
+                          <option value="Desainer">Desainer</option>
+                          <option value="Jasa">Jasa</option>
+                          <option value="Operator">Operator</option>
+                          <option value="Teknisi">Teknisi</option>
+                          <option value="Pendidik">Pendidik</option>
+                          <option value="Pegawai">Pegawai</option>
+                          <option value="Supir">Supir</option>
+                          <option value="Animator">Animator</option>
+                          <option value="Apoteker">Apoteker</option>
+                          <option value="Lainnya">Lainnya</option>
+                        </select>
                       </div>
                       <div class="col-12">
                         <label for="inputAddress5" class="form-label">Jurusan yang dibutuhkan</label>

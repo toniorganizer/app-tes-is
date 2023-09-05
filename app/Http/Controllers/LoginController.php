@@ -106,6 +106,8 @@ class LoginController extends Controller
             'tentang' => 0,
             'no_hp' => 0,
             'bkk_id' => 0,
+            'tgl_expired' => now()->addMonth(6),
+            'status_ak1' => 'Aktif',
             'foto_pencari_kerja' => 'default.jpg',
         ]);
 
@@ -221,7 +223,16 @@ class LoginController extends Controller
     }
 
     public function searching(Request $request){
-        $data = InformasiLowongan::search($request->lowongan)->get();
+        $request->session()->flash('lowongan', $request->input('lowongan'));
+        $data = InformasiLowongan::where('judul_lowongan','like','%'.$request->lowongan.'%')->paginate(20);
+
+        return view('halaman-utama.lowongan-home', ['data' => $data]);
+    }
+
+    public function searchingLokasi(Request $request){
+        $request->session()->flash('lokasi', $request->input('lokasi'));
+
+        $data = InformasiLowongan::where('lokasi','like','%'.$request->lokasi.'%')->paginate(20);
 
         return view('halaman-utama.lowongan-home', ['data' => $data]);
     }

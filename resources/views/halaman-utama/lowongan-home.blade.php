@@ -29,15 +29,16 @@
 
               <div class="sidebar-item search-form">
                 <h3 class="sidebar-title">Cari dengan kata kunci</h3>
-                <form action="/searching-lowongan" class="mt-3" method="post"><i class="bi bi-briefcase"></i>
+                <form action="/searching-lowongan" class="mt-3" method="get"><i class="bi bi-briefcase"></i>
                   @csrf
-                  <input type="text" placeholder="Cari lowongan" name="lowongan">
+                  <input type="text" placeholder="Cari lowongan" name="lowongan" value="{{ session('lowongan') }}">
                   <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
 
                 <h3 class="sidebar-title mt-4">Berdasarkan Lokasi</h3>
-                <form action="" class="mt-3"><i class="bi bi-geo-alt"></i>
-                  <input type="text" placeholder="Kota atau daerah">
+                <form action="/searching-lokasi" class="mt-3" method="get"><i class="bi bi-geo-alt"></i>
+                  @csrf
+                  <input type="text" name="lokasi" placeholder="Kota atau daerah" value="{{ session('lokasi') }}">
                   <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
 
@@ -116,13 +117,36 @@
 
             </div><!-- End blog posts list -->
 
-            <div class="blog-pagination">
-              <ul class="justify-content-center">
+            <div class="blog-pagination"> 
+              {{-- <ul class="justify-content-center">
                 <li><a href="#">1</a></li>
                 <li class="active"><a href="#">2</a></li>
                 <li><a href="#">3</a></li>
-              </ul>
+              </ul> --}}
+              <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item{{ ($data->currentPage() == 1) ? ' disabled' : '' }}">
+                        <a class="page-link" href="{{ $data->previousPageUrl() }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for ($i = 1; $i <= $data->lastPage(); $i++)
+                        <li class="page-item{{ ($data->currentPage() == $i) ? ' active' : '' }}">
+                            <a class="page-link" href="{{ $data->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @endfor
+                    <li class="page-item{{ ($data->currentPage() == $data->lastPage()) ? ' disabled' : '' }}">
+                        <a class="page-link" href="{{ $data->nextPageUrl() }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
             </div><!-- End blog pagination -->
+
+            
+
+          {{-- {{ $data->links() }} --}}
 
           </div>
 

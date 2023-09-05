@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class InformasiLowongan extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = [
         'pemberi_informasi_id',
@@ -31,5 +32,12 @@ class InformasiLowongan extends Model
     public function lamars()
     {
         return $this->hasMany(Lamar::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'judul_lowongan'     => $this->judul_lowongan,
+        ];
     }
 }

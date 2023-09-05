@@ -17,6 +17,8 @@ class PencariKerja extends Model
         'pendidikan_terakhir',
         'keterampilan',
         'tentang',
+        'status_ak1',
+        'tgl_expired',
         'no_hp',
         'foto_pencari_kerja'
     ];

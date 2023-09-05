@@ -15,25 +15,21 @@ class CekUser
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $rule)
+    public function handle(Request $request, Closure $next, ...$levels)
     {
 
         if (!Auth::check()) {
             return redirect('login');
         }
 
-        $user = Auth::user();
-        if ($user->level == 1) {
+        $currentUserLevel = Auth::user()->level;
+
+        // Periksa apakah ID pengguna saat ini ada dalam daftar yang diizinkan
+        if (in_array($currentUserLevel, $levels)) {
             return $next($request);
         } else {
             return redirect('error-akses');
         }
 
-        // $user = Auth::user();
-        // if ($user->level == $rule) {
-        //     return $next($request);
-        // }
-
-        // return redirect('/')->with('error', 'Tidak memiliki akses');
     }
 }

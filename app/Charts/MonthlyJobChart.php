@@ -2,6 +2,7 @@
 
 namespace App\Charts;
 
+use App\Models\InformasiLowongan;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class MonthlyJobChart
@@ -15,12 +16,31 @@ class MonthlyJobChart
 
     public function build(): \ArielMejiaDev\LarapexCharts\LineChart
     {
+
+        // $data = [
+        //     'Programmer' => InformasiLowongan::where('bidang', 'like', '%'. 'programmer'. '%')->count(),
+        //     'Desainer' => InformasiLowongan::where('bidang', 'like', '%'. 'desainer'. '%')->count(),
+        //     'Jasa' => InformasiLowongan::where('bidang', 'like', '%'. 'jasa'. '%')->count(),
+        //     'Transportasi' => InformasiLowongan::where('bidang', 'like', '%'. 'transportasi'. '%')->count(),
+        //     'Pendidik' => InformasiLowongan::where('bidang', 'like', '%'. 'pendidik'. '%')->count(),
+        // ];
+
+        $bidang = InformasiLowongan::distinct('bidang')->pluck('bidang')->toArray();
+
+        $data = [];
+
+        foreach ($bidang as $b) {
+            $count = InformasiLowongan::where('bidang', 'like', '%' . $b . '%')->count();
+            $data[$b] = $count;
+        }
+
+        $labels = array_keys($data);
+        $values = array_values($data);
+        
         return $this->chart->lineChart()
-            ->setTitle('Sales during 2021.')
-            ->setSubtitle('Physical sales vs Digital sales.')
-            ->addData('Digital sales', [73, 30, 78, 20, 60, 63])
-            ->addData('Physical sales', [60, 49, 80, 84, 25, 23])
-            ->addData('average', [73, 21, 71, 29, 52, 40])
-            ->setXAxis(['January', 'February', 'March', 'April', 'May', 'June']);
+            ->setTitle('Tren Informasi Pasar Kerja')
+            ->setSubtitle('Provinsi Sumatera Barat')
+            ->addData('Jumlah', $values)
+            ->setXAxis($labels);
     }
 }

@@ -255,4 +255,13 @@ class PekerjaController extends Controller
         return redirect('/tracer-study')->with('success', 'Data berhasil diupdate.');
 
     }
+
+    public function perpanjangKartu(Request $request){
+        PencariKerja::where('id_pencari_kerja', $request->id)->update([
+            'status_ak1' => $request->status,
+            'tgl_expired' => now()->addMonth(6)
+        ]);
+
+        return redirect('/home')->with('success', 'Data kartu berhasil diperpanjang.');
+    }
 }

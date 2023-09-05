@@ -50,13 +50,13 @@ class LowonganController extends Controller
             'pemberi_id' => 'required',
             'informasi' => 'required|min:5',
             'perusahaan' => 'required',
-            'salary' => 'required|min:5',
-            'bidang' => 'required|min:5',
+            'salary' => 'required',
+            'bidang' => 'required',
             'jurusan' => 'required',
-            'jenis_lowongan' => 'required|min:5',
-            'pendidikan' => 'required|min:5',
-            'pengalaman' => 'required|min:5',
-            'keterampilan' => 'required|min:5',
+            'jenis_lowongan' => 'required',
+            'pendidikan' => 'required',
+            'pengalaman' => 'required',
+            'keterampilan' => 'required',
             'deskripsi' => 'required',
             'tgl_buka' => 'required|date',
             'tgl_tutup' => 'required|date',
@@ -210,5 +210,11 @@ class LowonganController extends Controller
         $data->delete();
         return redirect('/lowongan')->with('success', 'Data Berhasil Dihapus!');
     }
+
+    // public function search(Request $request){
+    //     $data = InformasiLowongan::search('search')->get();
+
+
+    // }
 
 }

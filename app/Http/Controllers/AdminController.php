@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Lamar;
 use App\Models\Alumni;
 use App\Models\BursaKerja;
+use App\Exports\UjiLaporan;
 use App\Models\PencariKerja;
 use Illuminate\Http\Request;
 use App\Charts\CountJobChart;
@@ -17,6 +18,7 @@ use App\Models\PemangkuKepentingan;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -35,6 +37,7 @@ class AdminController extends Controller
         ->where('status_bekerja', 'Sudah Bekerja')->count();
         $user = User::count();
         $pencari_kerja = PencariKerja::count();
+        $ak1 = PencariKerja::where('email_pk', Auth::user()->email)->first();
 
         return view('Dashboard.admin.index_admin', [
             'chart' => $chart->build(), 
@@ -46,7 +49,8 @@ class AdminController extends Controller
             'alumni_bekerja' => $alumni_bekerja,
             'user' => $user,
             'pencari_kerja' => $pencari_kerja,
-            'jumlah_lamaran' => $lamar
+            'jumlah_lamaran' => $lamar,
+            'status_ak1' => $ak1
         ]);
     }
 
@@ -110,6 +114,8 @@ class AdminController extends Controller
             'keterampilan' => $request->keterampilan,
             'tentang' => $request->tentang,
             'no_hp' => $request->no_hp,
+            'tgl_expired' => now()->addMonth(6),
+            'status_ak1' => 'Aktif',
             'foto_pencari_kerja' => $foto->hashName(),
         ]);
 
@@ -212,6 +218,8 @@ class AdminController extends Controller
                 'keterampilan' => '-',
                 'tentang' => '-',
                 'no_hp' => '-',
+                'tgl_expired' => now()->addMonth(6),
+                'status_ak1' => 'Aktif',
                 'foto_pencari_kerja' => 'default.jpg',
             ]);
     
@@ -293,5 +301,20 @@ class AdminController extends Controller
         }
 
         return redirect('/user-data')->with('success', 'Data Berhasil Disimpan!');
+    }
+
+    public function testLaporan(){
+        $data = PencariKerja::join('alumnis', 'alumnis.pencari_kerja_id','=','pencari_kerjas.email_pk')->get();
+        
+        return Excel::download(new UjiLaporan($data), 'uji-coba.xlsx');
+    }
+
+    public function Laporan(){
+        $data = PencariKerja::get();
+        return view('Dashboard.admin.laporan', [
+            'sub_title' => 'Laporan',
+            'title' => 'Data',
+            'data' => $data
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Charts;
 
+use App\Models\InformasiLowongan;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class CountJobChart
@@ -15,10 +16,30 @@ class CountJobChart
 
     public function build(): \ArielMejiaDev\LarapexCharts\DonutChart
     {
+        // $data = [
+        //     'Programmer' => InformasiLowongan::where('bidang', 'like', '%'. 'programmer'. '%')->count(),
+        //     'Desainer' => InformasiLowongan::where('bidang', 'like', '%'. 'desainer'. '%')->count(),
+        //     'Jasa' => InformasiLowongan::where('bidang', 'like', '%'. 'jasa'. '%')->count(),
+        //     'Transportasi' => InformasiLowongan::where('bidang', 'like', '%'. 'transportasi'. '%')->count(),
+        //     'Pendidik' => InformasiLowongan::where('bidang', 'like', '%'. 'pendidik'. '%')->count(),
+        // ];
+
+        $bidang = InformasiLowongan::distinct('bidang')->pluck('bidang')->toArray();
+
+        $data = [];
+
+        foreach ($bidang as $b) {
+            $count = InformasiLowongan::where('bidang', 'like', '%' . $b . '%')->count();
+            $data[$b] = $count;
+        }
+
+        $labels = array_keys($data);
+        $values = array_values($data);
+        
         return $this->chart->donutChart()
-            ->setTitle('Top 3 scorers of the team.')
-            ->setSubtitle('Season 2021.')
-            ->addData([20, 24, 30])
-            ->setLabels(['Player 7', 'Player 10', 'Player 9']);
+            ->setTitle('Bursa Pasar Kerja')
+            ->setSubtitle('Provinsi Sumatera Barat')
+            ->addData($values)
+            ->setLabels($labels);
     }
 }

@@ -155,15 +155,20 @@
             </div><!-- End sidebar recent posts-->
 
             <div class="sidebar-item recent-posts">
-              <h3 class="sidebar-title">Tentang Perusahaan</h3>
+              <h3 class="sidebar-title">Tentang Pemberi Informasi</h3>
 
               <div class="mt-3">
 
                 <div class="post-item mt-3">
                   <div>
+                    @if($data->pemberi_informasi_id == 2)
+                    <h5>By Admin</h5>
+                    <p>Pemberi informasi admin Dinas Tenaga Kerja Sumatera Barat</p>
+                    @else
                     <h5>{{$item->nama_instansi}}</h5>
                     <p>{!!$item->deskripsi!!}</p>
                     <a href="/login" class="btn-login">Lihat Profil Perusahaan</a>
+                    @endif
                   </div>
                 </div>
 

@@ -31,7 +31,7 @@ Route::get('/', function () {
 });
 
 Route::get('/lowongan-home', function () {
-    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->get();
+    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->paginate(2);
     return view('halaman-utama.lowongan-home', ['data' => $data]);
 });
 
@@ -57,12 +57,13 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('/register', 'register_pekerja');
     Route::post('/register_perusahaan', 'register_perusahaan');
     Route::post('/register_bkk', 'register_bkk');
-    Route::post('/searching-lowongan', 'searching');
+    Route::get('/searching-lowongan', 'searching');
+    Route::get('/searching-lokasi', 'searchingLokasi');
 });
 
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::group(['middleware' => ['CekUser:1,2']], function () {
+    Route::group(['middleware' => ['CekUser:1,3']], function () {
         Route::resource('/user', AdminController::class);
             Route::controller(AdminController::class)->group(function () {
                 Route::get('/dashboard', 'index');
@@ -71,6 +72,8 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::post('/addTenagaKerja', 'tambahTenagaKerja');
                 Route::post('/register_user', 'registerUser');
                 Route::get('/deleteTenagaKerja/{id}', 'hapusTenagaKerja');
+                Route::get('/uji-laporan', 'testLaporan')->name('uji-laporan');
+                Route::get('/laporan', 'Laporan')->name('laporan');
             });
     });
 
@@ -90,6 +93,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/edit-data-tracer/{id}', 'editDataTracer');
         Route::post('/update-data-tracer', 'updateDataTracer');
         Route::post('/lamar-lowongan-pekerjaan', 'lamarLowonganPekerjaan');
+        Route::post('/perpanjangKartu', 'perpanjangKartu');
     });
 
     Route::controller(PemberiInformasiController::class)->group(function () {
@@ -132,3 +136,5 @@ Route::get('/bkk-register', function () {
 Route::get('/error-akses', function () {
     return view('dashboard.error_akses');
 });
+
+Route::get('log-viewers', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
