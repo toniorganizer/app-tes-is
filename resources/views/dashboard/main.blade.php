@@ -8,6 +8,9 @@
   <title>SIPK</title>
   <meta content="" name="description" />
   <meta content="" name="keywords" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+  <meta http-equiv="Pragma" content="no-cache">
+
 
   <!-- Favicons -->
   <link href="{{ asset('assets/img/sumbar.png') }}" rel="icon" />

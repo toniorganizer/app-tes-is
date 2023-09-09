@@ -3,8 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Lamar;
+use App\Models\Alumni;
+use App\Models\PencariKerja;
 use Illuminate\Http\Request;
+use App\Charts\CountJobChart;
+use App\Charts\MonthlyJobChart;
+use App\Models\InformasiLowongan;
+use Illuminate\Support\Facades\DB;
 use App\Models\PemangkuKepentingan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class KepentinganController extends Controller
@@ -14,9 +22,18 @@ class KepentinganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(MonthlyJobChart $chart, CountJobChart $jobcount)
     {
-        //
+        
+        $data = InformasiLowongan::select('bidang', DB::raw('count(bidang) as jumlah'))->groupBy('bidang')->orderBy('jumlah', 'desc')->get();
+        
+        return view('dashboard.pemangku-kepentingan.rekomendasi', 
+        ['sub_title' => 'Data Rekomendasi',
+            'title' => 'Data Rekomendasi',
+            'chart' => $chart->build(), 
+            'jobcount' => $jobcount->build(),
+            'data' => $data
+        ]);
     }
 
     /**

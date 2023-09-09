@@ -911,6 +911,15 @@ section {
   padding: 120px 0 60px;
 }
 
+.hero-full {
+  width: 100%;
+  min-height: 60vh;
+  background-color: rgba(var(--color-secondary-light-rgb), 0.3);
+  background-size: cover;
+  position: relative;
+  padding: 70px 0 20px;
+}
+
 .hero-fullscreen:before {
   content: "";
   background: rgba(var(--color-white-rgb), 0.85);
@@ -1813,22 +1822,23 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background: url("../img/testimonials-bg.jpg") no-repeat;
+  background: url("../img/sumbar-bg.jpg") no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;
 }
 
+
 .testimonials::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(var(--color-secondary-dark-rgb), 0.8);
+  background: rgba(var(--color-white-rgb), 0.85);
 }
 
-.testimonials .section-header {
+/* .testimonials .section-header {
   margin-bottom: 40px;
-}
+} */
 
 .testimonials .testimonials-carousel,
 .testimonials .testimonials-slider {
@@ -1850,7 +1860,7 @@ section {
 .testimonials .testimonial-item h3 {
   font-size: 20px;
   font-weight: bold;
-  margin: 10px 0 5px 0;
+  /* margin: 10px 0 5px 0; */
   color: var(--color-white);
 }
 
@@ -2396,7 +2406,12 @@ section {
 --------------------------------------------------------------*/
 .contact .map {
   margin-bottom: 40px;
+  margin-top: 0;
 }
+
+/* .contact{
+  background: rgba(var(--color-secondary-rgb), 0.04);
+} */
 
 .contact .map iframe {
   border: 0;
@@ -2423,7 +2438,7 @@ section {
 
 .contact .info-item+.info-item {
   padding-top: 20px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   border-top: 1px solid rgba(var(--color-secondary-rgb), 0.15);
 }
 
@@ -2981,6 +2996,31 @@ section {
   transition: 0.3s;
   border-radius: 0 4px 4px 0;
   line-height: 0;
+}
+
+.blog .sidebar .search-form-s button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border: 0;
+  background: none;
+  font-size: 16px;
+  padding: 0 15px;
+  margin: -1px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  transition: 0.3s;
+  border-radius: 0 4px 4px 0;
+  line-height: 0;
+}
+
+.blog .sidebar .search-form-s form button i {
+  line-height: 0;
+}
+
+.blog .sidebar .search-form-s form button:hover {
+  background: rgba(var(--color-primary-rgb), 0.8);
 }
 
 .blog .sidebar .search-form form button i {

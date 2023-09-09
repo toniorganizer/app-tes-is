@@ -82,6 +82,17 @@
           });
     </script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Mendeteksi perubahan pada elemen select
+        $('#bidang').on('change', function () {
+            // Mengirimkan permintaan pencarian secara otomatis ketika perubahan terjadi
+            $('#search-form').submit();
+        });
+    });
+</script>
+
 </body>
 
 </html>

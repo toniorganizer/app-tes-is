@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BursaKerja;
 use App\Models\User;
+use App\Models\BursaKerja;
 use App\Models\PencariKerja;
 use Illuminate\Http\Request;
-use App\Models\InformasiLowongan;
 use App\Models\PemberiInformasi;
+use App\Models\InformasiLowongan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -235,5 +236,37 @@ class LoginController extends Controller
         $data = InformasiLowongan::where('lokasi','like','%'.$request->lokasi.'%')->paginate(20);
 
         return view('halaman-utama.lowongan-home', ['data' => $data]);
+    }
+
+    public function searchingBidang(Request $request){
+        $request->session()->flash('bidang', $request->input('bidang'));
+        if($request->bidang == "Lainnya"){
+            $data = InformasiLowongan::paginate(20);
+        }
+        else{
+            $data = InformasiLowongan::where('bidang','like','%'.$request->bidang.'%')->paginate(20);
+        }
+        
+        return view('halaman-utama.lowongan-home', ['data' => $data]);
+    }
+
+    public function searchJob(Request $request){
+        $judulLowongan = $request->input('judul');
+        $bidang = $request->input('bidang');
+        $query = DB::table('informasi_lowongans')->join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id');
+        if ($bidang !== null || !empty($judulLowongan)) {
+            $query->where(function ($query) use ($bidang) {
+                if ($bidang !== null && $bidang !== '') {
+                    $query->orWhere('bidang', 'like', '%' . $bidang . '%');
+                }
+            });
+        }
+        if (!empty($judulLowongan)) {
+            $query->where('judul_lowongan', 'like', '%' . $judulLowongan . '%');
+        }
+        $data = $query->get();
+        return view('halaman-utama.search-index', [
+            'data' => $data
+        ]);
     }
 }

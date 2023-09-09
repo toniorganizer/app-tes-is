@@ -126,11 +126,11 @@
         </li>
         <li class="nav-item">
             @if($title == 'Data Rekomendasi')
-            <a class="nav-link " href="/data-rekomendasi">
+            <a class="nav-link " href="/pemerintah">
             @elseif($sub_title == 'Data Rekomendasi')
-            <a class="nav-link " href="/data-rekomendasi">
+            <a class="nav-link " href="/pemerintah">
             @else
-            <a class="nav-link collapsed" href="/data-rekomendasi">
+            <a class="nav-link collapsed" href="/pemerintah">
             @endif
                 <i class="bi bi-folder-check"></i>
                 <span>Rekomendasi</span>

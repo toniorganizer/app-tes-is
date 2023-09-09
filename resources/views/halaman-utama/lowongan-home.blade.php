@@ -41,11 +41,27 @@
                   <input type="text" name="lokasi" placeholder="Kota atau daerah" value="{{ session('lokasi') }}">
                   <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
+              </div>
 
+              <div class="sidebar-item search-form-s">
                 <h4 class="sidebar-title mt-4">Berdasarkan Kategori/jurusan</h3>
-                <form action="" class="mt-3"><i class="bi bi-check2-circle"></i>
-                  <input class="input" type="text" placeholder="Jurusan">
-                  <button type="submit"><i class="bi bi-search"></i></button>
+                <form id="search-form" action="/search-bidang" class="mt-3">
+                  <div class="input-select">
+                    <select data-trigger="" id="bidang" name="bidang">
+                      <option value="">Pilih Jenis Lowongan</option>
+                      <option value="Programmer" {{ session('bidang') == 'Programmer' ? 'selected' : '' }}>Programmer</option>
+                      <option value="Desainer" {{ session('bidang') == 'Desainer' ? 'selected' : '' }}>Desainer</option>
+                      <option value="Jasa" {{ session('bidang') == 'Jasa' ? 'selected' : '' }}>Jasa</option>
+                      <option value="Operator" {{ session('bidang') == 'Operator' ? 'selected' : '' }}>Operator</option>
+                      <option value="Teknisi" {{ session('bidang') == 'Teknisi' ? 'selected' : '' }}>Teknisi</option>
+                      <option value="Pendidik" {{ session('bidang') == 'Pendidik' ? 'selected' : '' }}>Pendidik</option>
+                      <option value="Pegawai" {{ session('bidang') == 'Pegawai' ? 'selected' : '' }}>Pegawai</option>
+                      <option value="Supir" {{ session('bidang') == 'Supir' ? 'selected' : '' }}>Supir</option>
+                      <option value="Animator" {{ session('bidang') == 'Animator' ? 'selected' : '' }}>Animator</option>
+                      <option value="Apoteker" {{ session('bidang') == 'Apoteker' ? 'selected' : '' }}>Apoteker</option>
+                      <option value="Lainnya" {{ session('bidang') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
+                    </select> 
+                </div>
                 </form>
               </div><!-- End sidebar search formn-->
 

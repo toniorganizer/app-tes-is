@@ -1,16 +1,20 @@
 <?php
 
+use GuzzleHttp\Psr7\Request;
+use App\Models\PemberiInformasi;
+use App\Models\InformasiLowongan;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PekerjaController;
+use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\BursaKerjaController;
 use App\Http\Controllers\KepentinganController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LowonganController;
-use App\Http\Controllers\PekerjaController;
+use Illuminate\Http\Request as IlluminateRequest;
 use App\Http\Controllers\PemberiInformasiController;
-use App\Models\InformasiLowongan;
-use App\Models\PemberiInformasi;
-use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +32,10 @@ Route::get('/', function () {
     return view('halaman-utama.index', [
         'data' => $data
     ]);
+});
+
+Route::get('/hubungi', function () {
+    return view('halaman-utama.hubungi');
 });
 
 Route::get('/lowongan-home', function () {
@@ -59,6 +67,8 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('/register_bkk', 'register_bkk');
     Route::get('/searching-lowongan', 'searching');
     Route::get('/searching-lokasi', 'searchingLokasi');
+    Route::get('/search-job', 'searchJob');
+    Route::get('/search-bidang', 'searchingBidang');
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -75,10 +85,10 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/uji-laporan', 'testLaporan')->name('uji-laporan');
                 Route::get('/laporan', 'Laporan')->name('laporan');
             });
+        Route::resource('/pemerintah', KepentinganController::class);
     });
 
     Route::resource('/pekerja', PekerjaController::class);
-    Route::resource('/pemerintah', KepentinganController::class);
     Route::resource('/lowongan', LowonganController::class);
     Route::resource('/sumber', PemberiInformasiController::class);
     Route::resource('/bursa', BursaKerjaController::class);
@@ -110,13 +120,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/tracer-data', 'dataTracer');
     });
 
-    // Route::group(['middleware' => ['CekUser:2']], function () {
-    //     Route::resource('/dashboard-pekerja', PekerjaController::class);
-    // });
-
-    // Route::group(['middleware' => ['CekUser:3']], function () {
-    //     Route::resource('/pemerintah', KepentinganController::class);
-    // });
 });
 
 

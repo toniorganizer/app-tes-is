@@ -17,14 +17,6 @@ class MonthlyJobChart
     public function build(): \ArielMejiaDev\LarapexCharts\LineChart
     {
 
-        // $data = [
-        //     'Programmer' => InformasiLowongan::where('bidang', 'like', '%'. 'programmer'. '%')->count(),
-        //     'Desainer' => InformasiLowongan::where('bidang', 'like', '%'. 'desainer'. '%')->count(),
-        //     'Jasa' => InformasiLowongan::where('bidang', 'like', '%'. 'jasa'. '%')->count(),
-        //     'Transportasi' => InformasiLowongan::where('bidang', 'like', '%'. 'transportasi'. '%')->count(),
-        //     'Pendidik' => InformasiLowongan::where('bidang', 'like', '%'. 'pendidik'. '%')->count(),
-        // ];
-
         $bidang = InformasiLowongan::distinct('bidang')->pluck('bidang')->toArray();
 
         $data = [];
