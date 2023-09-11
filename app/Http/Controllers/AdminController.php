@@ -10,6 +10,7 @@ use App\Exports\UjiLaporan;
 use App\Models\PencariKerja;
 use Illuminate\Http\Request;
 use App\Charts\CountJobChart;
+use App\Charts\MonhtlyJobArea;
 use App\Charts\MonthlyJobChart;
 use App\Models\PemberiInformasi;
 use App\Models\InformasiLowongan;
@@ -23,7 +24,7 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
-    public function index(MonthlyJobChart $chart, CountJobChart $jobcount)
+    public function index(MonhtlyJobArea $chart, CountJobChart $jobcount)
     {
 
         $data = InformasiLowongan::count();
@@ -114,6 +115,8 @@ class AdminController extends Controller
             'keterampilan' => $request->keterampilan,
             'tentang' => $request->tentang,
             'no_hp' => $request->no_hp,
+            'umur' => $request->umur,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'tgl_expired' => now()->addMonth(6),
             'status_ak1' => 'Aktif',
             'foto_pencari_kerja' => $foto->hashName(),
@@ -217,6 +220,8 @@ class AdminController extends Controller
                 'pendidikan' => '-',
                 'keterampilan' => '-',
                 'tentang' => '-',
+                'umur' => '-',
+                'jenis_kelamin' => '-',
                 'no_hp' => '-',
                 'tgl_expired' => now()->addMonth(6),
                 'status_ak1' => 'Aktif',
@@ -310,11 +315,9 @@ class AdminController extends Controller
     }
 
     public function Laporan(){
-        $data = PencariKerja::get();
         return view('Dashboard.admin.laporan', [
             'sub_title' => 'Laporan',
-            'title' => 'Data',
-            'data' => $data
+            'title' => 'Data'
         ]);
     }
 }

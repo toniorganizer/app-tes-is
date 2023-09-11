@@ -25,7 +25,7 @@
                         <h5 class="card-title">Laporan saat ini</h5>
                         <div class="row">
                             <div class="col-lg-11">
-                                <p>Berikut merupakan data saat ini.</p>
+                                <p>Berikut merupakan data laporan saat ini.</p>
                             </div>
                             <div class="col-lg-1 float-left mb-3">
                                 <a href="/uji-laporan" class="btn btn-success">
@@ -43,41 +43,205 @@
                         <!-- Table with stripped rows -->
                         <div class="row">
                             <div class="col-md-12 overflow-scroll">
-                                <table class="table datatable">
+                                <table class="table table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th scope="col">No.</th>
-                                            <th scope="col">Nama</th>
-                                            <th scope="col">E-mail</th>
-                                            <th scope="col">Alamat</th>
-                                            <th scope="col">Pendidikan</th>
-                                            <th scope="col">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $no=1;?>
-                                        @foreach ($data as $user)
-                                            <tr>
-                                                <th scope="row">{{$no++}}</th>
-                                                <td><img width="40" height="40" class="mr-2 rounded-circle" src="@if($user->foto_pencari_kerja == 'default.jpg')
-                                                    {{ Storage::url('public/user/default/').$user->foto_pencari_kerja}}
-                                                    @else
-                                                    {{ Storage::url('public/user/').$user->foto_pencari_kerja}}
-                                                    @endif
-                                                    ">{{$user->nama_lengkap}}</td>
-                                                <td>{{$user->email_pk}}</td>
-                                                <td>{{$user->alamat}}</td>
-                                                <td>{{$user->pendidikan_terakhir}}</td>
-                                                <td>
-                                                    <a href="/profil-tenaga-kerja/{{$user->email_pk}}" class="badge badge-info">Detail</a>
-                                                    @if(Auth::user()->level == 1)
-                                                    <a href="/deleteTenagaKerja/{{$user->email_pk}}" class="badge badge-danger" onclick="return confirm('Yakin ingin menghpus?')">Hapus</a>
-                                                    @endif
-                                                </td>
+                                        <tr class="table-primary">
+                                           <th rowspan="3" class="text-center">No.</th>
+                                           <th rowspan="3" class="text-center">Pencari Kerja</th>
+                                           <th colspan="10" class="text-center">Kelompok umur</th>
+                                           <th colspan="3" rowspan="2">2</th>
+                                           <th rowspan="2">1</th>
+                                           <th rowspan="3">Lowongan</th>
+                                           <th rowspan="3">L</th>
+                                           <th rowspan="3">P</th>
+                                           <th rowspan="3">JML</th>
+                                           <tr class="table-primary">
+                                             <td colspan="2">15-19</td>
+                                             <td colspan="2">15-19</td>
+                                             <td colspan="2">15-19</td>
+                                             <td colspan="2">15-19</td>
+                                             <td colspan="2">15-19</td>
+                                             <tr class="table-primary">
+                                                 <th>L</th>
+                                                 <th>P</th>
+                                                 <th>L</th>
+                                                 <th>P</th>
+                                                 <th>L</th>
+                                                 <th>P</th>
+                                                 <th>L</th>
+                                                 <th>P</th>
+                                                 <th>L</th>
+                                                 <th>P</th>
+                                                 <th>L</th>
+                                                 <th>P</th>
+                                                 <th>JML</th>
+                                                 <th></th>
+                                             </tr>
+                                          </tr>
+                                          </tr>
+                                          <tr class="table-primary">
+                                           <th></th>
+                                           <th class="text-center">1</th>
+                                           <th>2</th>
+                                           <th>3</th>
+                                           <th>4</th>
+                                           <th>5</th>
+                                           <th>6</th>
+                                           <th>7</th>
+                                           <th>8</th>
+                                           <th>9</th>
+                                           <th>10</th>
+                                           <th>11</th>
+                                           <th>12</th>
+                                           <th>13</th>
+                                           <th>14</th>
+                                           <th></th>
+                                           <th class="text-center">1</th>
+                                           <th>2</th>
+                                           <th>3</th>
+                                           <th>4</th>
+                                          </tr>
+                                          <tr>
+                                           <td class="text-center">1.</th>
+                                              <td>Pencari kerja yang belum ditempatkan pada akhir semester lalu</td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td>1.</td>
+                                              <td>Lowongan yang belum dipenuhi semester lalu</td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                          </tr>
+                                          <tr>
+                                            <td class="text-center">2.</th>
+                                                <td>Pencari kerja yang terdaftar di semester ini</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td>2.</td>
+                                                <td>Lowongan yang belum terdaftar semester ini</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                          <tr class="table-primary">
+                                            <th>A.</th>
+                                            <th>Jumlah (1+2)</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                          </tr>
+                                          <tr>
+                                            <td>3.</td>
+                                            <td>Pencari Kerja yang ditempatkan pada semester ini</td>
+                                            
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>3.</td>
+                                            <td>Lowongan yang dipenuhi semester ini</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                          </tr>
+                                          <tr>
+                                            <td>4.</td>
+                                            <td>Pencari Kerja yang dihapuskan pada semester ini</td>
+                                            
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>4.</td>
+                                            <td>Lowongan yang dihapuskan semester ini</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                          </tr>
+                                          <tr class="table-primary">
+                                            <th>B.</th>
+                                            <th>Jumlah (3+4)</th>
+                                          </tr>
+                                          <tr>
+                                            <td>5.</td>
+                                            <td>Pencari Kerja yang belum ditempatkan pada semester ini (A-B)</td>
+                                            
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>5.</td>
+                                            <td>Lowongan yang belum dipenuhi pada akhir semesetr ini</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                          </tr>
+                                          </thead>
+                                        </table>
                         <!-- End Table with stripped rows -->   
                             </div>
                         </div>

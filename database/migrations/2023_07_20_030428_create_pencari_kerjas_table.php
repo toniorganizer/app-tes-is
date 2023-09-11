@@ -19,11 +19,16 @@ return new class extends Migration
             $table->string('nama_lengkap');
             $table->string('email_pk')->unique();
             $table->string('alamat');
-            $table->string('pendidikan');
-            $table->text('keterampilan');
-            $table->text('no_hp');
+            $table->int('umur');
+            $table->string('jenis_kelamin');
+            $table->string('pendidikan_terakhir');
+            $table->string('keterampilan');
+            $table->string('no_hp');
             $table->text('tentang');
+            $table->date('tgl_expired');
+            $table->string('status_ak1');
             $table->string('foto_pencari_kerja');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

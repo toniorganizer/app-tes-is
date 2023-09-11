@@ -109,6 +109,8 @@ class PekerjaController extends Controller
         PencariKerja::where('email_pk', $request->email_pk)->update([
             'nama_lengkap' => $request->nama_lengkap,
             'alamat' => $request->alamat,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'umur' => $request->umur,
             'pendidikan_terakhir' => $request->pendidikan,
             'keterampilan' => $request->keterampilan,
             'tentang' => $request->tentang,
@@ -127,6 +129,8 @@ class PekerjaController extends Controller
                 'pendidikan_terakhir' => $request->pendidikan,
                 'keterampilan' => $request->keterampilan,
                 'tentang' => $request->tentang,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'umur' => $request->umur,
                 'no_hp' => $request->no_hp
             ]);
     

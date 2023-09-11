@@ -16,6 +16,12 @@
         </nav>
     </div><!-- End Page Title -->
 
+    @if (session('success'))
+    <div class="alert alert-primary">
+        {{ session('success') }}
+    </div>
+    @endif
+
     <section class="section profile">
         <div class="row">
             <div class="col-xl-4">
