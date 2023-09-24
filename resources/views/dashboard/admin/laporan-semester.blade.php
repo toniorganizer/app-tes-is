@@ -34,15 +34,15 @@
                                                 <div class="col">
                                                     <select id="bulan1" name="bulan1" class="form-control form-control-sm mb-3 mt-2" name="">
                                                         <option value="">Pilih Bulan</option>
-                                                        <option value="01">Januari</option>
-                                                        <option value="07">Juli</option>
+                                                        <option value="01" {{ session('bulan1') == 01 ? 'selected' : '' }}>Januari</option>
+                                                        <option value="07" {{ session('bulan1') == 07 ? 'selected' : '' }}>Juli</option>
                                                     </select>
                                                 </div>
                                                 <div class="col">
                                                     <select id="bulan2" name="bulan2" class="form-control form-control-sm mb-3 mt-2" name="">
                                                         <option value="">Pilih Bulan</option>
-                                                        <option value="06">Juni</option>
-                                                        <option value="12">Desember</option>
+                                                        <option value="06" {{ session('bulan2') == 06 ? 'selected' : '' }}>Juni</option>
+                                                        <option value="12" {{ session('bulan2') == 12 ? 'selected' : '' }}>Desember</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -128,7 +128,7 @@
                                           </tr>
                                           <tr>
                                            <td class="text-center">1.</th>
-                                              <td>Pencari kerja yang belum ditempatkan pada tahun sebelumnya</td>
+                                              <td>Pencari kerja yang belum ditempatkan pada semester sebelumnya</td>
                                               @foreach($laporan as $d)
                                               <td>{{$d->male_count_terdaftar}}</td>
                                               <td>{{$d->female_count_terdaftar}}</td>
@@ -137,7 +137,7 @@
                                               <td>{{$jmlPSebelumnya}}</td>
                                               <td>{{$jmlSebelumnya}}</td>
                                               <td>1.</td>
-                                              <td>Lowongan yang belum dipenuhi tahun sebelumnya</td>
+                                              <td>Lowongan yang belum dipenuhi semester sebelumnya</td>
                                               <td>{{$male_informasi_belum}}</td>
                                               <td>{{$female_informasi_belum}}</td>
                                               <td>{{$male_female_informasi_belum}}</td>
@@ -145,7 +145,7 @@
                                           </tr>
                                           <tr>
                                             <td class="text-center">2.</th>
-                                                <td>Pencari kerja yang terdaftar pada tahun ini</td>
+                                                <td>Pencari kerja yang terdaftar pada semester ini</td>
                                                 @foreach($genderAgeCounts as $data)
                                               <td>{{ $data['male_count'] }}</td>
                                               <td>{{ $data['female_count'] }}</td>
@@ -154,7 +154,7 @@
                                               <td>{{$jmlP_terdaftar}}</td>
                                               <td>{{$jml_terdaftar}}</td>
                                                 <td>2.</td>
-                                                <td>Lowongan yang terdaftar tahun ini</td>
+                                                <td>Lowongan yang terdaftar semester ini</td>
                                                 <td>{{$male_informasi_terdaftar}}</td>
                                                 <td>{{$female_informasi_terdaftar}}</td>
                                                 <td>{{$male_female_informasi_terdaftar}}</td>
@@ -179,7 +179,7 @@
                                           </tr>
                                           <tr>
                                             <td>3.</td>
-                                            <td>Pencari Kerja yang ditempatkan pada tahun ini</td>
+                                            <td>Pencari Kerja yang ditempatkan pada semester ini</td>
                                             
                                             @foreach($genderAgeCounts as $data)
                                             <td>{{$data['male_count_ditempatkan']}}</td>
@@ -189,7 +189,7 @@
                                             <td>{{$jmlP_ditempatkan}}</td>
                                             <td>{{$jmlDitempatkan}}</td>
                                             <td>3.</td>
-                                            <td>Lowongan yang dipenuhi tahun ini</td>
+                                            <td>Lowongan yang dipenuhi semester ini</td>
                                             <td>{{$informasi_terpenuhi_male}}</td>
                                             <td>{{$informasi_terpenuhi_female}}</td>
                                             <td>{{$informasi_terpenuhi_male_female}}</td>
@@ -197,7 +197,7 @@
                                           </tr>
                                           <tr>
                                             <td>4.</td>
-                                            <td>Pencari Kerja yang dihapuskan dalam tahun ini</td>                                        
+                                            <td>Pencari Kerja yang dihapuskan dalam semester ini</td>                                        
                                             @foreach($genderAgeCounts as $data)
                                             <td>{{$data['male_count_delete']}}</td>
                                             <td>{{$data['female_count_delete']}}</td>
@@ -206,7 +206,7 @@
                                             <td>{{$deleteUserNowP}}</td>
                                             <td>{{$deleteUserNow}}</td>
                                             <td>4.</td>
-                                            <td>Lowongan yang dihapuskan tahun ini</td>
+                                            <td>Lowongan yang dihapuskan semester ini</td>
                                             <td>{{$informasi_male_delete}}</td>
                                             <td>{{$informasi_female_delete}}</td>
                                             <td>{{$informasi_male_female_delete}}</td>
@@ -231,7 +231,7 @@
                                           </tr>
                                           <tr>
                                             <td>5.</td>
-                                            <td>Pencari Kerja yang belum ditempatkan pada akhir tahun ini (A-B)</td>
+                                            <td>Pencari Kerja yang belum ditempatkan pada akhir semester ini (A-B)</td>
                                             
                                             @foreach($genderAgeCounts as $data)
                                             <td>{{$data['jumlahMale']}}</td>
@@ -241,7 +241,7 @@
                                             <td>{{$jumlahFemale5}}</td>
                                             <td>{{$jumlahAkhirPekerja}}</td>
                                             <td>5.</td>
-                                            <td>Lowongan yang belum dipenuhi akhir tahun ini</td>
+                                            <td>Lowongan yang belum dipenuhi akhir semester ini</td>
                                             <td>{{$jumlah_informasi_male}}</td>
                                             <td>{{$jumlah_informasi_female}}</td>
                                             <td>{{$jumlah_informasi_male_female}}</td>

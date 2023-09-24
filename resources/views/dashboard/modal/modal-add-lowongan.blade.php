@@ -101,6 +101,15 @@
                     @enderror
                     </div>
                     <div class="col-12">
+                      <label for="exampleFormControlSelect2">Kebutuhan Jenis Kelamin</label>
+                      <select name="jenis_kelamin" class="form-control">
+                          <option>Pilih Jenis Kelamin</option>
+                          <option value="Laki-laki">Laki-laki</option>
+                          <option value="Perempuan">Perempuan</option>
+                          <option value="Laki-laki/Perempuan">Laki-laki/Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
                         <label for="inputAddress2" class="form-label">Tanggal Dibuka</label>
                         <input type="date" name="tgl_buka" class="form-control @error('tgl_buka') is-invalid @enderror" id="inputAddress2" value="{{old('tgl_buka')}}">
                         @error('tgl_buka')

@@ -98,6 +98,7 @@ class LoginController extends Controller
             'ulangi_password' => 'required|same:password'
         ]);
 
+
         PencariKerja::create([
             'nama_lengkap' => $request->name,
             'email_pk' => $request->email,
@@ -106,11 +107,11 @@ class LoginController extends Controller
             'keterampilan' => '-',
             'tentang' => '-',
             'no_hp' => '-',
-            'jenis_kelamin' => '-',
-            'umur' => '-',
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'umur' => $request->umur,
             'bkk_id' => 0,
-            'tgl_expired' => now()->addMonth(6),
-            'status_ak1' => 'Aktif',
+            'tgl_expired' => now()->addMonth(6)->format('Y-m-d'),
+            'status_ak1' => 'Belum Bekerja',
             'foto_pencari_kerja' => 'default.jpg',
         ]);
 

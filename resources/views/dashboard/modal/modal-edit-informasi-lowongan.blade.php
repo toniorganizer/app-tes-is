@@ -92,6 +92,15 @@
                     @enderror
                     </div>
                     <div class="col-12">
+                      <label for="exampleFormControlSelect2">Kebutuhan Jenis Kelamin</label>
+                      <select name="jenis_kelamin" class="form-control" id="exampleFormControlSelect1">
+                          <option>Pilih Jenis Kelamin</option>
+                          <option value="Laki-laki" {{ $data->jenis_lowongan == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                          <option value="Perempuan" {{ $data->jenis_lowongan == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                          <option value="Laki-laki/Perempuan" {{ $data->jenis_lowongan == 'Laki-laki/Perempuan' ? 'selected' : '' }}>Laki-laki/Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
                         <label for="inputAddress2" class="form-label">Alamat</label>
                         <input type="text" name="lokasi" class="form-control @error('lokasi') is-invalid @enderror" id="inputAddress2" value="{{$data->lokasi}}">
                         @error('lokasi')

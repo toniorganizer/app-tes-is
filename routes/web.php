@@ -84,6 +84,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/deleteTenagaKerja/{id}', 'hapusTenagaKerja');
                 Route::get('/uji-laporan', 'testLaporan')->name('uji-laporan');
                 Route::get('/laporan', 'Laporan')->name('laporan');
+                Route::get('/search-semester', 'searchSemester')->name('search-semester');
             });
         Route::resource('/pemerintah', KepentinganController::class);
     });

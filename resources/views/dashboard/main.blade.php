@@ -125,6 +125,16 @@
       })
     })
   </script> --}}
+
+  <script>
+    $(document).ready(function () {
+        // Mendeteksi perubahan pada elemen select
+        $('#bulan2').on('change', function () {
+            // Mengirimkan permintaan pencarian secara otomatis ketika perubahan terjadi
+            $('#search-form').submit();
+        });
+    });
+</script>
 </body>
 
 </html>

@@ -33,13 +33,27 @@
                                 <form action="register" method="post" class="row g-3 needs-validation" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-12">
-                                        <label for="yourName" class="form-label">Nama</label>
-                                        <input autofocus type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required value="{{old('name')}}">
-                                        @error('name')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="yourName" class="form-label">Nama</label>
+                                                <input autofocus type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required value="{{old('name')}}">
+                                                @error('name')
+                                                    <div class="alert alert-danger mt-2">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
-                                        @enderror
+                                            <div class="col-6">
+                                                <label for="yourName" class="form-label">Umur</label>
+                                                <input autofocus type="text" name="umur" class="form-control @error('umur') is-invalid @enderror" id="yourumur" required value="{{old('umur')}}">
+                                                @error('umur')
+                                                    <div class="alert alert-danger mt-2">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        
                                     </div>
 
                                     <div class="col-12">
@@ -53,6 +67,22 @@
                                                 {{ $message }}
                                             </div>
                                         @enderror
+                                    </div>
+
+                                    <div class="col-lg-12">
+                                        <label for="inputAddress2" class="form-label">Jenis Kelamin</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="exampleRadios1" value="Laki-laki">
+                                            <label class="form-check-label" for="exampleRadios1">
+                                              Laki-laki
+                                            </label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="jenis_kelamin" id="exampleRadios2" value="Perempuan">
+                                            <label class="form-check-label" for="exampleRadios2">
+                                              Perempuan
+                                            </label>
+                                          </div>
                                     </div>
 
                                     <div class="col-12">

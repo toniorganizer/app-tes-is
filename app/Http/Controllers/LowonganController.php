@@ -79,10 +79,12 @@ class LowonganController extends Controller
             'pendidikan' => $request->pendidikan,
             'pengalaman' => $request->pengalaman,
             'keterampilan' => $request->keterampilan,
+            'jenis_kelamin' => $request->jenis_kelamin,
             'deskripsi' => $request->deskripsi,
             'tgl_buka' => $request->tgl_buka,
             'tgl_tutup' => $request->tgl_tutup,
             'verifikasi' => 0,
+            'status_lowongan' => 0,
             'lokasi' => $request->lokasi,
             'foto_lowongan' => $foto->hashName(),
         ]);
