@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\Laporan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request as HttpRequest;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\WithStyles;
@@ -13,8 +14,16 @@ use Maatwebsite\Excel\Concerns\WithDrawings;
 use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithColumnWidths
+class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithColumnWidths
 {
+    private $data1;
+    private $data2;
+
+    public function __construct($data1, $data2)
+    {
+        $this->data1 = $data1;
+        $this->data2 = $data2;
+    }
 
     public function drawings()
     {
@@ -161,37 +170,53 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
 
     public function view(): View
     {
-        $StartDateYear = date("Y") . "-01-01";
-        $endDateYear = date("Y") . "-12-01";
+    
+        if($this->data1 == 01 && $this->data2 == 06){
+            $StartDateYear = date("Y") . "-" . $this->data1 . "-01";
+            $endDateYear = date("Y") . "-" . $this->data2 . "-01";
 
-        // mengambil data tahun sebelumnya
-        $startDateSebelumnya = date("Y", strtotime("-20 year")). "-01-01";
-        $endDateSebelumnya = date("Y", strtotime("-1 year")). "-12-31";
-        // dd($endDateSebelumnya);
+            $todayStartSebelumnya = date("Y") . "-" . $this->data1 . "-01";
+            $todayEndSebelumnya = date("Y") . "-" . $this->data1 . "-31";
 
-        $jmlPSebelumnya = DB::table('pencari_kerjas')
-            ->where('jenis_kelamin', 'Perempuan')
-            ->where('status_ak1', 'Belum bekerja')
-            ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
-            ->count();
 
-        // dd($jumlahPSebelumya);
+            $startInformasiDateSebelumnya = date("Y-m-d",strtotime("-20 year", strtotime("-6 months", strtotime($todayStartSebelumnya))));
+            $endInformasiDateSebelumnya = date("Y-m-d", strtotime("-1 months", strtotime($todayEndSebelumnya)));
 
-        $jmlLSebelumnya = DB::table('pencari_kerjas')
-            ->where('jenis_kelamin', 'Laki-laki')
-            ->where('status_ak1', 'Belum bekerja')
-            ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
-            ->count();
+            $startDateSebelumnya = date("Y-m-d", strtotime("-6 months", strtotime($todayStartSebelumnya))); 
+            $endDateSebelumnya = date("Y-m-d", strtotime("-1 months", strtotime($todayEndSebelumnya))); 
+
+            $title = 'LAPORAN IPK III/1 - IKHTISAR STATISTIK ANTAR KERJA PROPINSI SUMATERA BARAT';
+            $semester = 'SEMESTER 1 : JANUARI S/D JUNI '. date("Y");
+
+        }else{
+            $StartDateYear = date("Y") . "-" . $this->data1 . "-01";
+            $endDateYear = date("Y") . "-" . $this->data2 . "-01";
+
+            $todayStartSebelumnya = date("Y") . "-" . $this->data1 . "-01";
+            $todayEndSebelumnya = date("Y") . "-" . $this->data1 . "-31";
+
+            $startDateSebelumnya = date("Y-m-d", strtotime("-6 months", strtotime($todayStartSebelumnya)));
+            $endDateSebelumnya = date("Y-m-d", strtotime("-1 months", strtotime($todayEndSebelumnya))); 
+
+            $startInformasiDateSebelumnya = date("Y-m-d",strtotime("-20 year", strtotime("-6 months", strtotime($todayStartSebelumnya))));
+            $endInformasiDateSebelumnya = date("Y-m-d", strtotime("-1 months", strtotime($todayEndSebelumnya)));
+
+            $title = 'LAPORAN IPK III/2 - IKHTISAR STATISTIK ANTAR KERJA PROPINSI SUMATERA BARAT';
+            $semester = 'SEMESTER 2 : JULI S/D DESEMBER '. date("Y");
+        }
+
+        $jmlPSebelumnya = DB::table('laporans')
+            ->sum(DB::raw('female_count_terdaftar'));
+
+        $jmlLSebelumnya = DB::table('laporans')
+            ->sum(DB::raw('male_count_terdaftar'));
 
         $jmlNow = DB::table('pencari_kerjas')
             ->where('status_ak1', 'Belum bekerja')
             ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();
 
-        $jmlSebelumnya = DB::table('pencari_kerjas')
-            ->where('status_ak1', 'Belum bekerja')
-            ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
-            ->count();
+        $jmlSebelumnya = $jmlPSebelumnya + $jmlLSebelumnya;
 
         $jmlP_terdaftar = DB::table('pencari_kerjas')
             ->where('jenis_kelamin', 'Perempuan')
@@ -326,19 +351,10 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
             $jumlahFemaleB =  $femaleCountDelete + $femaleCountDitempatkan;
             $jumlahMale = $jumlahMaleA - $jumlahMaleB;
             $jumlahFemale = $jumlahFemaleA - $jumlahFemaleB;
-
-            Laporan::updateOrCreate(
-                [
-                    'start_age' => $startAge,
-                    'end_age' => $endAge ?: '+',
-                ],
-                [
-                    'male_count_terdaftar' => $maleCountSebelumnya,
-                    'female_count_terdaftar' => $femaleCountSebelumnya,
-                ]
-            );
     
             $genderAgeCounts[] = [
+                'start' => $StartDateYear,
+                'end' => $endDateYear,
                 'start_age' => $startAge,
                 'end_age' => $endAge ?: '+',
                 'male_count' => $maleCount,
@@ -360,28 +376,30 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
             ];
         }
 
+        // dd($genderAgeCounts);
+
         $data = Laporan::get();
 
         // laporan informasi lowongan
         $maleCountInformasiBelum = DB::table('informasi_lowongans')
                 ->where('jenis_kelamin', 'Laki-laki')
                 ->where('status_lowongan', 0)
-                ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
+                ->whereBetween('created_at', [$startInformasiDateSebelumnya, $endInformasiDateSebelumnya])
                 ->count();
         
         $femaleCountInformasiBelum = DB::table('informasi_lowongans')
                 ->where('jenis_kelamin', 'Perempuan')
                 ->where('status_lowongan', 0)
-                ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
+                ->whereBetween('created_at', [$startInformasiDateSebelumnya, $endInformasiDateSebelumnya])
                 ->count();
 
         $malefemaleCountInformasiBelum = DB::table('informasi_lowongans')
                 ->where('jenis_kelamin', 'Laki-laki/Perempuan')
                 ->where('status_lowongan', 0)
-                ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
+                ->whereBetween('created_at', [$startInformasiDateSebelumnya, $endInformasiDateSebelumnya])
                 ->count();
         
-            $maleCountInformasiTerdaftar = DB::table('informasi_lowongans')
+        $maleCountInformasiTerdaftar = DB::table('informasi_lowongans')
                 ->where('jenis_kelamin', 'Laki-laki')
                 ->where('status_lowongan', 0)
                 ->whereBetween('created_at', [$StartDateYear, $endDateYear])
@@ -408,7 +426,6 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
 
         $jumlahInformasiA = $jumlahInformasiMaleA + $jumlahInformasiFemaleA + $jumlahInformasiMaleFemaleA;
 
-
         $informasiTerpenuhiMale = DB::table('informasi_lowongans')
             ->where('jenis_kelamin', 'Laki-laki')
             ->where('status_lowongan', 1)
@@ -434,7 +451,7 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
             ->count();
 
         $informasiFemaleDelete = DB::table('informasi_lowongans')
-            ->where('jenis_kelamin', 'Female')
+            ->where('jenis_kelamin', 'Perempuan')
             ->whereNotNull('deleted_at')
             ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();
@@ -444,7 +461,7 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
             ->whereNotNull('deleted_at')
             ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();
-  
+
         $jumlahInformasiTerpenuhi = $informasiTerpenuhiMale + $informasiTerpenuhiFemale + $informasiTerpenuhiMaleFemale;
         $jumlahInformasiDelete = $informasiMaleDelete + $informasiFemaleDelete + $informasiMaleFemaleDelete;
 
@@ -459,8 +476,7 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
         $jumlahInformasiMaleFemale = $jumlahInformasiMaleFemaleA - $jumlahInformasiMaleFemaleB;
 
         $jumlahInformasi = $jumlahInformasiMale + $jumlahInformasiFemale + $jumlahInformasiMaleFemale;
-
-        return view('Dashboard.admin.cetak-laporan')->with([
+        return view('Dashboard.admin.cetak-laporan-semester', [
             'genderAgeCounts' => $genderAgeCounts,
             'jmlPSebelumnya' => $jmlPSebelumnya,
             'jmlLSebelumnya' => $jmlLSebelumnya,
@@ -513,12 +529,20 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
             'jumlah_informasi_female' => $jumlahInformasiFemale,
             'jumlah_informasi_male_female' => $jumlahInformasiMaleFemale,
             'jumlah_informasi' => $jumlahInformasi,
-        ]);
+            'title' => $title,
+            'semester' => $semester
+            ]);
     }
 
     public function title(): string
     {
         // Judul yang ingin Anda atur untuk lembar Excel
-        return 'IPK III';
+        $bulan1 = $this->data1;
+        $bulan2 = $this->data2;
+        if($bulan1 == 01 && $bulan2 == 06){
+            return 'IPK-III-1-Semester 1';
+        }else{
+            return 'IPK-III-1-Semester 2';
+        }
     }
 }

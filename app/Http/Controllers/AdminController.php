@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Charts\CountJobChart;
 use App\Charts\MonhtlyJobArea;
 use App\Charts\MonthlyJobChart;
+use App\Exports\CetakLaporan;
 use App\Exports\exportData;
 use App\Models\PemberiInformasi;
 use App\Models\InformasiLowongan;
@@ -1041,10 +1042,18 @@ class AdminController extends Controller
 
     public function testLaporan(){
         try{
-            return Excel::download(new UjiLaporan, 'invoices.xlsx');
+            return Excel::download(new UjiLaporan, 'Laporan-tahun-ini.xlsx');
         }catch(\Exception $e){
             dd($e->getMessage());
         }
+    }
+
+    public function cetakLaporan(Request $request){
+
+       $bulan1 = $request->input('bulan1');
+       $bulan2 = $request->input('bulan2');
+
+        return Excel::download(new CetakLaporan($bulan1, $bulan2), 'Laporan-semester.xlsx');
     }
     
 

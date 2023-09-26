@@ -6,6 +6,7 @@ use App\Models\InformasiLowongan;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Http\Request as HttpRequest;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class exportData implements WithHeadings, FromView

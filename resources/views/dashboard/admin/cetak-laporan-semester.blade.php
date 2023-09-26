@@ -5,8 +5,8 @@
 <body>
 <table>
 <tr><td></td><td></td><td></td></tr>
-<tr><td></td><td></td><td>LAPORAN IPK III - IKHTISAR STATISTIK ANTAR KERJA PROPINSI SUMATERA BARAT</td></tr>
-<tr><td></td><td></td><td>JANUARI S/D DESEMBER {{date('Y')}}</td></tr>
+<tr><td></td><td></td><td>{{$title}}</td></tr>
+<tr><td></td><td></td><td>{{$semester}}</td></tr>
 <tr><td></td><td></td><td>Dinas Tenaga Kerja dan Transmigrasi Propisi Sumatera Barat</td></tr>
 <tr><td></td><td></td><td>Jl. Ujung Gurun No. 7 Padang</td></tr>
 <tr><td></td><td></td><td>( 0751 ) 27430 - 37430</td></tr>
