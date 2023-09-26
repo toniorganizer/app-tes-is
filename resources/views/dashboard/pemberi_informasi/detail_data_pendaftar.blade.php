@@ -99,7 +99,7 @@
                                         @elseif($data->status == 1)
                                             Proses pemeriksanaan lamaran
                                         @else
-                                            Silahkan hubungai pelamar
+                                            Silahkan hubungai pelamar melalui kontak yang tertera
                                         @endif
                                     </div>
                                 </div>

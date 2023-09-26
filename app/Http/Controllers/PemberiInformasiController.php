@@ -156,6 +156,7 @@ class PemberiInformasiController extends Controller
         ->select(
             'id_informasi_lowongan',
             'judul_lowongan',
+            'status_lowongan',
             'foto_lowongan',
             DB::raw('count(id_pelamar) as jumlah_pelamar')
         )
@@ -163,6 +164,7 @@ class PemberiInformasiController extends Controller
         ->groupBy(
             'id_informasi_lowongan',
             'judul_lowongan',
+            'status_lowongan',
             'foto_lowongan'
         )->get();
 
@@ -202,6 +204,10 @@ class PemberiInformasiController extends Controller
 
         Lamar::where('id_lamar', $id)->update([
             'status' => $request->status,
+         ]);
+
+         InformasiLowongan::where('id_informasi_lowongan', $request->id_informasi)->update([
+            'status_lowongan' => 1,
          ]);
 
         return redirect('/detail-data-pendaftar/' . $request->email)->with('success', 'Data Berhasil Diverifikasi!');

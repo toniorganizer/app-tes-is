@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2023 at 04:42 PM
+-- Generation Time: Sep 26, 2023 at 04:48 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -111,26 +111,30 @@ CREATE TABLE `informasi_lowongans` (
   `pendidikan` varchar(255) NOT NULL,
   `pengalaman` varchar(255) NOT NULL,
   `keterampilan` varchar(255) NOT NULL,
+  `jenis_kelamin` varchar(15) NOT NULL,
   `deskripsi` text NOT NULL,
   `verifikasi` text NOT NULL,
+  `status_lowongan` int(11) NOT NULL,
   `lokasi` text NOT NULL,
   `tgl_buka` date NOT NULL,
   `tgl_tutup` date NOT NULL,
   `foto_lowongan` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `informasi_lowongans`
 --
 
-INSERT INTO `informasi_lowongans` (`id_informasi_lowongan`, `pemberi_informasi_id`, `judul_lowongan`, `perusahaan`, `salary`, `bidang`, `jurusan`, `jenis_lowongan`, `pendidikan`, `pengalaman`, `keterampilan`, `deskripsi`, `verifikasi`, `lokasi`, `tgl_buka`, `tgl_tutup`, `foto_lowongan`, `created_at`, `updated_at`) VALUES
-(1, 8, 'UI/UX', 'Technolgy System', '1.200.000', 'Desainer UI/UX', '', 'Full Time', 'SMK - S1', '0-1 Tahun', 'Figma, Adobe Ilustrator dan sejenisnya', '<p><strong>Lorem, ipsum dolor</strong> sit amet consectetur adipisicing elit. Ad illum aperiam cum quasi impedit dolorum reiciendis suscipit obcaecati, ex <strong>temporibus</strong> est dicta totam, <em>cumque sint fuga</em>,<strong> ratione ullam. Laboriosam, recusandae</strong>.</p>', '0', 'Jl. Ujung Gurun No.7, Ujung Gurun, Padang Barat, Padang City, West Sumatra', '0000-00-00', '0000-00-00', 'default.jpg', '2023-08-17 03:15:02', '2023-08-17 08:26:20'),
-(2, 7, 'Back End Developer', 'Tech Technology', '1.200.000', 'Programmer', '', 'Full Time', 'SMK - S1', '0-1 Tahun', 'PHP, MySQL, Framework (Laravel/Codeiginter)', '<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad illum aperiam cum quasi impedit dolorum reiciendis suscipit obcaecati, ex temporibus est dicta totam, cumque sint fuga, ratione ullam. Laboriosam, recusandae.</p>', '0', 'Jl. Ujung Gurun No.7, Ujung Gurun, Jakarta Barat', '0000-00-00', '0000-00-00', '1ey2HwT3YSolz7EMypoiVKYu3q1DcPH2aod91RCt.jpg', '2023-08-17 03:15:02', '2023-08-22 17:43:51'),
-(3, 9, 'Designer UX UI', 'Technolgy System', '1 - 2 Juta', 'Jasa pembuatan software', '', 'Full Time', 'S1 - Desain Komunikasi Visual', '0 - 1 Tahun', 'Coreldraw, Adobe Photoshop', 'Lorem Ipsum', '1', 'Belum dilengkapi', '2023-08-15', '2023-08-31', 'CnQWG0AKFCX0uJMppCZYU8pSeQfJMBGNjQSfs5D0.jpg', '2023-08-17 08:05:02', '2023-08-23 01:30:17'),
-(4, 7, 'Front End Developer', 'Tech Technology', '2 - 5 Juta', 'Pengembang UI', '', 'Full Time', 'SMK - S1', '0 - 1 Tahun', 'PHP, Desain, Laravel', '<p>Deskripsi silahkan lengkapi di menu lengkapi informasi lowongan</p>', '1', 'Belum dilengkapi', '2023-08-08', '2023-08-30', 'DsvrnziQSBn2xUjV81qYczooblsdSEa6Hyo0KqRf.jpg', '2023-08-22 18:02:27', '2023-08-26 07:14:13'),
-(5, 2, 'Transportasi & Logistik', 'PT Pertamina', '3 - 5 Juta', 'Transportasi & Logistik', '', 'Full Time', 'SMK, S1, atau S2', '0 - 1 Tahun', 'Ms. Office', 'Silahkan lengkapi pada menu data lowongan', '1', 'Penempatan sesuai domisili cabang PT Pertamina', '2023-08-23', '2023-09-01', 'wxLTVLg9YPSudztJuvpp0hFmgNJAZbQOa6gIV8g3.jpg', '2023-08-23 00:05:06', '2023-08-23 00:32:26');
+INSERT INTO `informasi_lowongans` (`id_informasi_lowongan`, `pemberi_informasi_id`, `judul_lowongan`, `perusahaan`, `salary`, `bidang`, `jurusan`, `jenis_lowongan`, `pendidikan`, `pengalaman`, `keterampilan`, `jenis_kelamin`, `deskripsi`, `verifikasi`, `status_lowongan`, `lokasi`, `tgl_buka`, `tgl_tutup`, `foto_lowongan`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 8, 'UI/UX', 'Technolgy System', '1.200.000', 'Desainer', '', 'Full Time', 'SMK - S1', '0-1 Tahun', 'Figma, Adobe Ilustrator dan sejenisnya', 'Laki-laki', '<p><strong>Lorem, ipsum dolor</strong> sit amet consectetur adipisicing elit. Ad illum aperiam cum quasi impedit dolorum reiciendis suscipit obcaecati, ex <strong>temporibus</strong> est dicta totam, <em>cumque sint fuga</em>,<strong> ratione ullam. Laboriosam, recusandae</strong>.</p>', '0', 0, 'Jl. Ujung Gurun No.7, Ujung Gurun, Padang Barat, Padang City, West Sumatra', '0000-00-00', '0000-00-00', 'default.jpg', '2022-08-17 03:15:02', '2023-08-17 08:26:20', NULL),
+(2, 7, 'Back End Developer', 'Tech Technology', '1.200.000', 'Programmer', '', 'Full Time', 'SMK - S1', '0-1 Tahun', 'PHP, MySQL, Framework (Laravel/Codeiginter)', 'Perempuan', '<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad illum aperiam cum quasi impedit dolorum reiciendis suscipit obcaecati, ex temporibus est dicta totam, cumque sint fuga, ratione ullam. Laboriosam, recusandae.</p>', '0', 0, 'Jl. Ujung Gurun No.7, Ujung Gurun, Jakarta Barat', '0000-00-00', '0000-00-00', '1ey2HwT3YSolz7EMypoiVKYu3q1DcPH2aod91RCt.jpg', '2023-08-17 03:15:02', '2023-08-22 17:43:51', NULL),
+(3, 9, 'Designer UX UI', 'Technolgy System', '1 - 2 Juta', 'Jasa', '', 'Full Time', 'S1 - Desain Komunikasi Visual', '0 - 1 Tahun', 'Coreldraw, Adobe Photoshop', 'Laki-laki', 'Lorem Ipsum', '1', 0, 'Belum dilengkapi', '2023-08-15', '2023-08-31', 'CnQWG0AKFCX0uJMppCZYU8pSeQfJMBGNjQSfs5D0.jpg', '2023-08-17 08:05:02', '2023-08-23 01:30:17', NULL),
+(4, 7, 'Front End Developer', 'Tech Technology', '2 - 5 Juta', 'Desainer', '', 'Full Time', 'SMK - S1', '0 - 1 Tahun', 'PHP, Desain, Laravel', 'Laki-laki', '<p>Deskripsi silahkan lengkapi di menu lengkapi informasi lowongan</p>', '1', 0, 'Belum dilengkapi', '2023-08-08', '2023-08-30', 'DsvrnziQSBn2xUjV81qYczooblsdSEa6Hyo0KqRf.jpg', '2023-08-22 18:02:27', '2023-08-26 07:14:13', NULL),
+(5, 2, 'Transportasi & Logistik', 'PT Pertamina', '3 - 5 Juta', 'Operator', '', 'Full Time', 'SMK, S1, atau S2', '0 - 1 Tahun', 'Ms. Office', 'Perempuan', 'Silahkan lengkapi pada menu data lowongan', '1', 0, 'Penempatan sesuai domisili cabang PT Pertamina', '2023-08-23', '2023-09-01', 'wxLTVLg9YPSudztJuvpp0hFmgNJAZbQOa6gIV8g3.jpg', '2023-08-23 00:05:06', '2023-09-11 07:55:15', '2023-09-11 07:55:15'),
+(6, 2, 'Pegawai Penggabungan PTS', 'Sekolah Tinggi Ilmu Kesehatan Indonesia Maju', '1 - 2 Juta', 'Jasa', 'Administrasi Perkantoran', 'Full Time', 'SMK, S1, atau S2', '0 - 1 Tahun', 'Ms. Office', 'Perempuan', '-', '0', 1, 'Yogyakarta', '2023-09-05', '2023-09-30', 'Dzk2AjwARVs8zUBIruSdljh9JTjoLDSxdNSNIpEf.jpg', '2023-09-05 07:16:03', '2023-09-05 07:16:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -161,6 +165,33 @@ INSERT INTO `lamars` (`id_lamar`, `id_informasi`, `id_pelamar`, `pesan`, `status
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `laporans`
+--
+
+CREATE TABLE `laporans` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `start_age` varchar(11) NOT NULL,
+  `end_age` varchar(11) NOT NULL,
+  `male_count_terdaftar` int(11) NOT NULL,
+  `female_count_terdaftar` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `laporans`
+--
+
+INSERT INTO `laporans` (`id`, `start_age`, `end_age`, `male_count_terdaftar`, `female_count_terdaftar`, `created_at`, `updated_at`) VALUES
+(1, '15', '19', 0, 0, '2023-09-19 23:20:07', '2023-09-20 00:09:52'),
+(2, '20', '29', 0, 0, '2023-09-19 23:20:07', '2023-09-19 23:22:05'),
+(3, '30', '44', 1, 0, '2023-09-19 23:20:07', '2023-09-21 15:56:59'),
+(4, '45', '54', 0, 0, '2023-09-19 23:20:07', '2023-09-19 23:20:07'),
+(5, '55', '+', 0, 0, '2023-09-19 23:21:02', '2023-09-19 23:21:02');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -187,7 +218,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2023_08_23_032455_create_pemangku_kepentingans_table', 3),
 (11, '2023_08_23_130906_create_bkks_table', 4),
 (12, '2023_08_23_130906_create_bursa_kerjas_table', 5),
-(13, '2023_08_24_055829_create_alumnis_table', 6);
+(13, '2023_08_24_055829_create_alumnis_table', 6),
+(14, '2023_09_11_143207_tambah_softdeletes', 7),
+(15, '2023_09_11_145134_tambah_ipk_softdeletes', 8),
+(16, '2023_09_20_031748_create_laporans_table', 9),
+(17, '2023_09_20_061056_create_laporans_table', 10);
 
 -- --------------------------------------------------------
 
@@ -272,6 +307,8 @@ CREATE TABLE `pencari_kerjas` (
   `nama_lengkap` varchar(255) NOT NULL,
   `email_pk` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
+  `umur` int(11) NOT NULL,
+  `jenis_kelamin` varchar(32) NOT NULL,
   `pendidikan_terakhir` varchar(255) NOT NULL,
   `keterampilan` text NOT NULL,
   `no_hp` text NOT NULL,
@@ -280,18 +317,20 @@ CREATE TABLE `pencari_kerjas` (
   `status_ak1` varchar(254) NOT NULL,
   `foto_pencari_kerja` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `pencari_kerjas`
 --
 
-INSERT INTO `pencari_kerjas` (`id_pencari_kerja`, `bkk_id`, `nama_lengkap`, `email_pk`, `alamat`, `pendidikan_terakhir`, `keterampilan`, `no_hp`, `tentang`, `tgl_expired`, `status_ak1`, `foto_pencari_kerja`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Danar', 'danar@gmail.com', '0', '0', '0', '0', '0', NULL, '', 'xLNUd15Wgr5COcumHWf9vtSLI0TKUhM6XbXRxkOL.jpg', '2023-08-17 16:03:39', '2023-08-26 06:00:34'),
-(3, 1, 'Werry', 'wery@gmail.com', '0', '0', '0', '0', '0', NULL, '', 'default.jpg', '2023-08-17 16:04:20', '2023-08-25 23:11:08'),
-(4, 2, 'Jamhur', 'jamhur@gmail.com', '0', '0', '0', '0', '0', NULL, '', 'default.jpg', '2023-08-17 16:05:06', '2023-08-25 01:41:21'),
-(5, 1, 'Handijaya', 'handijaya@gmail.com', '0', '0', '0', '0', '0', NULL, '', 'default.jpg', '2023-08-25 23:14:39', '2023-08-25 23:24:12');
+INSERT INTO `pencari_kerjas` (`id_pencari_kerja`, `bkk_id`, `nama_lengkap`, `email_pk`, `alamat`, `umur`, `jenis_kelamin`, `pendidikan_terakhir`, `keterampilan`, `no_hp`, `tentang`, `tgl_expired`, `status_ak1`, `foto_pencari_kerja`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(2, 1, 'Danar', 'danar@gmail.com', 'Dharmasraya', 16, 'Laki-laki', 'Sekolah Menengah Kejuruan', 'Desain Grafis', '081277265590', 'Saya menyukai dunia desain', '2023-09-01', 'Bekerja', 'xLNUd15Wgr5COcumHWf9vtSLI0TKUhM6XbXRxkOL.jpg', '2023-08-17 16:03:39', '2023-09-10 20:34:17', NULL),
+(3, 1, 'Werry', 'wery@gmail.com', '0', 18, 'Perempuan', '0', '0', '0', '0', NULL, 'Belum Bekerja', 'default.jpg', '2023-05-17 16:04:20', '2023-09-19 23:55:14', '2023-09-19 23:55:14'),
+(4, 2, 'Jamhur', 'jamhur@gmail.com', '0', 30, 'Perempuan', '0', '0', '0', '0', NULL, 'Belum Bekerja', 'default.jpg', '2023-08-17 16:05:06', '2023-08-25 01:41:21', NULL),
+(6, 0, 'Handijaya', 'handijaya@gmail.com', '-', 34, 'Laki-laki', '-', '-', '-', '-', '2024-03-19', 'Belum Bekerja', 'default.jpg', '2022-09-19 15:59:21', '2023-09-19 15:59:21', NULL),
+(7, 0, 'Febri restu', 'febri@gmail.com', '-', 25, 'Laki-laki', '-', '-', '-', '-', '2024-03-19', 'Belum Bekerja', 'default.jpg', '2023-09-19 16:05:13', '2023-09-19 16:05:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -333,7 +372,8 @@ CREATE TABLE `sumbers` (
 --
 
 INSERT INTO `sumbers` (`id_sumber`, `pemberi_informasi_id`, `pemangku_kepentingan_id`, `tgl_buka`, `tgl_tutup`, `created_at`, `updated_at`) VALUES
-(1, '2', '2', '2023-08-23', '2023-09-01', '2023-08-23 00:06:08', '2023-08-23 00:06:08');
+(1, '2', '2', '2023-08-23', '2023-09-01', '2023-08-23 00:06:08', '2023-08-23 00:06:08'),
+(2, '2', '2', '2023-09-05', '2023-09-30', '2023-09-05 07:16:04', '2023-09-05 07:16:04');
 
 -- --------------------------------------------------------
 
@@ -363,16 +403,16 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `name`, `email`, `username`, `email_verified_at`, `password`, `level`, `status_tracer`, `foto_user`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Disdik', 'pemangku@gmail.com', 'disdik_sumbar', NULL, '$2y$10$h7cEkZVp4xX.dCfkfaR/HeviaOllE5W34c9jjFpIvnqCPjO3N0Gsq', '3', 0, 'default.jpg', NULL, '2023-08-17 02:37:39', '2023-08-17 02:37:39'),
 (2, 'Admin', 'admin@gmail.com', 'admin_sipk', NULL, '$2y$10$T2ldYtlprNjKZET2b4O//uCNq0a4DL1FjNmv/0x3e4e3vu6JBtZ4i', '1', 0, 'default.jpg', NULL, '2023-08-17 02:37:39', '2023-08-17 02:37:39'),
-(4, 'Danar', 'danar@gmail.com', 'danardinar', NULL, '$2y$10$Z9D7KL4ShPmUmCBJRnqfN.p.QiSkXga5rkqrUiTh8lRUlxzOfPnzS', '2', 1, 'xLNUd15Wgr5COcumHWf9vtSLI0TKUhM6XbXRxkOL.jpg', NULL, '2023-08-17 16:03:40', '2023-08-26 06:00:34'),
-(5, 'Werry', 'wery@gmail.com', 'werry24', NULL, '$2y$10$WpueDWFH2i11RRaQ/cmu.OSiosWG/z5awa9uqpIVlBfWj7YZwH7O.', '2', 1, 'default.jpg', NULL, '2023-08-17 16:04:21', '2023-08-25 23:11:08'),
+(4, 'Danar', 'danar@gmail.com', 'danardinar', NULL, '$2y$10$Z9D7KL4ShPmUmCBJRnqfN.p.QiSkXga5rkqrUiTh8lRUlxzOfPnzS', '2', 1, 'xLNUd15Wgr5COcumHWf9vtSLI0TKUhM6XbXRxkOL.jpg', NULL, '2023-08-17 16:03:40', '2023-09-10 20:34:17'),
 (6, 'Jamhur', 'jamhur@gmail.com', 'jamhur46', NULL, '$2y$10$JBV/DptJdyl4V.JGRnlvHOTYRNBD2kxiioBEZvHnrJ9PhcNQQQkzm', '2', 1, 'default.jpg', NULL, '2023-08-17 16:05:06', '2023-08-25 01:41:21'),
 (7, 'Tech Tecnology', 'tech@gmail.com', 'technology_tech', NULL, '$2y$10$VCXnsacj9iijfpTAaozW8.RqP/8btLUzbz7bjRIMSLk87KuQZ1GjO', '4', 0, 'default.jpg', NULL, '2023-08-17 16:16:48', '2023-08-17 16:16:48'),
 (8, 'Technolgy System', 'technosystem@gmail.com', 'technosystem', NULL, '$2y$10$cxP7WEszB.t2JToXPUBbhuOZ8bu41JF8gBY8IwKsgsMPKskleNt6W', '4', 0, 'default.jpg', NULL, '2023-08-17 16:17:39', '2023-08-17 16:17:39'),
 (9, 'Percetakan Abdi', 'abdipercetakan@gmail.com', 'abdi_percetakan', NULL, '$2y$10$8km0sgNfuyp.1FC99AOZlex7JrNTRBhLsicYw8yoEKaj/P7Q3W6T2', '4', 0, '9n6qjsKuMX8Uz7bI5RwGcab2taIgSxlw3tpO9I2v.jpg', NULL, '2023-08-17 16:18:12', '2023-08-22 07:30:57'),
 (10, 'SMKN 1 Koto Besar', 'smkn1kobes@gmail.com', 'smkn1kobes', NULL, '$2y$10$gwEf4yysreb8vrjwMqgyi.C1JO6tnRPWHupLvJ12rHcDcyO96eQaG', '5', 0, 'default.jpg', NULL, '2023-08-23 23:08:57', '2023-08-23 23:08:57'),
 (11, 'SMKN 1 Sungai Rumbai', 'smkn1sungairumba@gmail.com', 'smkn1sungairumbai', NULL, '$2y$10$Ff2AP3AH9Tcgd1Hyfq75GufxnorFLOkpzF4tkXZ.Xidp7azjpphli', '5', 0, '5kuOi23xLE5duE9OGtSEBsLrkArUtc3kMxzGMavT.jpg', NULL, '2023-08-25 01:23:20', '2023-08-25 02:21:06'),
-(12, 'Handijaya', 'handijaya@gmail.com', 'handijaya25', NULL, '$2y$10$KFzghltPhzw4aQWvQRUJ5uR00XY0xhSbciewUajCXd166lP6XyV0K', '2', 1, 'default.jpg', NULL, '2023-08-25 23:14:39', '2023-08-25 23:24:12'),
-(13, 'Dinas Tenaga Kerja Sumbar', 'disnaker@gmail.com', 'disnakertrans', NULL, '$2y$10$4W8eGHsRNpyaeQn6Wn821OhmdL4hYNRGuWaetLzsMG0FdfDrTL2Ay', '3', 0, '9HY8PeGS1i2pGd29cRXZMCsfpUOdTSJwLpRk7d7g.jpg', NULL, '2023-08-26 07:12:09', '2023-08-28 07:04:12');
+(13, 'Dinas Tenaga Kerja Sumbar', 'disnaker@gmail.com', 'disnakertrans', NULL, '$2y$10$4W8eGHsRNpyaeQn6Wn821OhmdL4hYNRGuWaetLzsMG0FdfDrTL2Ay', '3', 0, '9HY8PeGS1i2pGd29cRXZMCsfpUOdTSJwLpRk7d7g.jpg', NULL, '2023-08-26 07:12:09', '2023-08-28 07:04:12'),
+(14, 'Handijaya', 'handijaya@gmail.com', 'handijaya25', NULL, '$2y$10$8Y8ztCw6GXJkZQGLtMPhhuRgOWKGQG7ciQDzb.mOM/luaitF4qIum', '2', 0, 'default.jpg', NULL, '2023-09-19 15:59:22', '2023-09-19 15:59:22'),
+(15, 'Febri restu', 'febri@gmail.com', 'febri08', NULL, '$2y$10$JqI1n8bW7BgljQQzz7IrHO7e8msqfQ5e5UsGXjtWmsHXRGY3xvkzC', '2', 0, 'default.jpg', NULL, '2023-09-19 16:05:13', '2023-09-19 16:05:13');
 
 --
 -- Indexes for dumped tables
@@ -408,6 +448,12 @@ ALTER TABLE `informasi_lowongans`
 --
 ALTER TABLE `lamars`
   ADD PRIMARY KEY (`id_lamar`);
+
+--
+-- Indexes for table `laporans`
+--
+ALTER TABLE `laporans`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -489,7 +535,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `informasi_lowongans`
 --
 ALTER TABLE `informasi_lowongans`
-  MODIFY `id_informasi_lowongan` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_informasi_lowongan` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `lamars`
@@ -498,10 +544,16 @@ ALTER TABLE `lamars`
   MODIFY `id_lamar` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `laporans`
+--
+ALTER TABLE `laporans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `pemangku_kepentingans`
@@ -519,7 +571,7 @@ ALTER TABLE `pemberi_informasis`
 -- AUTO_INCREMENT for table `pencari_kerjas`
 --
 ALTER TABLE `pencari_kerjas`
-  MODIFY `id_pencari_kerja` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pencari_kerja` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -531,13 +583,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `sumbers`
 --
 ALTER TABLE `sumbers`
-  MODIFY `id_sumber` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_sumber` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_user` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

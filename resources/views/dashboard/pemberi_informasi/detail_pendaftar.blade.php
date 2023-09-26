@@ -54,7 +54,7 @@
                             @elseif($item->status == 1)
                             Proses Verifikasi
                             @else
-                            Diterima
+                            Memenuhi kriteria
                             @endif
                         </td>
                         <td><a href="/detail-data-pendaftar/{{$item->id_pelamar}}" class="badge bg-primary">Detail</a></td>

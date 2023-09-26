@@ -28,7 +28,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->get();
+    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->where('status_lowongan', 0)->get();
     return view('halaman-utama.index', [
         'data' => $data
     ]);
@@ -39,7 +39,7 @@ Route::get('/hubungi', function () {
 });
 
 Route::get('/lowongan-home', function () {
-    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->paginate(2);
+    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->where('status_lowongan', 0)->paginate(7);
     return view('halaman-utama.lowongan-home', ['data' => $data]);
 });
 

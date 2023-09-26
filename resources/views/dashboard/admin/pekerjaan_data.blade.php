@@ -58,7 +58,7 @@
                                             <th scope="col">Lowongan</th>
                                             <th scope="col">Perusahaan</th>
                                             <th scope="col">Bidang</th>
-                                            <th scope="col">Jenis</th>
+                                            <th scope="col">status</th>
                                             {{-- <th scope="col">Pengalaman</th> --}}
                                             <th scope="col">Aksi</th>
                                         </tr>
@@ -71,7 +71,7 @@
                                                 <td>{{$info_p->judul_lowongan}}</td>
                                                 <td>{{$info_p->perusahaan}}</td>
                                                 <td>{{$info_p->bidang}}</td>
-                                                <td>{{$info_p->jenis_lowongan}}</td>
+                                                <td>@if($info_p->status_lowongan == 0) Belum terpenuhi @else Terpenuhi @endif</td>
                                                 {{-- <td>{{$info_p->pengalaman}}</td> --}}
                                                 <td>
                                                     {{-- <a href="" class="badge badge-primary">Edit</a> --}}

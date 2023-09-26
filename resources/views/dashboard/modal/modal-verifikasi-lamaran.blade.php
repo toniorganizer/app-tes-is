@@ -10,6 +10,7 @@
                     <div class="col-md-12">
                         <div class="custom-control custom-radio">
                             <input type="hidden" name="email" value="{{$data->id_pelamar}}">
+                            <input type="hidden" name="id_informasi" value="{{$data->id_informasi}}">
                             <input type="radio" id="customRadio1" name="status" class="custom-control-input" value="1" {{ $data->status == 1 ? 'checked' : '' }}>
                             <label class="custom-control-label" for="customRadio1">Proses pemeriksanaan lamaran</label>
                           </div>
