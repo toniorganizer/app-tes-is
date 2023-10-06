@@ -47,7 +47,9 @@
                   <div class="meta-top">
                     <ul>
                       <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"> {{date('d/m/Y', strtotime($data->created_at))}}</a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-clock-history"></i> <a href="#">12 Comments</a></li>
+                      <li class="d-flex align-items-center"><i class="bi bi-clock-history"></i> 
+                        {{-- <a href="#">12 Comments</a> --}}
+                      </li>
                     </ul>
                   </div><!-- End meta top -->
                 </div>
@@ -161,7 +163,7 @@
 
                 <div class="post-item mt-3">
                   <div>
-                    @if($data->pemberi_informasi_id == 2)
+                    @if($data->pemberi_informasi_id == 13)
                     <h5>By Admin</h5>
                     <p>Pemberi informasi admin Dinas Tenaga Kerja Sumatera Barat</p>
                     @else

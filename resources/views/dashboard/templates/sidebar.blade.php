@@ -46,11 +46,11 @@
           </li><!-- End Components Nav -->
           <li class="nav-item">
             @if($title == 'Pasar Kerja')
-            <a class="nav-link " href="/pasar-kerja">
+            <a class="nav-link " href="/pemerintah">
             @elseif($sub_title == 'Pasar Kerja')
-            <a class="nav-link " href="/pasar-kerja">
+            <a class="nav-link " href="/pemerintah">
             @else
-            <a class="nav-link collapsed" href="/pasar-kerja">
+            <a class="nav-link collapsed" href="/pemerintah">
             @endif
             <i class="bi bi-shop-window"></i>
                 <span>Pasar Kerja</span>
@@ -58,14 +58,14 @@
         </li>
           <li class="nav-item">
             @if($title == 'Cetak Laporan')
-            <a class="nav-link " href="/uji-laporan">
+            <a class="nav-link " href="/laporan">
             @elseif($sub_title == 'Cetak Laporan')
-            <a class="nav-link " href="/uji-laporan">
+            <a class="nav-link " href="/laporan">
             @else
-            <a class="nav-link collapsed" href="/uji-laporan">
+            <a class="nav-link collapsed" href="/laporan">
             @endif
             <i class="bi bi-file-earmark"></i>
-                <span>Cetak Laporan</span>
+                <span>Laporan</span>
             </a>
         </li>
         @endif
@@ -124,6 +124,20 @@
                 <span>Data Tenaga Kerja</span>
             </a>
         </li>
+        @if(Auth::user()->id_user == 13)
+        <li class="nav-item">
+            @if($title == 'Data Lowongan')
+            <a class="nav-link " href="/lowongan-data">
+            @elseif($sub_title == 'Data Lowongan')
+            <a class="nav-link " href="/lowongan-data">
+            @else
+            <a class="nav-link collapsed" href="/lowongan-data">
+            @endif
+            <i class="bi bi-person-check"></i>
+                <span>Data Pelamar</span>
+            </a>
+        </li>
+        @endif
         <li class="nav-item">
             @if($title == 'Data Rekomendasi')
             <a class="nav-link " href="/pemerintah">

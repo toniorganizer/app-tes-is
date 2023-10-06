@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\PemangkuKepentingan;
 use App\Http\Controllers\Controller;
 use App\Models\Laporan;
+use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -43,20 +44,42 @@ class AdminController extends Controller
         $user = User::count();
         $pencari_kerja = PencariKerja::count();
         $ak1 = PencariKerja::where('email_pk', Auth::user()->email)->first();
-
-        return view('Dashboard.admin.index_admin', [
-            'chart' => $chart->build(), 
-            'jobcount' => $jobcount->build(),
-            'title' => 'Dashboard',
-            'sub_title' => 'Dashboard',
-            'jumlah_loker' => $data,
-            'jumlah_alumni' => $alumni,
-            'alumni_bekerja' => $alumni_bekerja,
-            'user' => $user,
-            'pencari_kerja' => $pencari_kerja,
-            'jumlah_lamaran' => $lamar,
-            'status_ak1' => $ak1
-        ]);
+        
+        if(Auth::user()->level == 2){
+            $tglSaatIni = new DateTime();
+            $tgldatabase = new DateTime($ak1->tgl_expired);
+            $tgl = $tgldatabase->modify('-3 days');
+            return view('Dashboard.admin.index_admin', [
+                'chart' => $chart->build(), 
+                'jobcount' => $jobcount->build(),
+                'title' => 'Dashboard',
+                'sub_title' => 'Dashboard',
+                'jumlah_loker' => $data,
+                'jumlah_alumni' => $alumni,
+                'alumni_bekerja' => $alumni_bekerja,
+                'user' => $user,
+                'pencari_kerja' => $pencari_kerja,
+                'jumlah_lamaran' => $lamar,
+                'status_ak1' => $ak1,
+                'tgl' => $tgl,
+                'tglSaatIni' => $tglSaatIni
+            ]);
+        }else{
+            return view('Dashboard.admin.index_admin', [
+                'chart' => $chart->build(), 
+                'jobcount' => $jobcount->build(),
+                'title' => 'Dashboard',
+                'sub_title' => 'Dashboard',
+                'jumlah_loker' => $data,
+                'jumlah_alumni' => $alumni,
+                'alumni_bekerja' => $alumni_bekerja,
+                'user' => $user,
+                'pencari_kerja' => $pencari_kerja,
+                'jumlah_lamaran' => $lamar,
+                'status_ak1' => $ak1
+            ]);
+        }
+    
     }
 
     public function show()
@@ -155,6 +178,9 @@ class AdminController extends Controller
 
     public function profilTenagaKerja($id){
         $data = PencariKerja::join('users','users.email','=','pencari_kerjas.email_pk')->join('alumnis', 'alumnis.pencari_kerja_id','=','pencari_kerjas.email_pk')->where('email_pk', $id)->first();
+
+        // dd($data->foto_pencari_kerja);
+
         return view('Dashboard.admin.profil_tenaga_kerja', [
             'sub_title' => 'Profile',
             'title' => 'Profile',
@@ -592,7 +618,7 @@ class AdminController extends Controller
             ->count();
 
         $informasiFemaleDelete = DB::table('informasi_lowongans')
-            ->where('jenis_kelamin', 'Female')
+            ->where('jenis_kelamin', 'Perempuan')
             ->whereNotNull('deleted_at')
             ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();

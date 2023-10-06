@@ -51,7 +51,6 @@
                                             <th scope="col">No.</th>
                                             <th scope="col">Nama</th>
                                             <th scope="col">E-mail</th>
-                                            <th scope="col">Alamat</th>
                                             <th scope="col">Pendidikan</th>
                                             <th scope="col">Aksi</th>
                                         </tr>
@@ -68,7 +67,6 @@
                                                     @endif
                                                     ">{{$user->nama_lengkap}}</td>
                                                 <td>{{$user->email_pk}}</td>
-                                                <td>{{$user->alamat}}</td>
                                                 <td>{{$user->pendidikan_terakhir}}</td>
                                                 <td>
                                                     <a href="/profil-tenaga-kerja/{{$user->email_pk}}" class="badge badge-info">Detail</a>

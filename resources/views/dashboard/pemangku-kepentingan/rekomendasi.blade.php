@@ -39,13 +39,14 @@
             </div>
         </div> 
             <!-- Right side columns -->
-            <div class="col-lg-8">
+        @if(Auth::user()->level != 1)
+        <div class="col-lg-8">
                 <!-- Recent Activity -->
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Rekomendasi</h5>
               <div class="activity">
-                <p style="text-align: justify">Sehubungan dengan perkembangan terkini di pasar kerja, kami merekomendasikan Dinas Tenaga Kerja dan Dinas Pendidikan untuk mempertimbangkan langkah strategis dalam kebijakan pelaksanaan pendidikan kejuruan terkait dengan pemantauan pasar kerja aktif untuk mengidentifikasi tren dan permintaan tenaga kerja yang baru muncul. Berdasarkan data pasar kerja yang telah ada, saat ini tren pasar kerja di dominasi oleh :</p>
+                <p style="text-align: justify">Sehubungan dengan perkembangan terkini di pasar kerja, kami merekomendasikan Dinas Tenaga Kerja dan Dinas Pendidikan untuk mempertimbangkan langkah strategis dalam kebijakan pelaksanaan pendidikan kejuruan terkait dengan pemantauan pasar kerja aktif untuk mengidentifikasi tren dan permintaan tenaga kerja terbaru. Berdasarkan data pasar kerja yang telah ada, saat ini tren pasar kerja didominasi oleh :</p>
                 
                 @foreach($data as $d)
                 <div class="activity-item d-flex">
@@ -71,9 +72,8 @@
                         {!! $jobcount->container() !!}
                     </div><!-- End Website Traffic -->
                 </div>
-            </div>
-
-            
+            </div>  
+            @endif     
     </section>
 
 </main>

@@ -116,6 +116,24 @@
                                     @enderror
                                 </div>
                                 <div class="col-lg-11 mt-3">
+                                    <label for="inputAddress2" class="form-label">Tanggal Dibuka</label>
+                                    <input type="date" name="tgl_buka" class="form-control @error('tgl_buka') is-invalid @enderror" id="inputAddress2" value="{{$data->tgl_buka}}">
+                                    @error('tgl_buka')
+                                    <small id="emailHelp" class="form-text text-muted">
+                                        {{$message}}
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div class="col-lg-11 mt-3">
+                                    <label for="inputAddress2" class="form-label">Tanggal Tutup</label>
+                                    <input type="date" name="tgl_tutup" class="form-control @error('tgl_tutup') is-invalid @enderror" id="inputAddress2" value="{{$data->tgl_tutup}}">
+                                    @error('tgl_tutup')
+                                    <small id="emailHelp" class="form-text text-muted">
+                                        {{$message}}
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div class="col-lg-11 mt-3">
                                     <label for="inputCity" class="form-label">Foto Lowongan</label>
                                     <input class="form-control @error('foto') is-invalid @enderror" name="foto" type="file" id="formFile">
                                     @error('foto')

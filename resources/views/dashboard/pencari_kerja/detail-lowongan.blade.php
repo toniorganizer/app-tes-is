@@ -71,7 +71,8 @@
                                   <div class="meta-top">
                                     <ul>
                                       <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"> {{date('d/m/Y', strtotime($data->created_at))}}</a></li>
-                                      <li class="d-flex align-items-center"><i class="bi bi-clock-history"></i> <a href="#">12 Comments</a></li>
+                                      {{-- <li class="d-flex align-items-center"><i class="bi bi-clock-history"></i> <a href="#">12 Comments</a> --}}
+                                      </li>
                                     </ul>
                                   </div>
                             </div>

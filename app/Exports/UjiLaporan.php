@@ -434,7 +434,7 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
             ->count();
 
         $informasiFemaleDelete = DB::table('informasi_lowongans')
-            ->where('jenis_kelamin', 'Female')
+            ->where('jenis_kelamin', 'Perempuan')
             ->whereNotNull('deleted_at')
             ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();

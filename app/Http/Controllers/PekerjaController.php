@@ -245,6 +245,7 @@ class PekerjaController extends Controller
             'jurusan' => $request->jurusan,
             'status_bekerja' => $request->status_bekerja,
             'tempat_kerja' => $request->tempat_kerja,
+            'bkk_id' => $request->id_bkk,
             'tahun_lulus' => $request->tahun_lulus,
         ]);
 
@@ -253,7 +254,9 @@ class PekerjaController extends Controller
         ]);
 
         PencariKerja::where('email_pk', $request->email_pk)->update([
-            'bkk_id' => $request->id_bkk
+            'bkk_id' => $request->id_bkk,
+            'status_ak1' => 'Bekerja',
+
         ]);
 
         return redirect('/tracer-study')->with('success', 'Data berhasil diupdate.');

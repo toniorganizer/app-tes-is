@@ -37,6 +37,7 @@
                                             <div class="col-6">
                                                 <label for="yourName" class="form-label">Nama</label>
                                                 <input autofocus type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required value="{{old('name')}}">
+                                                <small id="emailHelp" class="form-text text-muted">Masukan nama lengkap</small>
                                                 @error('name')
                                                     <div class="alert alert-danger mt-2">
                                                         {{ $message }}
@@ -46,6 +47,7 @@
                                             <div class="col-6">
                                                 <label for="yourName" class="form-label">Umur</label>
                                                 <input autofocus type="text" name="umur" class="form-control @error('umur') is-invalid @enderror" id="yourumur" required value="{{old('umur')}}">
+                                                <small id="emailHelp" class="form-text text-muted">Isi dengan format angka. Ex : 23</small>
                                                 @error('umur')
                                                     <div class="alert alert-danger mt-2">
                                                         {{ $message }}

@@ -30,10 +30,10 @@
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                         <img src="
-                        @if(Auth::user()->foto_user == 'default.jpg')
-                        {{ Storage::url('public/user/default/').Auth::user()->foto_user}}
+                        @if($data->foto_pencari_kerja == 'default.jpg')
+                        {{ Storage::url('public/user/default/').$data->foto_pencari_kerja}}
                         @else
-                        {{ Storage::url('public/user/').Auth::user()->foto_user}}
+                        {{ Storage::url('public/user/').$data->foto_pencari_kerja}}
                         @endif
                         " alt="Profile" class="rounded-circle">
                         <h2>{{$data->nama_lengkap}}</h2>

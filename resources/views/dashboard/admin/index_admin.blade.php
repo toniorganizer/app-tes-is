@@ -25,13 +25,15 @@
                 </div> 
                 @else
                 <div class="alert alert-warning" role="alert">
-                    Status Kartu Anda akan berakhir pada tanggal <span class="alert-link">{{date('d F Y', strtotime($status_ak1->tgl_expired))}}</span>. Silahkan diperpanjang sebelum tanggal tersebut, jika tidak diperpanjang maka status akan otomatis berubah menjadi <span class="alert-link">Bekerja.</span>
+                    Status Kartu Anda akan berakhir pada tanggal <span class="alert-link">{{date('d F Y', strtotime($status_ak1->tgl_expired))}}</span>.@if($tglSaatIni >= $tgl) Silahkan diperpanjang sebelum tanggal tersebut, jika tidak diperpanjang maka status akan otomatis berubah menjadi <span class="alert-link">Bekerja.</span>
+                    
                     <form action="perpanjangKartu" method="POST">
                         @csrf
-                            <input type="hidden" name="status" value="Aktif">
+                            <input type="hidden" name="status" value="Belum Bekerja">
                             <input type="hidden" name="id" value="{{$status_ak1->id_pencari_kerja}}">
                             <button class="btn btn-info mt-2">Perpanjang hingga 6 bulan kedepan</button>
                     </form>
+                    @endif
                 </div>
                 @endif
             @endif

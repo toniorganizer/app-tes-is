@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah data Lowongan Kerja</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah data Lowongan Kerjaa</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -42,7 +42,7 @@
                     <div class="col-12">
                         <label for="inputAddress5" class="form-label">Bidang Lowogan</label>
                         <select name="bidang" class="form-control">
-                          <option>Pilih Jenis Lowongan</option>
+                          <option>Pilih Bidang Lowongan</option>
                           <option value="Programmer">Programmer</option>
                           <option value="Desainer">Desainer</option>
                           <option value="Jasa">Jasa</option>

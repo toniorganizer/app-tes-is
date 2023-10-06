@@ -135,7 +135,7 @@ class PemberiInformasiController extends Controller
             ]);
         }
         
-        return redirect('/sumber/'. $id . '/edit')->with('success', 'Data Berhasil Disimpan!');
+        return redirect('/sumber/'. $request->email_instansi)->with('success', 'Data Berhasil Disimpan!');
     }
 
     /**
@@ -158,6 +158,7 @@ class PemberiInformasiController extends Controller
             'judul_lowongan',
             'status_lowongan',
             'foto_lowongan',
+            'verifikasi',
             DB::raw('count(id_pelamar) as jumlah_pelamar')
         )
         ->where('id_user', Auth::user()->id_user)
@@ -165,8 +166,11 @@ class PemberiInformasiController extends Controller
             'id_informasi_lowongan',
             'judul_lowongan',
             'status_lowongan',
-            'foto_lowongan'
+            'foto_lowongan',
+            'verifikasi',
         )->get();
+
+        // dd(Auth::user()->id_user);
 
         return view('Dashboard.pemberi_informasi.data-lowongan', [
             'sub_title' => 'Data Lowongan',

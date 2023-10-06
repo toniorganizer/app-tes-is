@@ -8,6 +8,7 @@ use App\Models\Alumni;
 use App\Models\PencariKerja;
 use Illuminate\Http\Request;
 use App\Charts\CountJobChart;
+use App\Charts\MonhtlyJobArea;
 use App\Charts\MonthlyJobChart;
 use App\Models\InformasiLowongan;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,7 @@ class KepentinganController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(MonthlyJobChart $chart, CountJobChart $jobcount)
+    public function index(MonhtlyJobArea $chart, CountJobChart $jobcount)
     {
         
         $data = InformasiLowongan::select('bidang', DB::raw('count(bidang) as jumlah'))->groupBy('bidang')->orderBy('jumlah', 'desc')->get();

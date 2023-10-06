@@ -39,9 +39,11 @@
                         <h2>{{$data->nama_lengkap}}</h2>
                         <h3>{{$data->username}}</h3>
                         <div class="social-links mt-2">
+                            @if($data->website_lembaga != '-')
                             <a href="{{$data->website_lembaga}}" class="twitter" target="_blank"><i class="bi bi-globe2"></i></a>
+                            @endif
                             <a href="https://web.facebook.com/{{$data->facebook_lembaga}}" class="facebook" target="_blank"><i class="bi bi-facebook"></i></a>
-                            <a href="#" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
+                            <a href="https://www.instagram.com/{{$data->instagram_lembaga}}" class="instagram" target="_blank"><i class="bi bi-instagram"></i></a>
                         </div>
                     </div>
                 </div>
