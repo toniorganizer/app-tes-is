@@ -253,9 +253,15 @@ class PekerjaController extends Controller
             'status_tracer' => $request->status
         ]);
 
+        if($request->status_bekerja == 'Sudah Bekerja'){
+            $status_kerja = 'Bekerja';
+        }else{
+            $status_kerja = 'Belum Bekerja';
+        }
+
         PencariKerja::where('email_pk', $request->email_pk)->update([
             'bkk_id' => $request->id_bkk,
-            'status_ak1' => 'Bekerja',
+            'status_ak1' => $status_kerja,
 
         ]);
 

@@ -73,6 +73,9 @@
                                                     @if(Auth::user()->level == 1)
                                                     <a href="/deleteTenagaKerja/{{$user->email_pk}}" class="badge badge-danger" onclick="return confirm('Yakin ingin menghpus?')">Hapus</a>
                                                     @endif
+                                                    @if(Auth::user()->level == 3)
+                                                    <a href="/deleteTenagaKerja/{{$user->email_pk}}" class="badge badge-danger" onclick="return confirm('Yakin ingin menghpus?')">Hapus</a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

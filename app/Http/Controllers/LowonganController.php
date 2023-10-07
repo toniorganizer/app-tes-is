@@ -209,7 +209,7 @@ class LowonganController extends Controller
     {
         $data = InformasiLowongan::where('id_informasi_lowongan', $id)->first();
         Storage::delete('public/informasi-lowongan/'. $data->foto);
-        $data->delete();
+        InformasiLowongan::where('id_informasi_lowongan', $id)->delete();
         return redirect('/lowongan')->with('success', 'Data Berhasil Dihapus!');
     }
 
