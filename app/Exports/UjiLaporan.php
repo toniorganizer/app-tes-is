@@ -224,13 +224,11 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
         
         $deleteUserNowL = DB::table('pencari_kerjas')
             ->where('jenis_kelamin', 'Laki-laki')
-            ->whereBetween('created_at', [$StartDateYear, $endDateYear])
-            ->whereNotNull('deleted_at')->count();
+            ->whereBetween('deleted_at', [$StartDateYear, $endDateYear])->count();
 
         $deleteUserNowP = DB::table('pencari_kerjas')
             ->where('jenis_kelamin', 'Perempuan')
-            ->whereBetween('created_at', [$StartDateYear, $endDateYear])
-            ->whereNotNull('deleted_at')->count();
+            ->whereBetween('deleted_at', [$StartDateYear, $endDateYear])->count();
 
         $deleteUserNow = $deleteUserNowL + $deleteUserNowP;
         $jumlahPB = $deleteUserNowP + $jmlP_ditempatkan;
@@ -268,16 +266,14 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
 
             $maleCountDelete = DB::table('pencari_kerjas')
                 ->where('jenis_kelamin', 'Laki-laki')
-                ->whereNotNull('deleted_at')
+                ->whereBetween('deleted_at', [$StartDateYear, $endDateYear])
                 ->whereBetween(DB::raw('umur'), [$startAge, $endAge])
-                ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
     
             $femaleCountDelete = DB::table('pencari_kerjas')
                 ->where('jenis_kelamin', 'Perempuan')
-                ->whereNotNull('deleted_at')
+                ->whereBetween('deleted_at', [$StartDateYear, $endDateYear])
                 ->whereBetween(DB::raw('umur'), [$startAge, $endAge])
-                ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
             
             $maleCountDitempatkan = DB::table('pencari_kerjas')
@@ -429,20 +425,17 @@ class UjiLaporan implements WithDrawings, WithStyles, WithTitle, FromView, WithC
 
         $informasiMaleDelete = DB::table('informasi_lowongans')
             ->where('jenis_kelamin', 'Laki-laki')
-            ->whereNotNull('deleted_at')
-            ->whereBetween('created_at', [$StartDateYear, $endDateYear])
+            ->whereBetween('deleted_at', [$StartDateYear, $endDateYear])
             ->count();
 
         $informasiFemaleDelete = DB::table('informasi_lowongans')
             ->where('jenis_kelamin', 'Perempuan')
-            ->whereNotNull('deleted_at')
-            ->whereBetween('created_at', [$StartDateYear, $endDateYear])
+            ->whereBetween('deleted_at', [$StartDateYear, $endDateYear])
             ->count();
 
         $informasiMaleFemaleDelete = DB::table('informasi_lowongans')
             ->where('jenis_kelamin', 'Laki-laki/Perempuan')
-            ->whereNotNull('deleted_at')
-            ->whereBetween('created_at', [$StartDateYear, $endDateYear])
+            ->whereBetween('deleted_at', [$StartDateYear, $endDateYear])
             ->count();
   
         $jumlahInformasiTerpenuhi = $informasiTerpenuhiMale + $informasiTerpenuhiFemale + $informasiTerpenuhiMaleFemale;
