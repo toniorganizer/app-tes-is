@@ -31,19 +31,22 @@ class AdminController extends Controller
 {
     public function index(MonhtlyJobArea $chart, CountJobChart $jobcount)
     {
-
-        $data = InformasiLowongan::count();
-        $lamar = Lamar::where('id_pelamar', Auth::user()->email)->count();
-        $alumni = Alumni::join('users', 'users.email','=','alumnis.pencari_kerja_id')
-        ->join('bursa_kerjas', 'bursa_kerjas.id_bkk','=','alumnis.bkk_id')
-        ->where('email_sekolah', Auth::user()->email)->count();
-        $alumni_bekerja = Alumni::join('users', 'users.email','=','alumnis.pencari_kerja_id')
-        ->join('bursa_kerjas', 'bursa_kerjas.id_bkk','=','alumnis.bkk_id')
-        ->where('email_sekolah', Auth::user()->email)
-        ->where('status_bekerja', 'Sudah Bekerja')->count();
-        $user = User::count();
-        $pencari_kerja = PencariKerja::count();
-        $ak1 = PencariKerja::where('email_pk', Auth::user()->email)->first();
+        if(Auth::user()->email != null){
+            $data = InformasiLowongan::count();
+            $lamar = Lamar::where('id_pelamar', Auth::user()->email)->count();
+            $alumni = Alumni::join('users', 'users.email','=','alumnis.pencari_kerja_id')
+            ->join('bursa_kerjas', 'bursa_kerjas.id_bkk','=','alumnis.bkk_id')
+            ->where('email_sekolah', Auth::user()->email)->count();
+            $alumni_bekerja = Alumni::join('users', 'users.email','=','alumnis.pencari_kerja_id')
+            ->join('bursa_kerjas', 'bursa_kerjas.id_bkk','=','alumnis.bkk_id')
+            ->where('email_sekolah', Auth::user()->email)
+            ->where('status_bekerja', 'Sudah Bekerja')->count();
+            $user = User::count();
+            $pencari_kerja = PencariKerja::count();
+            $ak1 = PencariKerja::where('email_pk', Auth::user()->email)->first();
+        }else{
+            echo 'Silahkan lakukan login terlebih dahulu';
+        }
         
         if(Auth::user()->level == 2){
             $tglSaatIni = new DateTime();

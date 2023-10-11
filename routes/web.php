@@ -47,7 +47,7 @@ Route::get('/user-faq', function () {
     return view('dashboard.admin.user_faq');
 });
 
-Route::controller(AdminController::class)->group(function () {
+Route::group(['middleware' => 'check', 'controller' => AdminController::class], function () {
     Route::get('/home', 'index');
     Route::get('/profil-tenaga-kerja/{id}', 'profilTenagaKerja');
     Route::get('/edit-deskripsi/{id}', 'edit_deskripsi_lowongan');
