@@ -31,7 +31,7 @@ class MonthlyJobChart
         
         return $this->chart->lineChart()
             ->setTitle('Tren Informasi Pasar Kerja')
-            ->setSubtitle('Provinsi Sumatera Barat')
+            // ->setSubtitle('Provinsi Sumatera Barat')
             ->addData('Jumlah', $values)
             ->setXAxis($labels);
     }

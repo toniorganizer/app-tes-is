@@ -31,7 +31,7 @@ class MonhtlyJobArea
 
         return $this->chart->areaChart()
             ->setTitle('Tren Informasi Pasar Kerja')
-            ->setSubtitle('Provinsi Sumatera Barat')
+            // ->setSubtitle('Provinsi Sumatera Barat')
             ->addData('Jumlah', $values)
             ->setXAxis($labels);
     }

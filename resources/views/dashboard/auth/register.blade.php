@@ -7,7 +7,7 @@
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
+                    <div class="col-lg-5 col-md-8 d-flex flex-column align-items-center justify-content-center">
 
                         <div class="d-flex justify-content-center py-4">
                             <a href="/" class="logo d-flex align-items-center w-auto">
@@ -33,29 +33,24 @@
                                 <form action="register" method="post" class="row g-3 needs-validation" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-12">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label for="yourName" class="form-label">Nama</label>
-                                                <input autofocus type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required value="{{old('name')}}">
-                                                <small id="emailHelp" class="form-text text-muted">Masukan nama lengkap</small>
-                                                @error('name')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
+                                        <label for="yourName" class="form-label">Nama</label>
+                                        <input autofocus type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required value="{{old('name')}}">
+                                        <small id="emailHelp" class="form-text text-muted">Masukan nama lengkap</small>
+                                        @error('name')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
                                             </div>
-                                            <div class="col-6">
-                                                <label for="yourName" class="form-label">Umur</label>
-                                                <input autofocus type="text" name="umur" class="form-control @error('umur') is-invalid @enderror" id="yourumur" required value="{{old('umur')}}">
-                                                <small id="emailHelp" class="form-text text-muted">Isi dengan format angka. Ex : 23</small>
-                                                @error('umur')
-                                                    <div class="alert alert-danger mt-2">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
+                                        @enderror
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="yourName" class="form-label mt-2">Umur</label>
+                                        <input autofocus type="text" name="umur" class="form-control @error('umur') is-invalid @enderror" id="yourumur" required value="{{old('umur')}}">
+                                        <small id="emailHelp" class="form-text text-muted">Isi dengan format angka. Ex : 23</small>
+                                        @error('umur')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
                                             </div>
-                                        </div>
-                                        
+                                        @enderror
                                     </div>
 
                                     <div class="col-12">
@@ -97,8 +92,7 @@
                                         @enderror
                                     </div>
 
-
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <label for="yourPassword" class="form-label">Password</label>
                                         <input type="password" name="password" class="form-control" id="yourPassword" required>
                                         @error('password')
@@ -107,7 +101,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <label for="yourPassword" class="form-label">Ulangi Password</label>
                                         <input type="password" name="ulangi_password" class="form-control" id="yourPassword" required>
                                         @error('ulangi_password')

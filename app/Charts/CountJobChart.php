@@ -38,7 +38,7 @@ class CountJobChart
         
         return $this->chart->donutChart()
             ->setTitle('Bursa Pasar Kerja')
-            ->setSubtitle('Provinsi Sumatera Barat')
+            // ->setSubtitle('Provinsi Sumatera Barat')
             ->addData($values)
             ->setLabels($labels);
     }
