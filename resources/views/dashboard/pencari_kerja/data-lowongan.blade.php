@@ -34,6 +34,9 @@
                         <h2>{{$item->judul_lowongan}}</h2>
                         <h3>{{$item->bidang}}</h3>
                         <div class="social-links mt-2">
+                            <span class="text-success small pt-1 fw-bold">{{$item->perusahaan}}</span>
+                        </div>
+                        <div class="social-links">
                             <span class="text-success small pt-1 fw-bold">{{$item->jumlah_pelamar}}</span> <span class="text-muted small pt-2 ps-1">Pendaftar</span>
                         </div>
                         @if($item->status_lowongan == 0)

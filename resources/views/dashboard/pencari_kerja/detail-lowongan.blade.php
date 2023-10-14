@@ -27,31 +27,15 @@
 
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <h5 class="card-title">{{$data->judul_lowongan}} <span><br>{{$data->perusahaan}}</span></h5>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="btn">
-                                        {{-- @if(!$id_informasii == null && !$id_informasii == null)
-                                              @if($id_informasii->id_informasi && $id_informasii->id_pelamar == Auth::user()->email)
-                                              <a href="#" class="btn btn-info">
-                                                Lamaran Terkirim
-                                              </a>
-                                              @else
-                                              <a href="/lamar-pekerjaan/{{$data->id_informasi_lowongan}}" class="btn btn-primary">
-                                                Lamar sekarang
-                                              </a>
-                                              @endif
-                                            @else
-                                            <a href="/lamar-pekerjaan/{{$data->id_informasi_lowongan}}" class="btn btn-primary">
-                                              Lamar sekarang
-                                            </a>
-                                          @endif --}}
-
                                             @if(Auth::user()->level == 2)
                                               @if($exists)
                                               <a href="#" class="btn btn-info">
-                                                Lamaran Terkirim
+                                                Lamar Terkirim
                                               </a>
                                               @else
                                               <a href="/lamar-pekerjaan/{{$data->id_informasi_lowongan}}" class="btn btn-primary">
@@ -64,14 +48,14 @@
                                     </div>
                                 </div>
                                 <div class="meta-top-center">
-                                    <ul>
+                                    {{-- <ul>
                                         <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> <a href="#">{{$data->lokasi}}</a></li>
-                                    </ul>
+                                    </ul> --}}
                                   </div>
                                   <div class="meta-top">
                                     <ul>
-                                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"> {{date('d/m/Y', strtotime($data->created_at))}}</a></li>
-                                      {{-- <li class="d-flex align-items-center"><i class="bi bi-clock-history"></i> <a href="#">12 Comments</a> --}}
+                                      <li class="d-flex align-items-center"><i class="bi bi-geo-alt"></i> <a href="#"> {{$data->lokasi}} </a></li>
+                                      <li class="d-flex align-items-center"><i class="bi bi-clock-history"></i> <a href="#">{{date('d/m/Y', strtotime($data->created_at))}}</a>
                                       </li>
                                     </ul>
                                   </div>
@@ -147,7 +131,17 @@
                             <div class="judul">
                               <p>Tanggal Expired :</p>
                               <div class="sub-judul">
-                                <p>{{date('h/m/Y', strtotime($data->created_at))}}</p>
+                                <p>{{date('h/m/Y', strtotime($data->tgl_tutup))}}</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="post-item mt-3">
+                            <i class="bi bi-clock"></i>
+                            <div class="judul">
+                              <p>Update Informasi :</p>
+                              <div class="sub-judul">
+                                <p>{{date('h/m/Y', strtotime($data->updated_at))}}</p>
                               </div>
                             </div>
                           </div>

@@ -93,6 +93,12 @@ section {
   padding-bottom: 40px;
 }
 
+.post-author .btn {
+  float: left;
+  color: white;
+  margin-top: 0px;
+}
+
 .section-header h2 {
   font-size: 48px;
   font-weight: 300;
@@ -490,6 +496,14 @@ section {
     bottom: 0;
     transition: 0.3s;
     z-index: 9997;
+  }
+
+  @media (max-width: 312px){
+    .post-author .btn {
+      float: left;
+      color: white;
+      margin-top: 0px;
+    }
   }
 
   .navbar ul {
@@ -2777,7 +2791,7 @@ section {
 }
 
 .blog .post-author .meta-top {
-  margin-top: 20px;
+  margin-top: 0px;
   color: var(--color-gray);
 }
 
@@ -2788,6 +2802,7 @@ section {
   align-items: center;
   padding: 0;
   margin: 0;
+  margin-left: 15px;
 }
 
 .blog .post-author .meta-top ul li+li {
@@ -2802,7 +2817,7 @@ section {
 }
 
 .blog .post-author .meta-top-center {
-  margin-top: 20px;
+  margin-top: 0px;
   color: var(--color-gray);
 }
 
@@ -2834,8 +2849,10 @@ section {
 }
 
 .blog .post-author .btn {
-  float: right;
+  float: left;
   color: white;
+  margin-bottom: 10px;
+  margin-left: 0px;
 }
 
 .blog .post-author .meta-top a {
@@ -2916,6 +2933,7 @@ section {
   font-size: 22px;
   margin-bottom: 10px;
   padding: 0;
+  margin-left: 15px;
   color: var(--color-secondary);
 }
 
@@ -2924,6 +2942,7 @@ section {
   font-size: 18px;
   margin-bottom: 10px;
   padding: 0;
+  margin-left: 15px;
   color: var(--color-secondary);
   text-transform: uppercase;
 }

@@ -138,7 +138,7 @@
                                     @elseif(Auth::user()->level == 2)
                                     <a href="" class="btn btn-primary" data-toggle="modal" data-target="#edit-tk{{$data->id}}">Edit</a>
                                     @endif
-                                    <a href="/home" class="btn btn-secondary mr-1">Kembali</a>
+                                    <a href="/home" class="btn btn-secondary ml-1">Kembali</a>
                                 </div>
                             </div>
                             @include('dashboard/modal/modal-edit-tenaga-kerja')
