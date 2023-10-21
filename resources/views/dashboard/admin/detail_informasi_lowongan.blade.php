@@ -140,7 +140,7 @@
                                 
                                 <div class="text-right">
                                     @if(Auth::user()->level == 1)
-                                    <a href="/edit-deskripsi/{{$data->id_informasi_lowongan}}" class="btn btn-info">Edit deskripsi</a>
+                                    <a href="/edit-deskripsi/{{$data->id_informasi_lowongan}}" class="btn btn-info mr-1">Edit deskripsi</a>
                                     <a href="" class="btn btn-secondary mr-1" data-toggle="modal" data-target="#edit-verifikasi{{$data->id_informasi_lowongan}}">Verifikasi</a>
                                     <a href="" class="btn btn-primary mr-1" data-toggle="modal" data-target="#edit-il{{$data->id_informasi_lowongan}}">Edit detail</a>
                                     @elseif(Auth::user()->email == 'disnaker@gmail.com')

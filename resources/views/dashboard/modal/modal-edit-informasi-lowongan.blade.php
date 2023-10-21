@@ -38,14 +38,23 @@
                         </div>
                     @enderror
                     </div>
-                    <div class="col-12">
-                        <label for="inputAddress5" class="form-label">Bidang Pekerjaan</label>
-                        <input type="text" name="bidang" class="form-control @error('bidang') is-invalid @enderror" id="inputAddres5s" value="{{$data->bidang}}">
-                        @error('bidang')
-                          <div class="alert alert-danger mt-2">
-                              {{ $message }}
-                          </div>
-                      @enderror
+                    
+                      <div class="col-12">
+                        <label for="inputAddress5" class="form-label">Bidang Lowogan</label>
+                        <select name="bidang" class="form-control">
+                          <option>Pilih Bidang Lowongan</option>
+                          <option {{ $data->bidang == 'Programmer' ? 'selected' : '' }} value="Programmer">Programmer</option>
+                          <option {{ $data->bidang == 'Desainer' ? 'selected' : '' }} value="Desainer">Desainer</option>
+                          <option {{ $data->bidang == 'Jasa' ? 'selected' : '' }} value="Jasa">Jasa</option>
+                          <option {{ $data->bidang == 'Operator' ? 'selected' : '' }} value="Operator">Operator</option>
+                          <option {{ $data->bidang == 'Teknisi' ? 'selected' : '' }} value="Teknisi">Teknisi</option>
+                          <option {{ $data->bidang == 'Pendidik' ? 'selected' : '' }} value="Pendidik">Pendidik</option>
+                          <option {{ $data->bidang == 'Pegawai' ? 'selected' : '' }} value="Pegawai">Pegawai</option>
+                          <option {{ $data->bidang == 'Supir' ? 'selected' : '' }} value="Supir">Supir</option>
+                          <option {{ $data->bidang == 'Animator' ? 'selected' : '' }} value="Animator">Animator</option>
+                          <option {{ $data->bidang == 'Apoteker' ? 'selected' : '' }} value="Apoteker">Apoteker</option>
+                          <option {{ $data->bidang == 'Lainnya' ? 'selected' : '' }} value="Lainnya">Lainnya</option>
+                        </select>
                       </div>
                       <div class="col-12">
                         <label for="inputAddress5" class="form-label">Jurusan yang dibutuhkan</label>
@@ -95,9 +104,9 @@
                       <label for="exampleFormControlSelect2">Kebutuhan Jenis Kelamin</label>
                       <select name="jenis_kelamin" class="form-control" id="exampleFormControlSelect1">
                           <option>Pilih Jenis Kelamin</option>
-                          <option value="Laki-laki" {{ $data->jenis_lowongan == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                          <option value="Perempuan" {{ $data->jenis_lowongan == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                          <option value="Laki-laki/Perempuan" {{ $data->jenis_lowongan == 'Laki-laki/Perempuan' ? 'selected' : '' }}>Laki-laki/Perempuan</option>
+                          <option value="Laki-laki" {{ $data->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                          <option value="Perempuan" {{ $data->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                          <option value="Laki-laki/Perempuan" {{ $data->jenis_kelamin == 'Laki-laki/Perempuan' ? 'selected' : '' }}>Laki-laki/Perempuan</option>
                         </select>
                     </div>
                     <div class="col-12">
@@ -121,7 +130,7 @@
 
                       <div class="col-12">
                         <label for="inputAddress2" class="form-label">Tanggal Dibuka</label>
-                        <input type="date" name="tgl_buka" class="form-control @error('tgl_buka') is-invalid @enderror" id="inputAddress2" value="{{old('tgl_buka')}}">
+                        <input type="date" name="tgl_buka" class="form-control @error('tgl_buka') is-invalid @enderror" id="inputAddress2" value="{{old('tgl_buka', $data->tgl_buka)}}">
                         @error('tgl_buka')
                           <div class="alert alert-danger mt-2">
                               {{ $message }}
@@ -130,7 +139,7 @@
                       </div>
                       <div class="col-12">
                         <label for="inputAddress2" class="form-label">Tanggal Tutup</label>
-                        <input type="date" name="tgl_tutup" class="form-control @error('tgl_tutup') is-invalid @enderror" id="inputAddress2" value="{{old('tgl_tutup')}}">
+                        <input type="date" name="tgl_tutup" class="form-control @error('tgl_tutup') is-invalid @enderror" id="inputAddress2" value="{{old('tgl_tutup', $data->tgl_tutup)}}">
                         @error('tgl_tutup')
                           <div class="alert alert-danger mt-2">
                               {{ $message }}

@@ -50,7 +50,7 @@
                                 </form>
                                 </div>
                             </div>
-                            <div class="col-lg-2 float-left mt-5">
+                            <div class="col-lg-2 float-left mt-2 mb-2">
                                 <a href="/cetak-laporan-semester{{ session('bulan2') == 06 ? '?bulan1=01&bulan2=06' : '?bulan1=07&bulan2=12' }}" class="btn btn-success">
                                     Cetak <i class="bi bi-file-earmark-excel"></i>
                                 </a>

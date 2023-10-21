@@ -113,6 +113,7 @@ class LowonganController extends Controller
     public function show(String $id)
     {
         $data = InformasiLowongan::where('id_informasi_lowongan', $id)->first();
+        // dd($data);
         return view('Dashboard.admin.detail_informasi_lowongan', [
             'sub_title' => 'Data Informasi Lowongan',
             'title' => 'Data',

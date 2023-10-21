@@ -32,7 +32,7 @@
                                             Pilih Laporan berdasarkan semester (Rentang Bulan) : 
                                             <div class="row">
                                                 <div class="col">
-                                                    <select id="bulan1" name="bulan1" class="form-control form-control-sm mb-3 mt-2" name="">
+                                                    <select id="bulan1" name="bulan1" class="form-control form-control-sm mb-2 mt-2" name="">
                                                         <option value="">Pilih Bulan</option>
                                                         <option value="01">Januari</option>
                                                         <option value="07">Juli</option>
@@ -50,7 +50,7 @@
                                 </form>
                                 </div>
                             </div>
-                            <div class="col-lg-2 float-left mt-5">
+                            <div class="col-lg-2 float-right mt-2 mb-2">
                                 <a href="/uji-laporan" class="btn btn-success">
                                     Cetak <i class="bi bi-file-earmark-excel"></i>
                                 </a>

@@ -182,7 +182,9 @@ class AdminController extends Controller
     public function profilTenagaKerja($id){
         $data = PencariKerja::join('users','users.email','=','pencari_kerjas.email_pk')->join('alumnis', 'alumnis.pencari_kerja_id','=','pencari_kerjas.email_pk')->where('email_pk', $id)->first();
 
-        // dd($data->foto_pencari_kerja);
+    //    $data = PencariKerja::join('users','users.email','=','pencari_kerjas.email_pk')->where('email_pk', $id)->first();
+
+        // dd($data);
 
         return view('Dashboard.admin.profil_tenaga_kerja', [
             'sub_title' => 'Profile',
