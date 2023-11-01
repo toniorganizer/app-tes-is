@@ -91,8 +91,8 @@
                                 </div>
                                 
                                 <div class="text-right">
-                                    <a data-toggle="modal" data-target="#edit-bkk{{$data->id_bkk}}" class="btn btn-primary">Lengkapi data</a>
-                                    <a href="/home" class="btn btn-secondary mr-1">Kembali</a>
+                                    <a data-toggle="modal" data-target="#edit-bkk{{$data->id_bkk}}" class="btn btn-primary mr-1">Lengkapi data</a>
+                                    <a href="/home" class="btn btn-secondary">Kembali</a>
                                 </div>
                             </div>
                             @include('dashboard/modal/modal-edit-profil-sekolah')

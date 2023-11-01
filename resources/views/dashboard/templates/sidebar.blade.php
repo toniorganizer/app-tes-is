@@ -189,6 +189,18 @@
                 <i class="bi bi-envelope-paper-heart"></i>
                 <span>Data Tracer</span>
             </a>
+        </li>
+        <li class="nav-item">
+            @if($title == 'Data Rekomendasi')
+            <a class="nav-link " href="/pemerintah">
+            @elseif($sub_title == 'Data Rekomendasi')
+            <a class="nav-link " href="/pemerintah">
+            @else
+            <a class="nav-link collapsed" href="/pemerintah">
+            @endif
+                <i class="bi bi-cloud-fog2"></i>
+                <span>Trend</span>
+            </a>
         </li><!-- End Dashboard Nav -->
         @endif
 
