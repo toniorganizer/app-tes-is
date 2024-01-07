@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\BursaKerja;
+use App\Exports\CetakAlumni;
 use App\Models\PencariKerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
 class BursaKerjaController extends Controller
@@ -149,4 +151,10 @@ class BursaKerjaController extends Controller
             'data' => $data
         ]);
     }
+
+    public function CetakDataAlumni($id){
+        $data = BursaKerja::where('email_sekolah', $id)->first();
+        $fileName = 'Data Alumni '. $data->nama_sekolah .'.xlsx';
+        return Excel::download(new CetakAlumni($id), $fileName);
+     }
 }

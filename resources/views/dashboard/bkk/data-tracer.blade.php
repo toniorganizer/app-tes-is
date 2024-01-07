@@ -39,6 +39,7 @@
                         <div class="row">
                             <div class="col-md-12 overflow-scroll">
                                 <table class="table datatable">
+                                    <a href="/cetak-alumni/{{Auth::user()->email}}" class="btn btn-success mt-2 mr-2"><i class="bi bi-file-earmark-excel"></i>Cetak</a>
                                     <thead>
                                         <tr>
                                             <th scope="col">No.</th>

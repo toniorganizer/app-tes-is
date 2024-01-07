@@ -119,6 +119,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::controller(BursaKerjaController::class)->group(function (){
+        Route::get('/cetak-alumni/{id}', 'cetakDataAlumni');
         Route::get('/tracer-data', 'dataTracer');
     });
 

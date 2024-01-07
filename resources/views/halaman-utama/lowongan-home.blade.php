@@ -113,8 +113,8 @@
                   </div>
                   @elseif($item->verifikasi == 2)
                   <div class="no-verifikasi">
-                    <i class="bi bi-x-circle"></i>
-                    Tidak disetujui
+                    {{-- <i class="bi bi-x-circle"></i> --}}
+                    
                   </div>
                   @else
                     <div class="verifikasi">
