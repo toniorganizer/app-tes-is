@@ -264,4 +264,8 @@ class LoginController extends Controller
             'data' => $data
         ]);
     }
+
+    public function lupaPassword(){
+        return view('dashboard.auth.lupa-password');
+    }
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\BursaKerjaController;
 use App\Http\Controllers\KepentinganController;
 use Illuminate\Http\Request as IlluminateRequest;
+use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\PemberiInformasiController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -28,7 +29,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->where('status_lowongan', 0)->get();
+    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->where('status_lowongan', 1)->orWhere('status_lowongan', 3)->orWhere('status_lowongan', 0)->get();
     return view('halaman-utama.index', [
         'data' => $data
     ]);
@@ -39,7 +40,7 @@ Route::get('/hubungi', function () {
 });
 
 Route::get('/lowongan-home', function () {
-    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->where('status_lowongan', 0)->paginate(7);
+    $data = InformasiLowongan::join('users','users.id_user','=','informasi_lowongans.pemberi_informasi_id')->where('status_lowongan', 1)->orWhere('status_lowongan', 3)->orWhere('status_lowongan', 0)->paginate(7);
     return view('halaman-utama.lowongan-home', ['data' => $data]);
 });
 
@@ -69,6 +70,13 @@ Route::controller(LoginController::class)->group(function () {
     Route::get('/searching-lokasi', 'searchingLokasi');
     Route::get('/search-job', 'searchJob');
     Route::get('/search-bidang', 'searchingBidang');
+    Route::get('/lupa-password', 'lupaPassword');
+});
+
+Route::controller(ForgetPasswordController::class)->group(function (){
+    Route::post('/forget-password', 'submitForgetPasswordForm');
+    Route::post('reset-password', 'submitResetPasswordForm')->name('reset.password.post');
+    Route::get('reset-password/{token}','showResetPasswordForm')->name('reset.password.get');
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -111,7 +119,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::controller(PemberiInformasiController::class)->group(function () {
         Route::get('/lowongan-data', 'data_lowongan');
         Route::get('/detail-pendaftar/{id}', 'data_pelamar');
-        Route::get('/detail-data-pendaftar/{id}', 'detail_data_pelamar');
+        Route::post('/detail-data-pendaftar/{id}', 'detail_data_pelamar');
         Route::get('/lengkapi-data-lowongan/{id}', 'lengkapi_data_lowongan');
         Route::post('/sumber/{id_informasi_lowongan?}/update_informasi', 'updateInformasi')->name('sumber.update_informasi');
         Route::post('/sumber/{id_lamar?}/verifikasi', 'verifikasiPelamar')->name('sumber.verifikasi');

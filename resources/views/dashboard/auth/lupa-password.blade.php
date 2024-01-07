@@ -21,8 +21,8 @@
                             <div class="card-body">
 
                                 <div class="pt-4 pb-2">
-                                    <h5 class="card-title text-center pb-0 fs-4">Halaman Login</h5>
-                                    <p class="text-center small">Masukan Username & Password</p>
+                                    <h5 class="card-title text-center pb-0 fs-4">Reset Password</h5>
+                                    <p class="text-center small"></p>
                                 </div>
                                 @if(session('error'))
                                     <p class="alert alert-danger">{{session('error')}}</p>
@@ -36,36 +36,29 @@
                                     <p class="alert alert-danger">{{session('not-registered')}}</p>
                                 @endif
 
-                                <form class="row g-3 needs-validation" method="post" action="login_action">
+                                @if(session('message'))
+                                    <p class="alert alert-primary">{{session('message')}}</p>
+                                @endif
+
+                                <form class="row g-3 needs-validation" method="post" action="forget-password">
                                     @csrf
                                     <div class="col-12">
-                                        <label for="yourUsername" class="form-label">Username</label>
+                                        <label for="yourUsername" class="form-label">Masukan E-mail terdaftar</label>
                                         <div class="input-group has-validation">
                                             <!-- <span class="input-group-text" id="inputGroupPrepend">@</span> -->
-                                            <input autofocus type="text" name="username" class="form-control @error('username') is-invalid @enderror" id="yourUsername">
-                                            @error('username')
+                                            <input autofocus type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="yourUsername">
+                                            @error('email')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="col-12">
-                                        <label for="yourPassword" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="yourPassword">
-                                        @error('password')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
+                                        <button class="btn btn-primary w-100" type="submit">Reset</button>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100" type="submit">Login</button>
-                                    </div>
-                                    <div class="col-12">
-                                        <p class="small mb-0">Belum punya akun? <a href="/user-register">Daftar</a></p>
-                                        <p class="small mb-0">Lupa password? <a href="/lupa-password">Reset Password</a></p>
+                                        <p class="small mb-0">Halaman login? <a href="/login">Login</a></p>
                                     </div>
                                 </form>
 
