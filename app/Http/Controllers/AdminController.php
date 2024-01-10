@@ -158,6 +158,7 @@ class AdminController extends Controller
             'name' => $request->nama,
             'email' => $request->email,
             'level' => 2,
+            'icon' => 0,
             'status_tracer' => 0,
             'password' => Hash::make($request->password),
             'foto_user' => $foto->hashName(),
@@ -273,6 +274,7 @@ class AdminController extends Controller
                 'name' => $request->nama_user,
                 'email' => $request->email,
                 'level' => 2,
+                'icon' => 0,
                 'status_tracer' => 0,
                 'password' => Hash::make($request->password),
                 'foto_user' => 'default.jpg',
@@ -280,9 +282,11 @@ class AdminController extends Controller
         }elseif($request->level == 3){
             PemangkuKepentingan::create([
                 'nama_lembaga' => $request->nama_user,
+                'id_disnaker_kab' => $request->id_disnaker_kab,
                 'bidang_lembaga' => '-',
                 'email_lembaga' =>  $request->email,
                 'website_lembaga' => '-',
+                'status_lembaga' => 0,
                 'instagram_lembaga' => '-',
                 'facebook_lembaga' => '-',
                 'telepon_lembaga' => '-',
@@ -295,6 +299,7 @@ class AdminController extends Controller
                 'name' => $request->nama_user,
                 'email' => $request->email,
                 'level' => 3,
+                'icon' => 0,
                 'status_tracer' => 0,
                 'password' => Hash::make($request->password),
                 'foto_user' => 'default.jpg',
@@ -318,6 +323,7 @@ class AdminController extends Controller
                 'name' => $request->nama_user,
                 'email' => $request->email,
                 'level' => 4,
+                'icon' => 0,
                 'status_tracer' => 0,
                 'password' => Hash::make($request->password),
                 'foto_user' => 'default.jpg',
@@ -339,6 +345,7 @@ class AdminController extends Controller
                 'name' => $request->nama_user,
                 'email' => $request->email,
                 'level' => 5,
+                'icon' => 0,
                 'status_tracer' => 0,
                 'password' => Hash::make($request->password),
                 'foto_user' => 'default.jpg',
@@ -346,6 +353,69 @@ class AdminController extends Controller
         }
 
         return redirect('/user-data')->with('success', 'Data Berhasil Disimpan!');
+    }
+
+    public function pemangkuKepentinganData(){
+        $data = PemangkuKepentingan::get();
+        return view('Dashboard.admin.pemangku_kepentingan_data', [
+            'sub_title' => 'Data Pemangku Kepentingan',
+            'title' => 'Data',
+            'data' => $data
+        ]);
+    }
+
+    public function registerLembaga(Request $request){
+        $this->validate($request, [
+            'username' => 'required|min:5|unique:users',
+            'nama_lembaga' => 'required|min:5',
+            'email' => 'required|min:5|unique:users|email',
+            'password' => 'required|same:ulangi_password|min:6',
+            'ulangi_password' => 'required|same:password'
+        ],
+            [
+                'username.required' => 'Username tidak boleh kosong',
+                'username.min' => 'Username minimal berisi 5 karakter',
+                'username.unique' => 'Username yang anda masukan sudah terdaftar',
+                'nama_lembaga.required' => 'Nama lembaga tidak boleh kosong',
+                'nama_lembaga.min' => 'Nama lembaga minimal berisi 5 karakter',
+                'email.required' => 'Email lembaga tidak boleh kosong',
+                'email.unique' => 'Email lembaga yang anda masukan sudah terdaftar',
+                'email_lembaga.min' => 'Email lembaga minimal berisi 5 karakter',
+                'password.required' => 'Password tidak boleh kosong',
+                'password.min' => 'Password minimal berisi 6 karakter',
+                'password.same' => 'Password harus sama dengan konfirmasi password',
+                'ulangi_password.same' => 'Konfirmasi password harus sama dengan password',
+            ]
+        );
+
+        PemangkuKepentingan::create([
+            'nama_lembaga' => $request->nama_lembaga,
+            'bidang_lembaga' => '-',
+            'status_lembaga' => $request->status_lembaga,
+            'role_acc' => 0,
+            'id_disnaker_kab' => $request->id_disnaker_kab,
+            'email_lembaga' =>  $request->email,
+            'website_lembaga' => '-',
+            'instagram_lembaga' => '-',
+            'facebook_lembaga' => '-',
+            'telepon_lembaga' => '-',
+            'alamat_lembaga' => '-',
+            'foto_lembaga' => 'default.jpg',
+        ]);
+
+        User::create([
+            'username' => $request->username,
+            'name' => $request->nama_lembaga,
+            'email' => $request->email,
+            'level' => 3,
+            'icon' => 0,
+            'status_tracer' => 0,
+            'password' => Hash::make($request->password),
+            'foto_user' => 'default.jpg',
+        ]);
+
+        return redirect('/pemangku-kepentingan-data')->with('success', 'Data Berhasil Disimpan!');
+
     }
 
     public function Laporan(){
@@ -700,7 +770,7 @@ class AdminController extends Controller
             'jumlah_informasi_male_female' => $jumlahInformasiMaleFemale,
             'jumlah_informasi' => $jumlahInformasi,
             'sub_title' => 'Laporan',
-            'title' => 'Data'
+            'title' => 'Data Laporan'
         ]);
     }
 

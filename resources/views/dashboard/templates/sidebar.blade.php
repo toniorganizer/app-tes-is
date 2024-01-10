@@ -38,6 +38,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/pemangku-kepentingan-data" @if($sub_title == 'Data Pemangku Kepentingan') class="active" @endif>
+                      <i class="bi bi-circle"></i><span>Data Pemangku Kepentingan</span>
+                    </a>
+                </li>
+                <li>
                     <a href="/pekerjaan-data" @if($sub_title == 'Data Pekerjaan') class="active" @endif>
                       <i class="bi bi-circle"></i><span>Data Pekerjaan</span>
                     </a>
@@ -57,9 +62,9 @@
             </a>
         </li>
           <li class="nav-item">
-            @if($title == 'Cetak Laporan')
+            @if($title == 'Data Laporan')
             <a class="nav-link " href="/laporan">
-            @elseif($sub_title == 'Cetak Laporan')
+            @elseif($sub_title == 'Laporan')
             <a class="nav-link " href="/laporan">
             @else
             <a class="nav-link collapsed" href="/laporan">
@@ -83,6 +88,11 @@
                 <li>
                     <a href="/lowongan-data" @if($sub_title == 'Data Lowongan') class="active" @endif>
                       <i class="bi bi-circle"></i><span>Data Lowongan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/tenaga-kerja-data" @if($sub_title == 'Data pencari kerja') class="active" @endif>
+                      <i class="bi bi-circle"></i><span>Data pencari kerja</span>
                     </a>
                 </li>
                 <li>
@@ -152,7 +162,7 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            @if($title == 'Laporan')
+            @if($title == 'Data Laporan')
             <a class="nav-link " href="/laporan">
             @elseif($sub_title == 'Laporan')
             <a class="nav-link " href="/laporan">

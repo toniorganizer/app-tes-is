@@ -99,7 +99,7 @@
                                 
                                 <div class="text-right">
                                     <a href="" class="btn btn-primary" data-toggle="modal" data-target="#edit-pk{{$data->id_pemangku_kepentingan}}">Lengkapi data</a>
-                                    <a href="/home" class="btn btn-secondary mr-1">Kembali</a>
+                                    <a href="/home" class="btn btn-secondary ml-1">Kembali</a>
                                 </div>
                             </div>
                             @include('dashboard/modal/modal-update-profile-lembaga')

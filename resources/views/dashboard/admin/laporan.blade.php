@@ -50,7 +50,7 @@
                                 </form>
                                 </div>
                             </div>
-                            <div class="col-lg-2 float-right mt-2 mb-2">
+                            <div class="col-lg-2 float-right mt-5">
                                 <a href="/uji-laporan" class="btn btn-success">
                                     Cetak <i class="bi bi-file-earmark-excel"></i>
                                 </a>
