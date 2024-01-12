@@ -40,7 +40,7 @@
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
                                         </div>
-                                    @enderror
+                                         @enderror
                                         <small id="emailHelp" class="form-text text-muted">File max. 150 KB</small>
                                         </div>
                                     <div class="col-lg-6">
@@ -80,9 +80,9 @@
                                         <div class="form-group mb-3">
                                             <textarea name="pesan" class="form-control @error('pesan') is-invalid @enderror ckeditor" id="ckeditor" rows="3"></textarea>
                                             @error('pesan')
-                                            <small id="emailHelp" class="form-text text-muted">
-                                                {{$message}}
-                                            </small>
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
                                             @enderror
                                         </div>
                                     </div>

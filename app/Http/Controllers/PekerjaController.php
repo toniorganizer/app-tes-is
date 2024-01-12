@@ -183,10 +183,14 @@ class PekerjaController extends Controller
     public function lamarLowonganPekerjaan(Request $request){
         $this->validate($request, [
             'pesan' => 'required|min:15',
-            'cv' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'ijazah' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'cv' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'ijazah' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nilai' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'portofolio' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ], [
+            'cv.required' => 'CV tidak boleh kosong',
+            'pesan.required' => 'Jelaskan tentang diri anda',
+            'ijazah.required' => 'Ijazah tidak boleh kosong',
         ]);
 
         if($request->hasFile('cv') && $request->hasFile('portofolio') && $request->hasFile('ijazah') && $request->hasFile('nilai')){
@@ -311,6 +315,22 @@ class PekerjaController extends Controller
     }
 
     public function updateTracerStudy(Request $request){
+        $this->validate($request, [
+            'tahun_lulus' => 'required',
+            'jurusan' => 'required',
+            'id_bkk' => 'required|numeric|not_in:0|exists:bkk,id_bkk',
+            'status_bekerja' => 'required',
+            'tempat_kerja' => 'required',
+        ], [
+            'jurusan.required' => 'Jurusan tidak boleh kosong',
+            'tahun_lulus.required' => 'Tahun lulus tidak boleh kosong',
+            'id_bkk.required' => 'Sekolah harus dipilih.',
+            'id_bkk.numeric' => 'Format data sekolah tidak valid.',
+            'id_bkk.exists' => 'Sekolah yang dipilih tidak valid.',
+            'id_bkk.not_in' => 'Sekolah harus dipilih.',
+            'status_bekerja.required' => 'Silahkan pilih status bekerja',
+            'tempat_kerja.required' => 'Silahkan isi dengan "-" jika belum bekerja',
+        ]);
         Alumni::create([
             'pencari_kerja_id' => $request->email_pk,
             'bkk_id' => $request->id_bkk,
@@ -345,6 +365,21 @@ class PekerjaController extends Controller
     }
 
     public function updateDataTracer(Request $request){
+        $this->validate($request, [
+            'tahun_lulus' => 'required',
+            'jurusan' => 'required',
+            'id_bkk' => 'required|numeric|not_in:0',
+            'status_bekerja' => 'required',
+            'tempat_kerja' => 'required',
+        ], [
+            'jurusan.required' => 'Jurusan tidak boleh kosong',
+            'tahun_lulus.required' => 'Tahun lulus tidak boleh kosong',
+            'id_bkk.required' => 'Sekolah harus dipilih.',
+            'id_bkk.numeric' => 'Format data sekolah tidak valid.',
+            'id_bkk.not_in' => 'Sekolah harus dipilih.',
+            'status_bekerja.required' => 'Silahkan pilih status bekerja',
+            'tempat_kerja.required' => 'Silahkan isi dengan "-" jika belum bekerja',
+        ]);
         Alumni::where('pencari_kerja_id', $request->email_pk)->update([
             'jurusan' => $request->jurusan,
             'status_bekerja' => $request->status_bekerja,
