@@ -252,6 +252,25 @@ class PekerjaController extends Controller
                 'cv' => $foto_cv->hashName(),
                 'portofolio' => $foto_portofolio->hashName(),
                 'ijazah' => '-',
+                'nilai' => '-',
+                'status' => 0,
+                'pesan' => $request->pesan
+            ]);
+        }
+        elseif($request->hasFile('cv') && $request->hasFile('ijazah')){
+            $foto_cv = $request->file('cv');
+            $foto_cv->storeAs('public/syarat', $foto_cv->hashName());
+
+            $foto_ijazah = $request->file('ijazah');
+            $foto_ijazah->storeAs('public/syarat', $foto_ijazah->hashName());
+
+            Lamar::create([
+                'id_informasi' => $request->id_informasi,
+                'id_pelamar' => $request->id_pelamar,
+                'cv' => $foto_cv->hashName(),
+                'ijazah' => $foto_ijazah->hashName(),
+                'portofolio' => '-',
+                'nilai' => '-',
                 'status' => 0,
                 'pesan' => $request->pesan
             ]);
@@ -265,6 +284,7 @@ class PekerjaController extends Controller
                 'cv' => $foto_cv->hashName(),
                 'ijazah' => '-',
                 'portofolio' => '-',
+                'nilai' => '-',
                 'status' => 0,
                 'pesan' => $request->pesan
             ]);
@@ -280,6 +300,7 @@ class PekerjaController extends Controller
                 'cv' => '-',
                 'ijazah' => $foto_ijazah->hashName(),
                 'portofolio' => '-',
+                'nilai' => '-',
                 'status' => 0,
                 'pesan' => $request->pesan
             ]);
@@ -293,6 +314,7 @@ class PekerjaController extends Controller
                 'id_pelamar' => $request->id_pelamar,
                 'cv' => '-',
                 'ijazah' => '-',
+                'nilai' => '-',
                 'portofolio' => $foto_portofolio->hashName(),
                 'status' => 0,
                 'pesan' => $request->pesan
@@ -318,7 +340,7 @@ class PekerjaController extends Controller
         $this->validate($request, [
             'tahun_lulus' => 'required',
             'jurusan' => 'required',
-            'id_bkk' => 'required|numeric|not_in:0|exists:bkk,id_bkk',
+            'id_bkk' => 'required|numeric|not_in:0',
             'status_bekerja' => 'required',
             'tempat_kerja' => 'required',
         ], [
@@ -326,7 +348,6 @@ class PekerjaController extends Controller
             'tahun_lulus.required' => 'Tahun lulus tidak boleh kosong',
             'id_bkk.required' => 'Sekolah harus dipilih.',
             'id_bkk.numeric' => 'Format data sekolah tidak valid.',
-            'id_bkk.exists' => 'Sekolah yang dipilih tidak valid.',
             'id_bkk.not_in' => 'Sekolah harus dipilih.',
             'status_bekerja.required' => 'Silahkan pilih status bekerja',
             'tempat_kerja.required' => 'Silahkan isi dengan "-" jika belum bekerja',

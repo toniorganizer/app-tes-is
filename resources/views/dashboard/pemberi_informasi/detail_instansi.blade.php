@@ -23,10 +23,7 @@
 
     <section class="section profile">
         <div class="row">
-            <div class="col-xl-4">
-
-                
-
+            <div class="col-xl-5">
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
@@ -55,7 +52,7 @@
 
             </div>
 
-            <div class="col-xl-8">
+            <div class="col-xl-7">
 
                 <div class="card">
                     <div class="card-body pt-3">

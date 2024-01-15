@@ -71,7 +71,7 @@
                                                 <td>{{$info_p->judul_lowongan}}</td>
                                                 <td>{{$info_p->perusahaan}}</td>
                                                 <td>{{$info_p->bidang}}</td>
-                                                <td>@if($info_p->status_lowongan == 0) Belum terpenuhi @else Terpenuhi @endif</td>
+                                                <td>@if($info_p->status_lowongan == 0) Belum terpenuhi @elseif($info_p->status_lowongan == 1) Proses pemeriksaan @else Terpenuhi @endif</td>
                                                 {{-- <td>{{$info_p->pengalaman}}</td> --}}
                                                 <td>
                                                     {{-- <a href="" class="badge badge-primary">Edit</a> --}}

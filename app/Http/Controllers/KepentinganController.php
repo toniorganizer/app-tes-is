@@ -27,13 +27,20 @@ class KepentinganController extends Controller
     {
         
         $data = InformasiLowongan::select('bidang', DB::raw('count(bidang) as jumlah'))->groupBy('bidang')->orderBy('jumlah', 'desc')->get();
+        $keterampilan = InformasiLowongan::select(DB::raw('keterampilan, COUNT(*) as hasil'))
+        ->groupBy('keterampilan')
+        ->orderBy('hasil', 'desc')
+        ->get();
+        $sidebar_data = PemangkuKepentingan::where('email_lembaga', Auth::user()->email)->first();
         
         return view('dashboard.pemangku-kepentingan.rekomendasi', 
         ['sub_title' => 'Data Rekomendasi',
             'title' => 'Data Rekomendasi',
+            'sidebar_data' => $sidebar_data,
             'chart' => $chart->build(), 
             'jobcount' => $jobcount->build(),
-            'data' => $data
+            'data' => $data,
+            'keterampilan' => $keterampilan
         ]);
     }
 
