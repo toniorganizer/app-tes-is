@@ -205,17 +205,26 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
             $semester = 'SEMESTER 2 : JULI S/D DESEMBER '. date("Y");
         }
 
-        $jmlPSebelumnya = DB::table('laporans')
-            ->sum(DB::raw('female_count_terdaftar'));
+        $jmlPSebelumnya = DB::table('pencari_kerjas')
+            ->where('jenis_kelamin', 'Perempuan')
+            ->where('status_ak1', 'Belum bekerja')
+            ->where('deleted_at', null)
+            ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
+            ->count();
 
-        $jmlLSebelumnya = DB::table('laporans')
-            ->sum(DB::raw('male_count_terdaftar'));
+        $jmlLSebelumnya = DB::table('pencari_kerjas')
+            ->where('jenis_kelamin', 'Laki-laki')
+            ->where('status_ak1', 'Belum bekerja')
+            ->where('deleted_at', null)
+            ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
+            ->count();
 
         $jmlNow = DB::table('pencari_kerjas')
             ->where('status_ak1', 'Belum bekerja')
+            ->where('deleted_at', null)
             ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();
-
+  
         $jmlSebelumnya = $jmlPSebelumnya + $jmlLSebelumnya;
 
         $jmlP_terdaftar = DB::table('pencari_kerjas')
@@ -230,16 +239,21 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
         
         $jmlP_ditempatkan = DB::table('pencari_kerjas')
             ->where('jenis_kelamin', 'Perempuan')
+            ->where('deleted_at', null)
             ->where('status_ak1', 'Bekerja')
+            ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();
 
         $jmlL_ditempatkan = DB::table('pencari_kerjas')
             ->where('jenis_kelamin', 'Laki-laki')
+            ->where('deleted_at', null)
             ->where('status_ak1', 'Bekerja')
+            ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();
         
         $jumlahPA = $jmlPSebelumnya + $jmlP_terdaftar;
         $jumlahLA = $jmlLSebelumnya + $jmlL_terdaftar;
+        // dd($jumlahPA);
         $jumlahA = $jumlahPA + $jumlahLA;
         $jmlDitempatkkan = $jmlL_ditempatkan + $jmlP_ditempatkan;
 
@@ -279,16 +293,19 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
     
             $maleCount = DB::table('pencari_kerjas')
                 ->where('jenis_kelamin', 'Laki-laki')
+                ->where('deleted_at', null)
                 ->whereBetween(DB::raw('umur'), [$startAge, $endAge])
                 ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
     
             $femaleCount = DB::table('pencari_kerjas')
                 ->where('jenis_kelamin', 'Perempuan')
+                ->where('deleted_at', null)
                 ->whereBetween(DB::raw('umur'), [$startAge, $endAge])
                 ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
-
+                
+                // dd($femaleCount);
             $maleCountDelete = DB::table('pencari_kerjas')
                 ->where('jenis_kelamin', 'Laki-laki')
                 ->whereBetween('deleted_at', [$StartDateYear, $endDateYear])
@@ -304,6 +321,7 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
             $maleCountDitempatkan = DB::table('pencari_kerjas')
                 ->where('jenis_kelamin', 'Laki-laki')
                 ->where('status_ak1', 'Bekerja')
+                ->where('deleted_at', null)
                 ->whereBetween(DB::raw('umur'), [$startAge, $endAge])
                 ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
@@ -311,6 +329,7 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
             $femaleCountDitempatkan = DB::table('pencari_kerjas')
                 ->where('jenis_kelamin', 'Perempuan')
                 ->where('status_ak1', 'Bekerja')
+                ->where('deleted_at', null)
                 ->whereBetween(DB::raw('umur'), [$startAge, $endAge])
                 ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
@@ -318,6 +337,7 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
             $maleCountSebelumnya = DB::table('pencari_kerjas')
                 ->where('status_ak1', 'Belum Bekerja')
                 ->where('jenis_kelamin', 'Laki-laki')
+                ->where('deleted_at', null)
                 ->whereBetween(DB::raw('umur'), [$startAge, $endAge])
                 ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
                 ->count();
@@ -325,18 +345,21 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
             $femaleCountSebelumnya = DB::table('pencari_kerjas')
             ->where('status_ak1', 'Belum Bekerja')
             ->where('jenis_kelamin', 'Perempuan')
+            ->where('deleted_at', null)
             ->whereBetween(DB::raw('umur'), [$startAge, $endAge])
             ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
             ->count();
 
             $maleCountTerdaftar = DB::table('pencari_kerjas')
                 ->where('jenis_kelamin', 'Laki-laki')
+                ->where('deleted_at', null)
                 ->whereBetween('umur', [$startAge, $endAge])
                 ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
     
             $femaleCountTerdaftar = DB::table('pencari_kerjas')
                 ->where('jenis_kelamin', 'Perempuan')
+                ->where('deleted_at', null)
                 ->whereBetween('umur', [$startAge, $endAge])
                 ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
@@ -379,37 +402,46 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
         // laporan informasi lowongan
         $maleCountInformasiBelum = DB::table('informasi_lowongans')
                 ->where('jenis_kelamin', 'Laki-laki')
-                ->where('status_lowongan', 0)
-                ->whereBetween('created_at', [$startInformasiDateSebelumnya, $endInformasiDateSebelumnya])
+                ->where(function ($query) {
+                    $query->where('status_lowongan', 0)
+                        ->orWhere('status_lowongan', 1);
+                })
+                ->Where('deleted_at', null)
+                ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
                 ->count();
         
         $femaleCountInformasiBelum = DB::table('informasi_lowongans')
                 ->where('jenis_kelamin', 'Perempuan')
-                ->where('status_lowongan', 0)
-                ->whereBetween('created_at', [$startInformasiDateSebelumnya, $endInformasiDateSebelumnya])
+                ->where(function ($query) {
+                    $query->where('status_lowongan', 0)
+                        ->orWhere('status_lowongan', 1);
+                })
+                ->where('deleted_at', null)
+                ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
                 ->count();
 
         $malefemaleCountInformasiBelum = DB::table('informasi_lowongans')
                 ->where('jenis_kelamin', 'Laki-laki/Perempuan')
-                ->where('status_lowongan', 0)
-                ->whereBetween('created_at', [$startInformasiDateSebelumnya, $endInformasiDateSebelumnya])
+                ->where(function ($query) {
+                    $query->where('status_lowongan', 0)
+                        ->orWhere('status_lowongan', 1);
+                })
+                ->where('deleted_at', null)
+                ->whereBetween('created_at', [$startDateSebelumnya, $endDateSebelumnya])
                 ->count();
         
-        $maleCountInformasiTerdaftar = DB::table('informasi_lowongans')
+        $maleCountInformasiTerdaftar =  DB::table('informasi_lowongans')
                 ->where('jenis_kelamin', 'Laki-laki')
-                ->where('status_lowongan', 0)
                 ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
         
         $femaleCountInformasiTerdaftar = DB::table('informasi_lowongans')
                 ->where('jenis_kelamin', 'Perempuan')
-                ->where('status_lowongan', 0)
                 ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
 
         $malefemaleCountInformasiTerdaftar = DB::table('informasi_lowongans')
                 ->where('jenis_kelamin', 'Laki-laki/Perempuan')
-                ->where('status_lowongan', 0)
                 ->whereBetween('created_at', [$StartDateYear, $endDateYear])
                 ->count();
 
@@ -424,19 +456,22 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
 
         $informasiTerpenuhiMale = DB::table('informasi_lowongans')
             ->where('jenis_kelamin', 'Laki-laki')
-            ->where('status_lowongan', 1)
+            ->where('status_lowongan', 2)
+            ->where('deleted_at', null)
             ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();
         
         $informasiTerpenuhiFemale = DB::table('informasi_lowongans')
             ->where('jenis_kelamin', 'Perempuan')
-            ->where('status_lowongan', 1)
+            ->where('status_lowongan', 2)
+            ->where('deleted_at', null)
             ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();
 
         $informasiTerpenuhiMaleFemale = DB::table('informasi_lowongans')
             ->where('jenis_kelamin', 'Laki-laki/Perempuan')
-            ->where('status_lowongan', 1)
+            ->where('status_lowongan', 2)
+            ->where('deleted_at', null)
             ->whereBetween('created_at', [$StartDateYear, $endDateYear])
             ->count();
 
@@ -454,7 +489,7 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
             ->where('jenis_kelamin', 'Laki-laki/Perempuan')
             ->whereBetween('deleted_at', [$StartDateYear, $endDateYear])
             ->count();
-
+  
         $jumlahInformasiTerpenuhi = $informasiTerpenuhiMale + $informasiTerpenuhiFemale + $informasiTerpenuhiMaleFemale;
         $jumlahInformasiDelete = $informasiMaleDelete + $informasiFemaleDelete + $informasiMaleFemaleDelete;
 
@@ -469,6 +504,7 @@ class CetakLaporan implements WithDrawings, WithStyles, WithTitle, FromView, Wit
         $jumlahInformasiMaleFemale = $jumlahInformasiMaleFemaleA - $jumlahInformasiMaleFemaleB;
 
         $jumlahInformasi = $jumlahInformasiMale + $jumlahInformasiFemale + $jumlahInformasiMaleFemale;
+
         return view('Dashboard.admin.cetak-laporan-semester', [
             'genderAgeCounts' => $genderAgeCounts,
             'jmlPSebelumnya' => $jmlPSebelumnya,
