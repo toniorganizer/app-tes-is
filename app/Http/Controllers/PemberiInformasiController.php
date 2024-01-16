@@ -56,7 +56,7 @@ class PemberiInformasiController extends Controller
         // $data = PemberiInformasi::findOrFail($id);
         $data = PemberiInformasi::where('email_instansi', $id)->first();
         // dd($data);
-        return view('Dashboard.pemberi_informasi.detail_instansi', [
+        return view('dashboard.pemberi_informasi.detail_instansi', [
             'sub_title' => 'Data Detail Instansi',
             'title' => 'Data',
             'data' => $data
@@ -72,7 +72,7 @@ class PemberiInformasiController extends Controller
     public function edit($id)
     {
         $data = PemberiInformasi::where('id_pemberi_informasi',$id)->first();
-        return view('Dashboard.pemberi_informasi.edit-instansi', [
+        return view('dashboard.pemberi_informasi.edit-instansi', [
             'sub_title' => 'Edit data Instansi',
             'title' => 'Data',
             'data' => $data
@@ -173,7 +173,7 @@ class PemberiInformasiController extends Controller
 
         // dd(Auth::user()->id_user);
 
-        return view('Dashboard.pemberi_informasi.data-lowongan', [
+        return view('dashboard.pemberi_informasi.data-lowongan', [
             'sub_title' => 'Data Lowongan',
             'title' => 'Data',
             'data' => $data
@@ -185,7 +185,7 @@ class PemberiInformasiController extends Controller
       $data = InformasiLowongan::join('lamars','lamars.id_informasi','=','informasi_lowongans.id_informasi_lowongan')
             ->join('pencari_kerjas','pencari_kerjas.email_pk','=','lamars.id_pelamar')->where('id_informasi', $id)->get();
 
-            return view('Dashboard.pemberi_informasi.detail_pendaftar', [
+            return view('dashboard.pemberi_informasi.detail_pendaftar', [
                 'sub_title' => 'Detail Pendaftar',
                 'title' => 'Data',
                 'data' => $data
@@ -196,7 +196,7 @@ class PemberiInformasiController extends Controller
 
         $data = PencariKerja::join('lamars','lamars.id_pelamar','=','pencari_kerjas.email_pk')->join('informasi_lowongans','informasi_lowongans.id_informasi_lowongan','=','lamars.id_informasi')->where('email_pk', $id)->where('id_informasi', $request->id_informasi)->first();
   
-              return view('Dashboard.pemberi_informasi.detail_data_pendaftar', [
+              return view('dashboard.pemberi_informasi.detail_data_pendaftar', [
                   'sub_title' => 'Detail Data Pendaftar',
                   'title' => 'Data',
                   'data' => $data
@@ -221,7 +221,7 @@ class PemberiInformasiController extends Controller
     public function lengkapi_data_lowongan($id){
         $data = InformasiLowongan::where('id_informasi_lowongan', $id)->first();
 
-        return view('Dashboard.pemberi_informasi.lengkapi-data-lowongan', [
+        return view('dashboard.pemberi_informasi.lengkapi-data-lowongan', [
             'sub_title' => 'Detail Data Informasi Lowongan',
             'title' => 'Data',
             'data' => $data
@@ -281,7 +281,7 @@ class PemberiInformasiController extends Controller
     public function tenagaKerjaList(){
         $data = PencariKerja::where('status_ak1', 'Belum Bekerja')->orWhere('status_ak1', 'Aktif')->get(); 
         // dd($data);
-        return view('Dashboard.pemberi_informasi.tenaga-kerja-list', [
+        return view('dashboard.pemberi_informasi.tenaga-kerja-list', [
             'sub_title' => 'Tenaga Kerja',
             'title' => 'Tenaga Kerja',
             'data' => $data

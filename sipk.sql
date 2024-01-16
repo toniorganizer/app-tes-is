@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2024 at 08:55 AM
+-- Generation Time: Jan 16, 2024 at 03:00 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -139,7 +139,7 @@ INSERT INTO `informasi_lowongans` (`id_informasi_lowongan`, `pemberi_informasi_i
 (5, 13, 'Transportasi & Logistik', 'PT Pertamina', '3 - 5 Juta', 'Operator', '', 'Full Time', 'SMK, S1, atau S2', '0 - 1 Tahun', 'Ms. Office', 'Perempuan', 'Silahkan lengkapi pada menu data lowongan', '1', 0, 'Penempatan sesuai domisili cabang PT Pertamina', '2023-08-23', '2023-09-01', 'wxLTVLg9YPSudztJuvpp0hFmgNJAZbQOa6gIV8g3.jpg', '2023-08-23 00:05:06', '2023-09-11 07:55:15', '2023-09-11 07:55:15'),
 (6, 13, 'Pegawai Penggabungan PTS', 'Sekolah Tinggi Ilmu Kesehatan Indonesia Maju', '1 - 2 Juta', 'Jasa', 'Administrasi Perkantoran', 'Full Time', 'SMK, S1, atau S2', '0 - 1 Tahun', 'Ms. Office', 'Laki-laki', '-', '0', 0, 'Yogyakarta', '2023-09-05', '2023-09-30', 'Dzk2AjwARVs8zUBIruSdljh9JTjoLDSxdNSNIpEf.jpg', '2022-09-05 07:16:03', '2023-10-07 07:12:17', '2023-10-07 07:12:17'),
 (7, 13, 'Admin pemasaran', 'Caffe nury', '1 - 2 Juta', 'Programmer', 'Administrasi Perkantoran', 'Part Time', 'SMK, S1, atau S2', '0 - 1 Tahun', 'Ms. Office', 'Perempuan', '-', '1', 1, 'Padang', '2023-10-05', '2023-10-31', 'nexEsdwYeQoUBkaAPPFmOcmOxlMarBVG4T8GT6Jn.jpg', '2023-10-04 18:36:21', '2024-01-14 07:12:30', '2023-01-14 07:12:30'),
-(8, 18, 'Admin timbangan', 'PT DSL', '1 - 2 Juta', 'Pegawai', 'Administrasi Perkantoran', 'Full Time', 'SMK, S1, atau S2', '0 - 1 Tahun', 'Ms. Office', 'Perempuan', '<p>Dibutuhkan Admin Timbangan</p>\r\n\r\n<p><strong>Pendidikan minimal</strong></p>\r\n\r\n<p>SMK/MA/Setara, S1, atau S2</p>\r\n\r\n<p><strong>Pengalaman</strong></p>\r\n\r\n<p>Pernah menggunakan Ms. Office</p>\r\n\r\n<p><strong>Penempatan</strong></p>\r\n\r\n<p>Koto Baru, Kec. Koto Baru, Kabupaten Dharmasraya, Sumatera Barat</p>', '0', 0, 'Dharmasraya', '2023-10-06', '2023-10-31', 'dinkEozL31F2pszXcihL60A28wc0JCb2N4gnVQ53.jpg', '2023-10-06 06:13:44', '2024-01-14 07:17:52', '2024-01-14 07:17:52'),
+(8, 18, 'Admin timbangan', 'PT DSL', '1 - 2 Juta', 'Pegawai', 'Administrasi Perkantoran', 'Full Time', 'SMK, S1, atau S2', '0 - 1 Tahun', 'Ms. Office', 'Perempuan', '<p>Dibutuhkan Admin Timbangan</p>\r\n\r\n<p><strong>Pendidikan minimal</strong></p>\r\n\r\n<p>SMK/MA/Setara, S1, atau S2</p>\r\n\r\n<p><strong>Pengalaman</strong></p>\r\n\r\n<p>Pernah menggunakan Ms. Office</p>\r\n\r\n<p><strong>Penempatan</strong></p>\r\n\r\n<p>Koto Baru, Kec. Koto Baru, Kabupaten Dharmasraya, Sumatera Barat</p>', '0', 0, 'Dharmasraya', '2023-10-06', '2023-10-31', 'dinkEozL31F2pszXcihL60A28wc0JCb2N4gnVQ53.jpg', '2023-10-06 06:13:44', '2024-01-14 07:17:52', '2023-01-14 07:17:52'),
 (9, 13, 'Admin pemasaran', 'UX UI Edu', '1 - 2 Juta', 'Teknisi', 'Administrasi Perkantoran', 'Full Time', 'SMK, S1, atau S2', '0 - 1 Tahun', 'Ms. Office', 'Laki-laki', '-', '1', 0, 'padang', '2023-10-09', '2023-10-31', 'RmMP6lFY8mxZkqyf60QZWnWvcasRRbn2TGGZ9Ym9.png', '2023-10-08 20:41:22', '2024-01-14 07:57:27', NULL),
 (10, 9, 'Desainer', 'Percetakan Abdi', '2.000.000', 'Desainer', 'DKV dan semacamnya', 'Full Time', 'Minimal SMK', '0 - 1 Tahun', 'Coreldraw', 'Laki-laki/Perempuan', '-', '0', 0, 'Yogyakarta', '2024-01-04', '2024-01-17', 'ijZzZcrxlKLiFEfgkRNguE4QCYv9Tkswc4tiZWRz.jpg', '2024-01-13 09:42:59', '2024-01-13 23:36:03', '2024-01-13 23:36:03'),
 (11, 9, 'Kebersihan', 'Percetakan Abdi', '1.500.000', 'Pilih Bidang Lowongan', 'Semua jurusan', 'Pilih Jenis Lowongan', 'Minimal SMP', '0 - 1 Tahun', 'Bisa masak', 'Laki-laki', '-', '0', 0, 'Yogyakarta', '2024-01-01', '2024-01-19', 'FrNoxyrKaQkvosxI8e31Miu9nVWtBrz4NSbDGR7T.png', '2024-01-13 09:48:27', '2024-01-13 23:36:03', '2024-01-13 23:36:03'),
@@ -195,8 +195,8 @@ CREATE TABLE `laporans` (
 --
 
 INSERT INTO `laporans` (`id`, `start_age`, `end_age`, `male_count_terdaftar`, `female_count_terdaftar`, `created_at`, `updated_at`) VALUES
-(1, '15', '19', 0, 0, '2023-09-19 23:20:07', '2024-01-14 23:21:59'),
-(2, '20', '29', 0, 2, '2023-09-19 23:20:07', '2024-01-14 23:21:59'),
+(1, '15', '19', 0, 0, '2023-09-19 23:20:07', '2024-01-15 07:23:06'),
+(2, '20', '29', 0, 2, '2023-09-19 23:20:07', '2024-01-15 07:23:06'),
 (3, '30', '44', 0, 0, '2023-09-19 23:20:07', '2023-10-08 20:22:55'),
 (4, '45', '54', 0, 0, '2023-09-19 23:20:07', '2023-09-19 23:20:07'),
 (5, '55', '+', 0, 0, '2023-09-19 23:21:02', '2023-09-19 23:21:02');
@@ -537,7 +537,7 @@ ALTER TABLE `pemberi_informasis`
 --
 ALTER TABLE `pencari_kerjas`
   ADD PRIMARY KEY (`id_pencari_kerja`),
-  ADD UNIQUE KEY `pencari_kerjas_email_pk_unique` (`email_pk`);
+  ADD KEY `pencari_kerjas_email_pk_unique` (`email_pk`);
 
 --
 -- Indexes for table `personal_access_tokens`

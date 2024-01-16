@@ -74,7 +74,7 @@ class KepentinganController extends Controller
     public function show($id)
     {
         $data = PemangkuKepentingan::join('users','users.email','=','pemangku_kepentingans.email_lembaga')->where('email_lembaga', $id)->first();
-        return view('Dashboard.pemangku-kepentingan.profile-pemangku', [
+        return view('dashboard.pemangku-kepentingan.profile-pemangku', [
             'sub_title' => 'Profile',
             'title' => 'Profile',
             'data' => $data
