@@ -37,6 +37,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/main-search.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
 
     <!-- =======================================================
   * Template Name: HeroBiz
@@ -62,6 +63,7 @@
     <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/mainn.js') }}"></script>
@@ -74,6 +76,7 @@
       });
 
     </script>
+
     <script>
       ClassicEditor
           .create(document.querySelector('#ckeditor_content'))
@@ -91,6 +94,12 @@
             $('#search-form').submit();
         });
     });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $('#bidang').select2();
+  });
 </script>
 
 </body>

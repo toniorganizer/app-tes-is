@@ -90,6 +90,15 @@
                                     @enderror
                                 </div>
                                 <div class="col-lg-11 mt-3">
+                                    <label for="exampleInputEmail1">Jurusan</label>
+                                    <input type="text" name="jurusan" class="form-control @error('jurusan') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->jurusan}}">
+                                    @error('jurusan')
+                                    <small id="emailHelp" class="form-text text-muted">
+                                        {{$message}}
+                                    </small>
+                                    @enderror
+                                </div>
+                                <div class="col-lg-11 mt-3">
                                     <label for="exampleInputEmail1">Keterampilan</label>
                                     <input type="text" name="keterampilan" class="form-control @error('keterampilan') is-invalid @enderror" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{$data->keterampilan}}">
                                     @error('keterampilan')
@@ -147,7 +156,7 @@
                                     <input type="hidden" name="id" value="{{$data->id_informasi_lowongan}}">
                                     <label for="exampleFormControlSelect2">Deskripsi Lowongan</label>
                                     <div class="form-group mb-3">
-                                        <textarea name="deskripsi" class="form-control ckeditor" id="ckeditor" rows="3">{{$data->deskripsi}}</textarea>
+                                        <textarea name="deskripsi" class="form-control editorr" id="editorr" rows="10">{{$data->deskripsi}}</textarea>
                                     </div>
                                     @error('deskripsi')
                                     <small id="emailHelp" class="form-text text-muted">

@@ -169,6 +169,16 @@
                             </div>
                           </div>
 
+                          <div class="post-item mt-3">
+                            <i class="bi bi-cash-stack"></i>
+                            <div class="judul">
+                              <p>Estimasi Gaji :</p>
+                              <div class="sub-judul">
+                                <p>{{$data->salary}}</p>
+                              </div>
+                            </div>
+                          </div>
+
                           <h5 class="card-title">Detail Perusahaan</h5>
                             <div class="post-item">
                             <div>

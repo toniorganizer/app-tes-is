@@ -16,6 +16,12 @@
         </nav>
     </div><!-- End Page Title -->
 
+    @if (session('success'))
+    <div class="alert alert-primary">
+        {{ session('success') }}
+    </div>
+    @endif
+
     <section class="section profile">
         <div class="col-12 overflow-scroll">
               <div class="card recent-sales overflow-auto">
@@ -30,6 +36,7 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Pendidikan</th>
                         <th scope="col">Keterampilan</th>
+                        <th scope="col">Kontak</th>
                         <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
                       </tr>
@@ -48,13 +55,16 @@
                         <td>{{$item->nama_lengkap}}</td>
                         <td>{{$item->pendidikan_terakhir}}</td>
                         <td>{{$item->keterampilan}}</td>
+                        <td>{{$item->no_hp}}</td>
                         <td>
                             @if($item->status == 0)
                             Lamaran Masuk
                             @elseif($item->status == 1)
                             Proses Verifikasi
-                            @else
+                            @elseif($item->status == 2)
                             Memenuhi kriteria
+                            @else
+                            Ditolak
                             @endif
                         </td>
                         <td>

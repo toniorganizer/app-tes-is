@@ -43,22 +43,50 @@
                 </form>
               </div>
 
-              <div class="sidebar-item search-form-s">
+              <div class="sidebar-item search-form">
                 <h4 class="sidebar-title mt-4">Berdasarkan Kategori/jurusan</h3>
                 <form id="search-form" action="/search-bidang" class="mt-3">
                   <div class="input-select">
-                    <select data-trigger="" id="bidang" name="bidang">
+                    <select id="bidang" name="bidang" class="form-search-home selectpicker" id="bidang" name="bidang" data-live-search="true">
                       <option value="">Pilih Jenis Lowongan</option>
-                      <option value="Programmer" {{ session('bidang') == 'Programmer' ? 'selected' : '' }}>Programmer</option>
-                      <option value="Desainer" {{ session('bidang') == 'Desainer' ? 'selected' : '' }}>Desainer</option>
-                      <option value="Jasa" {{ session('bidang') == 'Jasa' ? 'selected' : '' }}>Jasa</option>
-                      <option value="Operator" {{ session('bidang') == 'Operator' ? 'selected' : '' }}>Operator</option>
-                      <option value="Teknisi" {{ session('bidang') == 'Teknisi' ? 'selected' : '' }}>Teknisi</option>
-                      <option value="Pendidik" {{ session('bidang') == 'Pendidik' ? 'selected' : '' }}>Pendidik</option>
-                      <option value="Pegawai" {{ session('bidang') == 'Pegawai' ? 'selected' : '' }}>Pegawai</option>
-                      <option value="Supir" {{ session('bidang') == 'Supir' ? 'selected' : '' }}>Supir</option>
-                      <option value="Animator" {{ session('bidang') == 'Animator' ? 'selected' : '' }}>Animator</option>
-                      <option value="Apoteker" {{ session('bidang') == 'Apoteker' ? 'selected' : '' }}>Apoteker</option>
+                      <option value="Pembangkit Tenaga Listrik" {{ session('bidang') == 'Pembangkit Tenaga Listrik' ? 'selected' : '' }}>Pembangkit Tenaga Listrik</option>
+                      <option value="Instalasi Pemanfaatan Tenaga Listrik" {{ session('bidang') == 'Instalasi Pemanfaatan Tenaga Listrik' ? 'selected' : '' }}>Instalasi Pemanfaatan Tenaga Listrik</option>
+                      <option value="Transmisi Tenaga Listrik" {{ session('bidang') == 'Transmisi Tenaga Listrik' ? 'selected' : '' }}>Transmisi Tenaga Listrik</option>
+                      <option value="Distribusi Tenaga Listrik" {{ session('bidang') == 'Distribusi Tenaga Listrik' ? 'selected' : '' }}>Distribusi Tenaga Listrik</option>
+                      <option value="Fotografi" {{ session('bidang') == 'Fotografi' ? 'selected' : '' }}>Fotografi</option>
+                      <option value="Perposan" {{ session('bidang') == 'Perposan' ? 'selected' : '' }}>Perposan</option>
+                      <option value="Animasi" {{ session('bidang') == 'Animasi' ? 'selected' : '' }}>Animasi</option>
+                      <option value="Desain Komunikasi Visual" {{ session('bidang') == 'Desain Komunikasi Visual' ? 'selected' : '' }}>Desain Komunikasi Visual</option>
+                      <option value="Multimedia" {{ session('bidang') == 'Multimedia' ? 'selected' : '' }}>Multimedia</option>
+                      <option value="Penyiaran Radio" {{ session('bidang') == 'Penyiaran Radio' ? 'selected' : '' }}>Penyiaran Radio</option>
+                      <option value="Penyiaran TV" {{ session('bidang') == 'Penyiaran TV' ? 'selected' : '' }}>Penyiaran TV</option>
+                      <option value="Periklanan" {{ session('bidang') == 'Periklanan' ? 'selected' : '' }}>Periklanan</option>
+                      <option value="Kehumasan" {{ session('bidang') == 'Kehumasan' ? 'selected' : '' }}>Kehumasan</option>
+                      <option value="Penerbitan" {{ session('bidang') == 'Penerbitan' ? 'selected' : '' }}>Penerbitan</option>
+                      <option value="Telekomunikasi" {{ session('bidang') == 'Telekomunikasi' ? 'selected' : '' }}>Telekomunikasi</option>
+                      <option value="Otomotif" {{ session('bidang') == 'Otomotif' ? 'selected' : '' }}>Otomotif</option>
+                      <option value="Budidaya Tanaman" {{ session('bidang') == 'Budidaya Tanaman' ? 'selected' : '' }}>Budidaya Tanaman</option>
+                      <option value="Kesehatan Hewan" {{ session('bidang') == 'Kesehatan Hewan' ? 'selected' : '' }}>Kesehatan Hewan</option>
+                      <option value="Peternakan" {{ session('bidang') == 'Peternakan' ? 'selected' : '' }}>Peternakan</option>
+                      <option value="Teknologi Pertanian" {{ session('bidang') == 'Teknologi Pertanian' ? 'selected' : '' }}>Teknologi Pertanian</option>
+                      <option value="Manajemen dan Agribisnis" {{ session('bidang') == 'Manajemen dan Agribisnis' ? 'selected' : '' }}>Manajemen dan Agribisnis</option>
+                      <option value="Penyuluhan Pertanian" {{ session('bidang') == 'Penyuluhan Pertanian' ? 'selected' : '' }}>Penyuluhan Pertanian</option>
+                      <option value="Data Management System" {{ session('bidang') == 'Data Management System' ? 'selected' : '' }}>Data Management System</option>
+                      <option value="Programming and Software Development" {{ session('bidang') == 'Programming and Software Development' ? 'selected' : '' }}>Programming and Software Development</option>
+                      <option value="Hardware and Digital Peripherals" {{ session('bidang') == 'Hardware and Digital Peripherals' ? 'selected' : '' }}>Hardware and Digital Peripherals</option>
+                      <option value="Network and Infrastructure" {{ session('bidang') == 'Network and Infrastructure' ? 'selected' : '' }}>Network and Infrastructure</option>
+                      <option value="Operation and System Tools" {{ session('bidang') == 'Operation and System Tools' ? 'selected' : '' }}>Operation and System Tools</option>
+                      <option value="Information System and Technology Development" {{ session('bidang') == 'Information System and Technology Development' ? 'selected' : '' }}>Information System and Technology Development</option>
+                      <option value="IT Governance and Management" {{ session('bidang') == 'IT Governance and Management' ? 'selected' : '' }}>IT Governance and Management</option>
+                      <option value="IT Project Management" {{ session('bidang') == 'IT Project Management' ? 'selected' : '' }}>IT Project Management</option>
+                      <option value="IT Enterprise Architecture" {{ session('bidang') == 'IT Enterprise Architecture' ? 'selected' : '' }}>IT Enterprise Architecture</option>
+                      <option value="IT Security and Compliance" {{ session('bidang') == 'IT Security and Compliance' ? 'selected' : '' }}>IT Security and Compliance</option>
+                      <option value="IT Services Management System" {{ session('bidang') == 'IT Services Management System' ? 'selected' : '' }}>IT Services Management System</option>
+                      <option value="IT and Computing Facilities Management" {{ session('bidang') == 'IT and Computing Facilities Management' ? 'selected' : '' }}>IT and Computing Facilities Management</option>
+                      <option value="IT Multimedia" {{ session('bidang') == 'IT Multimedia' ? 'selected' : '' }}>IT Multimedia</option>
+                      <option value="IT Mobility and Internet of Things" {{ session('bidang') == 'IT Mobility and Internet of Things' ? 'selected' : '' }}>IT Mobility and Internet of Things</option>
+                      <option value="Integration Application System" {{ session('bidang') == 'Integration Application System' ? 'selected' : '' }}>Integration Application System</option>
+                      <option value="IT Consultancy and Advisory" {{ session('bidang') == 'IT Consultancy and Advisory' ? 'selected' : '' }}>IT Consultancy and Advisory</option>
                       <option value="Lainnya" {{ session('bidang') == 'Lainnya' ? 'selected' : '' }}>Lainnya</option>
                     </select> 
                 </div>
@@ -173,6 +201,7 @@
   
 
 </main><!-- End #main -->
+
 
 @include('halaman-utama/templates/footer')
 @endsection

@@ -110,7 +110,7 @@ class AdminController extends Controller
 
     // Yang diuji coba
     public function pekerjaanData(){
-        $data = InformasiLowongan::get();
+        $data = InformasiLowongan::latest()->get();
         return view('dashboard.admin.pekerjaan_data', [
             'sub_title' => 'Data Pekerjaan',
             'title' => 'Data',

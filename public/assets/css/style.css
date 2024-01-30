@@ -1226,6 +1226,38 @@ hr{
   color: #012970;
 }
 
+.select2-container {
+  width: 100% !important;
+}
+
+/* Menyesuaikan warna latar belakang item yang dipilih */
+.select2-selection {
+  background-color: white !important;
+  height: auto !important;
+  border-color: #9ce3f8 !important;
+  color: #fff !important;
+  padding: 5px !important;
+  font-size: 14px !important;
+}
+
+/* Menyesuaikan warna font dan latar belakang dropdown */
+.select2-selection option {
+  color: white !important;
+  background-color: #fff !important;
+}
+
+.img-list-pekerja{
+  height: auto !important;
+}
+
+.card-pekerja{
+  height: 300px !important;
+}
+
+.nama-pekerja{
+  text-align: center !important;
+}
+
 .profile .profile-card .social-links .detail-pendaftar {
   font-size: 14px;
   display: inline-block;

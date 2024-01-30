@@ -25,9 +25,9 @@
     <section class="section profile">
         <div class="row">
             @foreach ($data as $item)
-            <div class="col-xl-4">
+            <div class="col-xl-4 col-md-6">
                     
-                <div class="card">
+                <div class="card card-pekerja">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                         <img src="
@@ -36,8 +36,8 @@
                           @else
                           {{ Storage::url('public/user/').$item->foto_pencari_kerja}}
                           @endif
-                        " alt="Profile" class="rounded-circle">
-                        <h2>{{$item->nama_lengkap}}</h2>
+                        " alt="Profile" class="rounded-circle img-list-pekerja">
+                        <h2 class="nama-pekerja">{{$item->nama_lengkap}}</h2>
                         <h3>{{$item->keterampilan}}</h3>
                         {{-- <div class="social-links mt-2">
                             <span class="text-success small pt-1 fw-bold">{{$item->jumlah_pelamar}}</span> <span class="text-muted small pt-2 ps-1">Pendaftar</span>

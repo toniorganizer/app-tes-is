@@ -19,18 +19,46 @@
                       <div class="inner-form">
                         <div class="input-field first-wrap">
                           <div class="input-select">
-                            <select data-trigger="" name="bidang">
+                            <select name="bidang" class="selectpicker form-search-index" id="bidang" name="bidang" data-live-search="true">
                               <option value="">Semua type</option>
-                              <option value="Programmer">Programmer</option>
-                              <option value="Desainer">Desainer</option>
-                              <option value="Jasa">Jasa</option>
-                              <option value="Operator">Operator</option>
-                              <option value="Teknisi">Teknisi</option>
-                              <option value="Pendidik">Pendidik</option>
-                              <option value="Pegawai">Pegawai</option>
-                              <option value="Supir">Supir</option>
-                              <option value="Animator">Animator</option>
-                              <option value="Apoteker">Apoteker</option>
+                              <option value="Pembangkit Tenaga Listrik">Pembangkit Tenaga Listrik</option>
+                              <option value="Instalasi Pemanfaatan Tenaga Listrik">Instalasi Pemanfaatan Tenaga Listrik</option>
+                              <option value="Transmisi Tenaga Listrik">Transmisi Tenaga Listrik</option>
+                              <option value="Distribusi Tenaga Listrik">Distribusi Tenaga Listrik</option>
+                              <option value="Fotografi">Fotografi</option>
+                              <option value="Perposan">Perposan</option>
+                              <option value="Animasi">Animasi</option>
+                              <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
+                              <option value="Multimedia">Multimedia</option>
+                              <option value="Penyiaran Radio">Penyiaran Radio</option>
+                              <option value="Penyiaran TV">Penyiaran TV</option>
+                              <option value="Periklanan">Periklanan</option>
+                              <option value="Kehumasan">Kehumasan</option>
+                              <option value="Penerbitan">Penerbitan</option>
+                              <option value="Telekomunikasi">Telekomunikasi</option>
+                              <option value="Otomotif">Otomotif</option>
+                              <option value="Budidaya Tanaman">Budidaya Tanaman</option>
+                              <option value="Kesehatan Hewan">Kesehatan Hewan</option>
+                              <option value="Peternakan">Peternakan</option>
+                              <option value="Teknologi Pertanian">Teknologi Pertanian</option>
+                              <option value="Manajemen dan Agribisnis">Manajemen dan Agribisnis</option>
+                              <option value="Penyuluhan Pertanian">Penyuluhan Pertanian</option>
+                              <option value="Data Management System">Data Management System</option>
+                              <option value="Programming and Software Development">Programming and Software Development</option>
+                              <option value="Hardware and Digital Peripherals">Hardware and Digital Peripherals</option>
+                              <option value="Network and Infrastructure">Network and Infrastructure</option>
+                              <option value="Operation and System Tools">Operation and System Tools</option>
+                              <option value="Information System and Technology Development">Information System and Technology Development</option>
+                              <option value="IT Governance and Management">IT Governance and Management</option>
+                              <option value="IT Project Management">IT Project Management</option>
+                              <option value="IT Enterprise Architecture">IT Enterprise Architecture</option>
+                              <option value="IT Security and Compliance">IT Security and Compliance</option>
+                              <option value="IT Services Management System">IT Services Management System</option>
+                              <option value="IT and Computing Facilities Management">IT and Computing Facilities Management</option>
+                              <option value="IT Multimedia">IT Multimedia</option>
+                              <option value="IT Mobility and Internet of Things">IT Mobility and Internet of Things</option>
+                              <option value="Integration Application System">Integration Application System</option>
+                              <option value="IT Consultancy and Advisory">IT Consultancy and Advisory</option>
                               <option value="Lainnya">Lainnya</option>
                             </select>
                           </div>

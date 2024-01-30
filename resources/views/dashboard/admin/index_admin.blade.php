@@ -270,5 +270,8 @@
 {{ $chart->script() }}
 <script src="{{ $jobcount->cdn() }}"></script>
 {{ $jobcount->script() }}
+@if(Auth::user()->level == 2)
+@include('dashboard/modal/modal-informasi-syarat')
+@endif
 @include('dashboard/templates/footer')
 @endsection

@@ -1,4 +1,4 @@
-<div class="modal fade" id="Lowongan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="lowongan" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,7 +14,7 @@
                       <label for="inputName5" class="form-label">Lowongan</label>
                       <input type="text" name="informasi" class="form-control @error('informasi') is-invalid @enderror" id="inputName5" value="{{old('informasi')}}">
                       <input type="hidden" name="pemberi_id" class="form-control @error('pemberi_id') is-invalid @enderror" id="inputName5" value="{{Auth::user()->id_user}}">
-                      <input type="hidden" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="inputName5" value="-">
+                      {{-- <input type="hidden" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror" id="inputName5" value="-"> --}}
                       @error('informasi')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
@@ -39,20 +39,48 @@
                         </div>
                     @enderror
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 select2-container mt-2">
                         <label for="inputAddress5" class="form-label">Bidang Lowogan</label>
-                        <select name="bidang" class="form-control">
+                        <select name="bidang" class="selectpicker select2-selection" id="mySelect" data-live-search="true">
                           <option>Pilih Bidang Lowongan</option>
-                          <option value="Programmer">Programmer</option>
-                          <option value="Desainer">Desainer</option>
-                          <option value="Jasa">Jasa</option>
-                          <option value="Operator">Operator</option>
-                          <option value="Teknisi">Teknisi</option>
-                          <option value="Pendidik">Pendidik</option>
-                          <option value="Pegawai">Pegawai</option>
-                          <option value="Supir">Supir</option>
-                          <option value="Animator">Animator</option>
-                          <option value="Apoteker">Apoteker</option>
+                          <option value="Pembangkit Tenaga Listrik">Pembangkit Tenaga Listrik</option>
+                          <option value="Instalasi Pemanfaatan Tenaga Listrik">Instalasi Pemanfaatan Tenaga Listrik</option>
+                          <option value="Transmisi Tenaga Listrik">Transmisi Tenaga Listrik</option>
+                          <option value="Distribusi Tenaga Listrik">Distribusi Tenaga Listrik</option>
+                          <option value="Fotografi">Fotografi</option>
+                          <option value="Perposan">Perposan</option>
+                          <option value="Animasi">Animasi</option>
+                          <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
+                          <option value="Multimedia">Multimedia</option>
+                          <option value="Penyiaran Radio">Penyiaran Radio</option>
+                          <option value="Penyiaran TV">Penyiaran TV</option>
+                          <option value="Periklanan">Periklanan</option>
+                          <option value="Kehumasan">Kehumasan</option>
+                          <option value="Penerbitan">Penerbitan</option>
+                          <option value="Telekomunikasi">Telekomunikasi</option>
+                          <option value="Otomotif">Otomotif</option>
+                          <option value="Budidaya Tanaman">Budidaya Tanaman</option>
+                          <option value="Kesehatan Hewan">Kesehatan Hewan</option>
+                          <option value="Peternakan">Peternakan</option>
+                          <option value="Teknologi Pertanian">Teknologi Pertanian</option>
+                          <option value="Manajemen dan Agribisnis">Manajemen dan Agribisnis</option>
+                          <option value="Penyuluhan Pertanian">Penyuluhan Pertanian</option>
+                          <option value="Data Management System">Data Management System</option>
+                          <option value="Programming and Software Development">Programming and Software Development</option>
+                          <option value="Hardware and Digital Peripherals">Hardware and Digital Peripherals</option>
+                          <option value="Network and Infrastructure">Network and Infrastructure</option>
+                          <option value="Operation and System Tools">Operation and System Tools</option>
+                          <option value="Information System and Technology Development">Information System and Technology Development</option>
+                          <option value="IT Governance and Management">IT Governance and Management</option>
+                          <option value="IT Project Management">IT Project Management</option>
+                          <option value="IT Enterprise Architecture">IT Enterprise Architecture</option>
+                          <option value="IT Security and Compliance">IT Security and Compliance</option>
+                          <option value="IT Services Management System">IT Services Management System</option>
+                          <option value="IT and Computing Facilities Management">IT and Computing Facilities Management</option>
+                          <option value="IT Multimedia">IT Multimedia</option>
+                          <option value="IT Mobility and Internet of Things">IT Mobility and Internet of Things</option>
+                          <option value="Integration Application System">Integration Application System</option>
+                          <option value="IT Consultancy and Advisory">IT Consultancy and Advisory</option>
                           <option value="Lainnya">Lainnya</option>
                         </select>
                       </div>
@@ -146,10 +174,20 @@
                     @enderror
                       <small id="emailHelp" class="form-text text-muted">File max. 150 KB</small>
                     </div>
+
+                    <div class="col-md-12">
+                      <label for="inputCity" class="form-label">Deskripsi Informasi Lowongan</label>
+                      <textarea name="deskripsi" class="editor" id="editor" cols="30" rows="10"></textarea>
+                      @error('lokasi')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    </div>
             </div>
             <div class="modal-footer">
               <div class="col-12">
-                <small id="emailHelp" class="form-text text-muted mb-2">Silahkan lengkapi deskripsi pada halaman data lowongan</small>
+                <small id="emailHelp" class="form-text text-muted mb-2">Updata data dapat dilakukan di halaman data lowongan tombol lengkapi data</small>
                   <button  type="submit" class="btn btn-primary w-100">Simpan</button>
               </div>
           </div>
@@ -157,3 +195,9 @@
         </div>
     </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $('#mySelect').select2();
+  });
+</script>

@@ -215,7 +215,11 @@ class PemberiInformasiController extends Controller
             'status_lowongan' => $request->status,
          ]);
 
-        return redirect('/lowongan-data')->with('success', 'Data Berhasil Diverifikasi!');
+         if($request->status == 2){
+            return redirect('/detail-pendaftar/'. $request->id_informasi)->with('success', 'Data Berhasil Diverifikasi! Silahkan hubungi kontak pencari kerja yang tertera.');
+         }else{
+             return redirect('/detail-pendaftar/'. $request->id_informasi)->with('success', 'Data Berhasil Diverifikasi!');
+         }
     }
 
     public function lengkapi_data_lowongan($id){
@@ -248,6 +252,7 @@ class PemberiInformasiController extends Controller
                 'perusahaan' => $request->perusahaan,
                 'salary' => $request->salary,
                 'bidang' => $request->bidang,
+                'jurusan' => $request->jurusan,
                 'jenis_lowongan' => $request->jenis_lowongan,
                 'pendidikan' => $request->pendidikan,
                 'pengalaman' => $request->pengalaman,
@@ -264,6 +269,7 @@ class PemberiInformasiController extends Controller
                 'judul_lowongan' => $request->judul_lowongan,
                 'salary' => $request->salary,
                 'bidang' => $request->bidang,
+                'jurusan' => $request->jurusan,
                 'jenis_lowongan' => $request->jenis_lowongan,
                 'pendidikan' => $request->pendidikan,
                 'pengalaman' => $request->pengalaman,
@@ -279,7 +285,12 @@ class PemberiInformasiController extends Controller
     }
 
     public function tenagaKerjaList(){
-        $data = PencariKerja::where('status_ak1', 'Belum Bekerja')->orWhere('status_ak1', 'Aktif')->get(); 
+        $data = DB::table('pencari_kerjas')
+        ->where('status_ak1', 'Belum Bekerja')
+        ->whereNull('deleted_at')
+        ->orWhere('status_ak1', 'Aktif')
+        ->orderByRaw('LENGTH(COALESCE(alamat, "") + COALESCE(pendidikan_terakhir, "") + COALESCE(keterampilan, "") + COALESCE(no_hp, "") + COALESCE(tentang, "")) DESC')
+        ->get();
         // dd($data);
         return view('dashboard.pemberi_informasi.tenaga-kerja-list', [
             'sub_title' => 'Tenaga Kerja',

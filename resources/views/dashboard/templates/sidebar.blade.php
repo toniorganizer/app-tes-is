@@ -110,7 +110,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="modal" data-target="#Lowongan">
+                    <a href="#" data-toggle="modal" data-target="#lowongan">
                       <i class="bi bi-circle"></i><span>Tambah Lowongan</span>
                     </a>
                 </li>

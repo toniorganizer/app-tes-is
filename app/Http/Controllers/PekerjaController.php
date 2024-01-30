@@ -24,7 +24,7 @@ class PekerjaController extends Controller
      */
     public function index()
     {
-        $data = InformasiLowongan::leftJoin('lamars','lamars.id_informasi','=','informasi_lowongans.id_informasi_lowongan')->select('id_informasi', 'judul_lowongan','status_lowongan','id_informasi_lowongan','perusahaan','foto_lowongan', 'verifikasi', DB::raw('count(id_informasi) as jumlah_pelamar'))->groupBy('id_informasi', 'judul_lowongan','status_lowongan','id_informasi_lowongan','perusahaan','foto_lowongan', 'verifikasi')->where('status_lowongan', 1)->orWhere('status_lowongan', 3)->orWhere('status_lowongan', 0)->get();
+        $data = InformasiLowongan::leftJoin('lamars','lamars.id_informasi','=','informasi_lowongans.id_informasi_lowongan')->select('id_informasi', 'judul_lowongan','status_lowongan','id_informasi_lowongan','perusahaan','foto_lowongan', 'verifikasi', DB::raw('count(id_informasi) as jumlah_pelamar'))->groupBy('id_informasi', 'judul_lowongan','status_lowongan','id_informasi_lowongan','perusahaan','foto_lowongan', 'verifikasi')->where('status_lowongan', 1)->orWhere('status_lowongan', 3)->orWhere('status_lowongan', 0)->orderBy('informasi_lowongans.created_at', 'desc')->get();
 
         return view('dashboard.pencari_kerja.data-lowongan', [
             'sub_title' => 'Data Lowongan',
@@ -366,7 +366,8 @@ class PekerjaController extends Controller
         ]);
 
         PencariKerja::where('email_pk', $request->email_pk)->update([
-            'bkk_id' => $request->id_bkk
+            'bkk_id' => $request->id_bkk,
+            'status_ak1' => $request->status_bekerja
         ]);
 
         return redirect('/tracer-study')->with('success', 'Terima kasih, telah ikut serta dalam pendataan alumni.');

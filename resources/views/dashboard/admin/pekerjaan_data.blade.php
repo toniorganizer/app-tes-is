@@ -27,15 +27,9 @@
                             <div class="col-lg-11">
                                 <p>Data informasi pasar kerja atau lowongan pekerjaan terdaftar sistem.</p>
                             </div>
-                            {{-- @if(Auth::user()->level == 1)
-                            <div class="col-lg-1 float-left">
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Lowongan">
-                                    <i class="bi bi-person-plus"></i>
-                                </button>
-                            </div> --}}
                             @if(Auth::user()->email == 'disnaker@gmail.com')
                             <div class="col-lg-1 float-left">
-                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#Lowongan">
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#lowongan">
                                     <i class="bi bi-person-plus"></i>
                                 </button>
                             </div>

@@ -1,0 +1,51 @@
+disdik sumbar
+username : disdiksmbr
+password : 123456
+
+disnakertrans sumbar
+username : disnakertrans
+password : 123456
+
+disnakertrans dharmasraya
+username : disnaker_dharmas
+password : 123456
+
+disnakertrans sawahlunto
+username : dpmptspnaker_sawahlunto
+password : 123456
+
+disnakertrans bukittinggi
+username : disnakerbukittingi
+password : 123456
+
+disnakertrans sijunjung
+username : disnakersijunjung
+password : 123456
+
+disnakertrans Kota pariaman
+username : disnakerpariaman
+password : 123456
+
+disnakertrans agam
+username : disnakeragam
+password : 123456
+
+disnakertrans mentawai
+username : nakermentawai
+password : 123456
+
+disnaker lima puluh kota
+username : nakerlimapuluhkota
+password : 123456
+
+disnaker lima padang pariaman
+username : nakerpadangpariaman
+password : 123456
+
+disnaker pasaman
+username : nakerpasaman
+password : 123456
+
+disnaker pesisir selatan
+username : nakerpessel
+password : 123456

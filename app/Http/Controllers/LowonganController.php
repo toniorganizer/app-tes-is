@@ -61,41 +61,71 @@ class LowonganController extends Controller
             'deskripsi' => 'required',
             'tgl_buka' => 'required|date',
             'tgl_tutup' => 'required|date',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
+        if($request->hasFile('foto')){
+            $foto = $request->file('foto');
+            $foto->storeAs('public/informasi-lowongan', $foto->hashName());
 
-        $foto = $request->file('foto');
-        $foto->storeAs('public/informasi-lowongan', $foto->hashName());
 
+            InformasiLowongan::create([
+                'pemberi_informasi_id' => $request->pemberi_id,
+                'judul_lowongan' => $request->informasi,
+                'perusahaan' => $request->perusahaan,
+                'salary' => $request->salary,
+                'bidang' => $request->bidang,
+                'jurusan' => $request->jurusan,
+                'jenis_lowongan' => $request->jenis_lowongan,
+                'pendidikan' => $request->pendidikan,
+                'pengalaman' => $request->pengalaman,
+                'keterampilan' => $request->keterampilan,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'deskripsi' => $request->deskripsi,
+                'tgl_buka' => $request->tgl_buka,
+                'tgl_tutup' => $request->tgl_tutup,
+                'verifikasi' => 0,
+                'status_lowongan' => 0,
+                'lokasi' => $request->lokasi,
+                'foto_lowongan' => $foto->hashName(),
+            ]);
 
-        InformasiLowongan::create([
-            'pemberi_informasi_id' => $request->pemberi_id,
-            'judul_lowongan' => $request->informasi,
-            'perusahaan' => $request->perusahaan,
-            'salary' => $request->salary,
-            'bidang' => $request->bidang,
-            'jurusan' => $request->jurusan,
-            'jenis_lowongan' => $request->jenis_lowongan,
-            'pendidikan' => $request->pendidikan,
-            'pengalaman' => $request->pengalaman,
-            'keterampilan' => $request->keterampilan,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'deskripsi' => $request->deskripsi,
-            'tgl_buka' => $request->tgl_buka,
-            'tgl_tutup' => $request->tgl_tutup,
-            'verifikasi' => 0,
-            'status_lowongan' => 0,
-            'lokasi' => $request->lokasi,
-            'foto_lowongan' => $foto->hashName(),
-        ]);
+            Sumber::create([
+                'pemberi_informasi_id' => $request->pemberi_id,
+                'pemangku_kepentingan_id' => $request->pemberi_id,
+                'tgl_buka' => $request->tgl_buka,
+                'tgl_tutup' => $request->tgl_tutup,
+            ]);
+        }else{
 
-        Sumber::create([
-            'pemberi_informasi_id' => $request->pemberi_id,
-            'pemangku_kepentingan_id' => $request->pemberi_id,
-            'tgl_buka' => $request->tgl_buka,
-            'tgl_tutup' => $request->tgl_tutup,
-        ]);
+            InformasiLowongan::create([
+                'pemberi_informasi_id' => $request->pemberi_id,
+                'judul_lowongan' => $request->informasi,
+                'perusahaan' => $request->perusahaan,
+                'salary' => $request->salary,
+                'bidang' => $request->bidang,
+                'jurusan' => $request->jurusan,
+                'jenis_lowongan' => $request->jenis_lowongan,
+                'pendidikan' => $request->pendidikan,
+                'pengalaman' => $request->pengalaman,
+                'keterampilan' => $request->keterampilan,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'deskripsi' => $request->deskripsi,
+                'tgl_buka' => $request->tgl_buka,
+                'tgl_tutup' => $request->tgl_tutup,
+                'verifikasi' => 0,
+                'status_lowongan' => 0,
+                'lokasi' => $request->lokasi,
+                'foto_lowongan' => 'default.jpg',
+            ]);
+
+            Sumber::create([
+                'pemberi_informasi_id' => $request->pemberi_id,
+                'pemangku_kepentingan_id' => $request->pemberi_id,
+                'tgl_buka' => $request->tgl_buka,
+                'tgl_tutup' => $request->tgl_tutup,
+            ]);
+        }
 
         if($request->pemberi_id == 2){
             return redirect('/lowongan')->with('success', 'Data Berhasil Disimpan!');

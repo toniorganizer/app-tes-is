@@ -44,6 +44,8 @@
   {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="{{asset('assets/ckeditor/build/ckeditor.js')}}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
   
 </head>
 
@@ -66,21 +68,36 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <!-- Template Main JS File -->
   <script src="{{asset('assets/js/main.js')}}"></script>
-  <script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
   @if(Session::has('message'))
   <script>
-      toastr.success("Data berhasil ditamabh");
+      toastr.success("Data berhasil ditambah");
   </script>
   @endif
 
   <script>
     ClassicEditor
-        .create(document.querySelector('#ckeditor'))
-        .catch(error => {
-            console.error(error);
-        });
-  </script>
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+<script>
+  ClassicEditor
+      .create( document.querySelector( '#editorr' ) )
+      .catch( error => {
+          console.error( error );
+      } );
+</script>
+
+{{-- <script>
+$(document).ready(function(){
+  $('.selectpicker').select2();
+});
+</script> --}}
+
   <script>
       
     $('.form-check-input').on('click', function(){
@@ -103,29 +120,6 @@
 
   </script>
 
-  {{-- <script type="text/javascript">
-    $(document).ready(function () {
-      var table = $('.datatable').DataTable();
-
-      // Start edit
-      table.on('click', '.edit', function() {
-        $tr = $(this).closest('tr');
-        if($($tr).hasClass('child')){
-          $tr = $tr.prev('.parent');
-        }
-
-        var data = table.row($tr).data();
-        console.log(data);
-
-        $('#nama_lengkap').val(data[1]);
-        $('#username').val(data[2]);
-        
-        $('#editForm').attr('action', '/editTenagaKerja'+data[2]);
-        // $('#edit-tk').modal('show');
-      })
-    })
-  </script> --}}
-
   <script>
     $(document).ready(function () {
         // Mendeteksi perubahan pada elemen select
@@ -135,6 +129,48 @@
         });
     });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+      // Ambil elemen dropdown
+      var levelDropdown = document.getElementById("exampleFormControlSelect1");
+      var levelDropdownn = document.getElementById("exampleFormControlSelect2");
+
+      // Ambil elemen form untuk level 3
+      var formLevel3 = document.getElementById("formLevel3");
+      var formLevel1 = document.getElementById("formLevel1");
+
+      // Tambahkan event listener untuk mendeteksi perubahan pada dropdown
+      levelDropdown.addEventListener("change", function () {
+          // Periksa apakah nilai dropdown adalah 3
+          if (levelDropdown.value === "3") {
+              // Jika ya, tampilkan form level 3
+              formLevel3.style.display = "block";
+          } else {
+              // Jika tidak, sembunyikan form level 3
+              formLevel3.style.display = "none";
+          }
+      });
+
+      // Tambahkan event listener untuk mendeteksi perubahan pada dropdown
+      levelDropdownn.addEventListener("change", function () {
+          // Periksa apakah nilai dropdown adalah 3
+          if (levelDropdownn.value === "2") {
+              // Jika ya, tampilkan form level 3
+              formLevel1.style.display = "block";
+          } else {
+              // Jika tidak, sembunyikan form level 3
+              formLevel1.style.display = "none";
+          }
+      });
+  });
+</script>
+
+<script>
+  // Munculkan modal secara otomatis saat halaman dimuat
+  $(document).ready(function() {
+    $('#myModal').modal('show');
+  });
+  </script>
 </body>
 
 </html>

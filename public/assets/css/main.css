@@ -3024,7 +3024,7 @@ section {
   bottom: 0;
   border: 0;
   background: none;
-  font-size: 16px;
+  font-size: 12px;
   padding: 0 15px;
   margin: -1px;
   background: var(--color-primary);
@@ -3040,6 +3040,12 @@ section {
 
 .blog .sidebar .search-form-s form button:hover {
   background: rgba(var(--color-primary-rgb), 0.8);
+}
+
+
+.form-search-home option{
+  font-size: 8px !important;
+  background-color: #fff !important;
 }
 
 .blog .sidebar .search-form form button i {
