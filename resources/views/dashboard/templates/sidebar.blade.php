@@ -323,7 +323,11 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
+            @if($title == 'FaQ')
+            <a class="nav-link" href="/user-faq">
+            @else
             <a class="nav-link collapsed" href="/user-faq">
+            @endif
                 <i class="bi bi-question-circle"></i>
                 <span>F.A.Q</span>
             </a>

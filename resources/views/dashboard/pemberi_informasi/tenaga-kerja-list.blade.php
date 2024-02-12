@@ -23,10 +23,22 @@
     @endif
 
     <section class="section profile">
-        <div class="row">
+        <div class="row justify-content-end">
+            <div class="col-xl-4 col-md-6">
+            <form action="search-keterampilan" method="post">
+            @csrf
+            <div class="input-group mb-3">
+                <input type="text" name="query" class="form-control" placeholder="Cari berdasarkan keterampilan" aria-label="Cari berdasarkan keterampilan" aria-describedby="button-addon2" value="{{request()->input('query')}}">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+            </form>
+            </div>
+        </div>
+            <div class="row">
             @foreach ($data as $item)
             <div class="col-xl-4 col-md-6">
-                    
                 <div class="card card-pekerja">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 

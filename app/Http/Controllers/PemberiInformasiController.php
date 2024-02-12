@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\PemberiInformasi;
 use App\Models\InformasiLowongan;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -292,6 +293,24 @@ class PemberiInformasiController extends Controller
         ->orderByRaw('LENGTH(COALESCE(alamat, "") + COALESCE(pendidikan_terakhir, "") + COALESCE(keterampilan, "") + COALESCE(no_hp, "") + COALESCE(tentang, "")) DESC')
         ->get();
         // dd($data);
+        return view('dashboard.pemberi_informasi.tenaga-kerja-list', [
+            'sub_title' => 'Tenaga Kerja',
+            'title' => 'Tenaga Kerja',
+            'data' => $data
+        ]);
+    }
+
+    public function searchKeterampilan(Request $request){
+        $kata = $request->input('query');
+        $data = DB::table('pencari_kerjas')
+        ->where('keterampilan', 'like', '%' . $kata . '%')
+        ->where(function ($query) {
+            $query->where('status_ak1', 'Belum Bekerja')
+                ->orWhere('status_ak1', 'Aktif');
+        })
+        ->whereNull('deleted_at')
+        ->orderByRaw('LENGTH(COALESCE(alamat, "") + COALESCE(pendidikan_terakhir, "") + COALESCE(keterampilan, "") + COALESCE(no_hp, "") + COALESCE(tentang, "")) DESC')
+        ->get();
         return view('dashboard.pemberi_informasi.tenaga-kerja-list', [
             'sub_title' => 'Tenaga Kerja',
             'title' => 'Tenaga Kerja',

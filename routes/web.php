@@ -45,7 +45,10 @@ Route::get('/lowongan-home', function () {
 });
 
 Route::get('/user-faq', function () {
-    return view('dashboard.admin.user_faq');
+
+    $data['title'] = 'FaQ';
+    $data['sub_title'] = 'FaQ';
+    return view('dashboard.admin.user_faq', $data);
 });
 
 Route::group(['middleware' => 'check', 'controller' => AdminController::class], function () {
@@ -137,6 +140,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(PemberiInformasiController::class)->group(function (){
         Route::get('/tenaga-kerja-list', 'tenagaKerjaList');
+        Route::post('/search-keterampilan', 'searchKeterampilan')->name('search-keterampilan');
     });
 
 });

@@ -171,6 +171,27 @@ $(document).ready(function(){
     $('#myModal').modal('show');
   });
   </script>
+
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        $('#searchInput').on('input', function() {
+            var query = $(this).val();
+            if (query.length >= 3) { // Tambahkan validasi jika minimal 3 karakter diperlukan untuk pencarian
+                $.ajax({
+                    url: "{{ route('search-keterampilan') }}",
+                    method: "GET",
+                    data: { query: query },
+                    success: function(response) {
+                        $('#searchResults').html(response);
+                    }
+                });
+            } else {
+                $('#searchResults').empty();
+            }
+        });
+    });
+  </script> --}}
 </body>
 
 </html>
