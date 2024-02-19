@@ -317,4 +317,22 @@ class PemberiInformasiController extends Controller
             'data' => $data
         ]);
     }
+
+    public function searchUmur(Request $request){
+        $data = DB::table('pencari_kerjas')
+        ->where('umur', '>=', $request->umur1)
+        ->where('umur', '<=', $request->umur2)
+        ->where(function ($query) {
+            $query->where('status_ak1', 'Belum Bekerja')
+                ->orWhere('status_ak1', 'Aktif');
+        })
+        ->whereNull('deleted_at')
+        ->orderByRaw('LENGTH(COALESCE(alamat, "") + COALESCE(pendidikan_terakhir, "") + COALESCE(keterampilan, "") + COALESCE(no_hp, "") + COALESCE(tentang, "")) DESC')
+        ->get();    
+        return view('dashboard.pemberi_informasi.tenaga-kerja-list', [
+            'sub_title' => 'Tenaga Kerja',
+            'title' => 'Tenaga Kerja',
+            'data' => $data
+        ]);
+    }
 }

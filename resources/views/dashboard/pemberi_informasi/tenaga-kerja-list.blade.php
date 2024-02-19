@@ -23,8 +23,21 @@
     @endif
 
     <section class="section profile">
-        <div class="row justify-content-end">
-            <div class="col-xl-4 col-md-6">
+        <div class="row">
+            <p style="text-align: justify; font-size: 14px">Berikut merupakan data Tenaga kerja yang terdaftar pada sistem. Pada halaman ini tenaga kerja diurutkan berdasasarkan <strong> kelengkapan informasi data diri tenaga kerja</strong>. Selain itu terdapat form pencarian berdasarkan <strong> rentang umur dan keterampilan</strong>. Form rentang umur dapat digunakan dengan cara memasukan umur terendah sampai umur tertinggi yang ingin dicari, pada contoh umur yang dicari pada <strong> rentang 19-23 tahun</strong>.</p>
+            <div class="col-xl-4 col-md-6 align-self-start">
+                <form action="search-umur" method="post">
+                @csrf
+                <div class="input-group mb-3">
+                    <input type="text" name="umur1" class="form-control" placeholder="19" aria-label="Cari berdasarkan keterampilan" aria-describedby="button-addon2" value="{{request()->input('umur1')}}" required>
+                    <input type="text" name="umur2" class="form-control" placeholder="23" aria-label="Cari berdasarkan keterampilan" aria-describedby="button-addon2" value="{{request()->input('umur2')}}" required>
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-primary" type="submit" id="button-addon2"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+                </form>
+                </div>
+            <div class="col-xl-4 col-md-6 align-self-end">
             <form action="search-keterampilan" method="post">
             @csrf
             <div class="input-group mb-3">

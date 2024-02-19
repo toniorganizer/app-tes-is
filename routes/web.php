@@ -141,6 +141,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::controller(PemberiInformasiController::class)->group(function (){
         Route::get('/tenaga-kerja-list', 'tenagaKerjaList');
         Route::post('/search-keterampilan', 'searchKeterampilan')->name('search-keterampilan');
+        Route::post('/search-umur', 'searchUmur')->name('search-umur');
     });
 
 });
